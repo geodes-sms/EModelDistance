@@ -1,0 +1,102 @@
+package PacmanGame.search;
+
+import java.io.File;
+import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.stream.Stream;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
+import PacmanGame.GridNode;
+import PacmanGame.PacmanGamePackage;
+import PacmanGame.PositionableEntity;
+import PacmanGame.impl.FoodImpl;
+import PacmanGame.impl.GameImpl;
+import PacmanGame.impl.MoveableEntityImpl;
+
+public abstract class DistanceCalculator {
+	
+	private EObject targetModel;
+	
+	public DistanceCalculator(File targetModel) {
+		try {
+			this.targetModel = loadModel(targetModel.getAbsolutePath());
+			//this.ecomp = EMFCompare.builder().build();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private String firstResourceName;
+	public String getFirstResourceName() {
+		return firstResourceName;
+	}
+
+	public String getSecondResourceName() {
+		return secondResourceName;
+	}
+
+	private String secondResourceName;
+	
+	private String firstResourcePath;
+	public String getFirstResourcePath() {
+		return firstResourcePath;
+	}
+	
+	private String secondResourcePath;
+
+	public String getSecondResourcePath() {
+		return secondResourcePath;
+	}
+	
+	private static MoveDistance INSTANCE;
+	
+	public static void initWith(File modelFile) {
+		INSTANCE = new MoveDistance(modelFile);
+	}
+	
+	public EObject loadModel(String uri) {
+		// register XMI resource factory for .xmi extension
+		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+		Map<String, Object> m = reg.getExtensionToFactoryMap();
+		m.put("xmi", new XMIResourceFactoryImpl());
+		// create resource set
+		ResourceSet resourceSet = new ResourceSetImpl();
+		// register FSA metamodel
+		resourceSet.getPackageRegistry().put(PacmanGamePackage.eINSTANCE.getNsURI(),
+				PacmanGamePackage.eINSTANCE);
+		// create file URI, always use File.getAbsolutePath()
+		URI fileUri = URI.createFileURI(new File(uri).getAbsolutePath());
+		// load resource
+		Resource resource = resourceSet.getResource(fileUri, true);
+		// retrieve first EObject in the resource
+		return resource.getContents().get(0);
+	}
+	
+	private boolean finished;
+	public boolean isFinished() {
+		return finished;
+	}
+
+	private double distance;
+	public double getDistance() {
+		return distance;
+	}
+
+	public static double calculateFitness(EObject model) {
+		return INSTANCE.calculateDistance(model);
+	}
+
+	public String getReportLine()
+	{
+		return "Distance between '" + firstResourceName + "' and '" + secondResourceName + "' is " + distance + "\n";
+	}
+	
+	public abstract double calculateDistance(EObject model);
+}

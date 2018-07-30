@@ -1,0 +1,106 @@
+package PacmanGame.search;
+
+import java.io.File;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import PacmanGame.Ghost;
+import PacmanGame.GridNode;
+import PacmanGame.Pacman;
+import PacmanGame.PacmanGamePackage;
+import PacmanGame.PositionableEntity;
+import PacmanGame.impl.FoodImpl;
+import PacmanGame.impl.GameImpl;
+import PacmanGame.impl.MoveableEntityImpl;
+
+public class MoveDistance extends DistanceCalculator {
+	
+	//private PacmanDistanceUtil pacmanDistanceUtil;
+	
+	public MoveDistance(File targetModel) {
+		super(targetModel);
+		//pacmanDistanceUtil = PacmanDistanceUtil.getInstance();
+	}
+	
+	@Override
+	protected EPackage getEPackageInstance() {
+		// Generated from metamodel
+		return PacmanGamePackage.eINSTANCE;
+	}
+	
+	@Override
+	public double calculateDistance(EObject model) {
+		double distance_moveable = 0.0;
+		try {
+			// re-load resource to avoid multi-threading issues
+			//reloadResource(first);
+			synchronized (this.targetModel) {
+				synchronized (model) {
+					//*************************************
+					//* Test EcoreShortestPaths algorithm *
+					//*************************************
+					/*EcoreShortestPaths src_paths = new EcoreShortestPaths(PacmanDistanceUtil.getPositionObjects(model));
+					src_paths.computeDistances();
+					for (EObject e : src_targetObjects)
+						System.out.print(((GridNode)e).getId() + ",");*/
+					
+					/*for (EObject srcNode : src_targetObjects) {
+						for (EObject tarNode : src_targetObjects) {
+							List<EObject> path = src_paths.getPath(srcNode, tarNode);
+							System.out.println("From " + ((GridNode)srcNode).getId() + " to " + ((GridNode)tarNode).getId()
+									+ " = " + src_paths.getDistance(srcNode, tarNode));
+							for (EObject e : path)
+								System.out.print(((GridNode)e).getId() + "->");
+							System.out.println();
+						}
+					}*/
+					
+					EcoreShortestPaths src_paths = new EcoreShortestPaths(PacmanDistanceUtil.getPositionObjects(model));
+					src_paths.computeDistances();
+					
+					List<EObject> src_movableObjects =  PacmanDistanceUtil.getMovableObjects(model);
+					
+					for (EObject src_movable : src_movableObjects) {
+						EObject src_position = PacmanDistanceUtil.getPosition(src_movable);
+						// Check if src_position is in tar
+						if (PacmanDistanceUtil.getPositionInModel(src_position, this.targetModel) != null) {
+							// Check if src_movable is in tar
+							EObject tar_movable = PacmanDistanceUtil.getMovableInModel(src_movable, this.targetModel);
+							if (tar_movable != null) {
+								// Get position of tar_movable
+								EObject tar_position = PacmanDistanceUtil.getPosition(tar_movable);
+								tar_position = PacmanDistanceUtil.getPositionInModel(tar_position, model);
+								// Check if tar_position is in src
+								if (tar_position != null) {
+									// Compute the path from src_position to tar_position
+									distance_moveable += src_paths.getDistance(src_position, tar_position);
+									//System.out.println(PacmanDistanceUtil.getId(src_movable) + ": " + PacmanDistanceUtil.getId(src_position)
+									//	+ "->" + PacmanDistanceUtil.getId(tar_position) + " = " + distance_moveable);
+								}
+							}
+						}
+					}
+				}
+			}
+			distance = distance_moveable;
+			finished = true;
+			//System.out.println("Distance: " + distance_moveable);
+			
+		} catch (Exception e) {
+			distance = 1.0;
+			System.err.println("Error: " + e.getMessage());
+			e.printStackTrace();
+		}
+		return distance;
+	}
+}

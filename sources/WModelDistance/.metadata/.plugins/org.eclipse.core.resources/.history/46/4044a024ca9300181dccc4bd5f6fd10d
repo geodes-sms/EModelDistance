@@ -1,0 +1,17 @@
+package PacmanGame.search;
+
+public final class PacmanGameDistanceUtilFactory {
+
+	private DistanceUtil instance;
+	
+	public synchronized static PacmanDistanceUtil getInstance() {
+		if(INSTANCE == null){
+	        synchronized (PacmanDistanceUtil.class) {
+	            if(INSTANCE == null){
+	            	INSTANCE = new PacmanDistanceUtil();
+	            }
+	        }
+	    }
+	    return (PacmanDistanceUtil)INSTANCE;
+	}
+}

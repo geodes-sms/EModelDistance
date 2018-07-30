@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="at.ac.tuwien.big.momot.lang.ui.MOMoTLaunchConfigurationType">
+<booleanAttribute key="org.eclipse.debug.core.ATTR_REFRESH_RECURSIVE" value="true"/>
+<stringAttribute key="org.eclipse.debug.core.ATTR_REFRESH_SCOPE" value="${workspace}"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="icmt.tool.momot.demo.PacmanSearch"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.pacman"/>
+<booleanAttribute key="org.eclipse.jdt.launching.STOP_IN_MAIN" value="false"/>
+</launchConfiguration>
