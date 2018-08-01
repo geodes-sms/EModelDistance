@@ -1,8 +1,7 @@
 package icmt.tool.momot.demo;
 
 import PacmanGame.PacmanGamePackage;
-import PacmanGame.search.MoveDistance;
-import PacmanGame.search.PacmanGameDistanceCalculator;
+import PacmanGame.search.PacmanGameMoveDistance;
 import at.ac.tuwien.big.moea.SearchAnalysis;
 import at.ac.tuwien.big.moea.SearchExperiment;
 import at.ac.tuwien.big.moea.experiment.analyzer.SearchAnalyzer;
@@ -66,7 +65,7 @@ public class PacmanSearch {
   }
   
   protected double _createObjectiveHelper_1(final TransformationSolution solution, final EGraph graph, final EObject root) {
-    return MoveDistance.calculateFitness(root);
+    return PacmanGameMoveDistance.calculateFitness(root);
   }
   
   protected IFitnessDimension<TransformationSolution> _createObjective_1(final TransformationSearchOrchestration orchestration) {
@@ -290,7 +289,7 @@ public class PacmanSearch {
   public static void initialization() {
     PacmanGamePackage.eINSTANCE.eClass();
     File _file = new File("models/M2.xmi");
-    PacmanGameDistanceCalculator.initWith(_file);
+    PacmanGameMoveDistance.initWith(_file);
     System.out.println("Search started.");
   }
   

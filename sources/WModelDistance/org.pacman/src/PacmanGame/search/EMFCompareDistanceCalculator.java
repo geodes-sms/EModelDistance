@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.EPackage;
 
 import PacmanGame.PacmanGamePackage;
 
+import emfmodeldistance.DistanceCalculator;
+
 public class EMFCompareDistanceCalculator extends DistanceCalculator {
 	
 	private EMFCompare ecomp;

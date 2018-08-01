@@ -14,10 +14,16 @@ import PacmanGame.impl.FoodImpl;
 import PacmanGame.impl.GameImpl;
 import PacmanGame.impl.MoveableEntityImpl;
 
+import emfmodeldistance.DistanceCalculator;
+
 public class PacmanGameDistanceCalculator extends DistanceCalculator {
 	
 	public PacmanGameDistanceCalculator(File targetModel) {
 		super(targetModel);
+	}
+	
+	public static void initWith(File modelFile) {
+		INSTANCE = new PacmanGameMoveDistance(modelFile);
 	}
 	
 	@Override

@@ -3,6 +3,7 @@
 	<name>org.pacman</name>
 	<comment></comment>
 	<projects>
+		<project>org.geodes.sms.emfmodeldistance</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

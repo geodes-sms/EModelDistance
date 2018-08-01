@@ -21,6 +21,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.ecore;bundle-version="[3.4.0,4.0.0)",
  at.ac.tuwien.big.momot.core,
  org.apache.log4j,
- org.eclipse.emf.common
+ org.eclipse.emf.common,
+ org.geodes.sms.emfmodeldistance
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy

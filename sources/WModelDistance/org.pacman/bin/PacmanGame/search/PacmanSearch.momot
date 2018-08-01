@@ -7,14 +7,12 @@ import org.moeaframework.core.operator.TournamentSelection
 import org.moeaframework.core.operator.OnePointCrossover
 import at.ac.tuwien.big.momot.^search.algorithm.operator.mutation.TransformationPlaceholderMutation
 import PacmanGame.PacmanGamePackage
-import PacmanGame.^search.PacmanGameDistanceCalculator
 import java.io.File
-import PacmanGame.^search.EMFCompareDistanceCalculator
-import PacmanGame.^search.MoveDistance
+import PacmanGame.^search.PacmanGameMoveDistance
 
 initialization = {
    PacmanGamePackage.eINSTANCE.eClass // register package
-   PacmanGameDistanceCalculator.initWith(new File("models/M2.xmi"));
+   PacmanGameMoveDistance.initWith(new File("models/M2.xmi"));
    System.out.println("Search started.");
 }
 
@@ -38,7 +36,7 @@ search = {
    fitness         = {
       objectives = {
          SolutionLength : minimize new TransformationLengthDimension
-         Distance: minimize {MoveDistance.calculateFitness(root)}
+         Distance: minimize {PacmanGameMoveDistance.calculateFitness(root)}
          
       }
    }
