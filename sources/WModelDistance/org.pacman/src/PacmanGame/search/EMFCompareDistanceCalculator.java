@@ -49,63 +49,48 @@ public class EMFCompareDistanceCalculator extends DistanceCalculator {
 	}
 	
 	@Override
-	
-	public  double calculateDistance(EObject model) {
-
-		try {
-			// re-load resource to avoid multi-threading issues
-			//reloadResource(first);
-			synchronized (this.targetModel) {
-				synchronized (model) {
-					IComparisonScope scope = new DefaultComparisonScope(this.targetModel, model, null);
-					Comparison comp = ecomp.compare(scope);
-					matches = 0;
-					differences = 0;
-					// Really simple, let's see how good it is
-					// Decrease severity the lower you go
-					for (Match m : comp.getMatches()) {
-						++matches;
-						double curWeight = 1.0;
-						Stack<Stack<Match>> curMatches = new Stack();
-						Stack<Match> curmStack = new Stack<Match>();
-						curmStack.addAll(m.getSubmatches());
-						curMatches.add(curmStack);
-						while (!curMatches.isEmpty()) {
-							Stack<Match> curStack = curMatches.peek();
-							if (curStack.isEmpty()) {
-								curMatches.pop();
-								curWeight *= 2;
-							} else {
-								Match curMatch = curStack.pop();
-								if (curMatch.getLeft() != null && curMatch.getRight() != null) {
-									matches += curWeight;
-								} else {
-									differences += curWeight;
-								}
-			//					for (Diff diff : curMatch.getDifferences().size()) {
-			//						// DifferenceKind kind = diff.getKind();
-			//						differences += curWeight; 
-			//					}
-								differences += curWeight * curMatch.getDifferences().size();
-								Stack<Match> subStack = new Stack<Match>();
-								subStack.addAll(curMatch.getSubmatches());
-								curMatches.push(subStack);
-								curWeight *= 0.5;
-							}
-						}
+	protected double calculate(EObject model) throws Exception {
+		double emf_distance = 0.0;
+		IComparisonScope scope = new DefaultComparisonScope(this.targetModel, model, null);
+		Comparison comp = ecomp.compare(scope);
+		matches = 0;
+		differences = 0;
+		// Really simple, let's see how good it is
+		// Decrease severity the lower you go
+		for (Match m : comp.getMatches()) {
+			++matches;
+			double curWeight = 1.0;
+			Stack<Stack<Match>> curMatches = new Stack();
+			Stack<Match> curmStack = new Stack<Match>();
+			curmStack.addAll(m.getSubmatches());
+			curMatches.add(curmStack);
+			while (!curMatches.isEmpty()) {
+				Stack<Match> curStack = curMatches.peek();
+				if (curStack.isEmpty()) {
+					curMatches.pop();
+					curWeight *= 2;
+				} else {
+					Match curMatch = curStack.pop();
+					if (curMatch.getLeft() != null && curMatch.getRight() != null) {
+						matches += curWeight;
+					} else {
+						differences += curWeight;
 					}
-					distance = ((double) differences) / (matches + differences);
-					distance = Math.pow(distance, 2); // ... to decrease smaller parts??
-					finished = true;
+//					for (Diff diff : curMatch.getDifferences().size()) {
+//						// DifferenceKind kind = diff.getKind();
+//						differences += curWeight; 
+//					}
+					differences += curWeight * curMatch.getDifferences().size();
+					Stack<Match> subStack = new Stack<Match>();
+					subStack.addAll(curMatch.getSubmatches());
+					curMatches.push(subStack);
+					curWeight *= 0.5;
 				}
 			}
-			
-		} catch (Exception e) {
-			distance = 1.0;
-			System.err.println("Error: "+e.getMessage());
-			e.printStackTrace();
 		}
-		return distance;
+		emf_distance = ((double) differences) / (matches + differences);
+		emf_distance = Math.pow(distance, 2); // ... to decrease smaller parts??
+		return emf_distance;
 	}
 	
 	public String getReportLine() {

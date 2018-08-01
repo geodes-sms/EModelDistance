@@ -101,5 +101,25 @@ public abstract class DistanceCalculator {
 	 * @return a value between 0 and 1, the lower the value the more similar the models are.
 	 * 0 means they are an exact match.
 	 */
-	public abstract double calculateDistance(EObject model);
+	public final double calculateDistance(EObject model) {
+		try {
+			// re-load resource to avoid multi-threading issues
+			//reloadResource(first);
+			synchronized (this.targetModel) {
+				synchronized (model) {
+					distance = calculate(model);
+				}
+			}
+			finished = true;
+			//System.out.println("Distance: " + distance);
+			
+		} catch (Exception e) {
+			distance = 1.0;
+			System.err.println("Error: " + e.getMessage());
+			e.printStackTrace();
+		}
+		return distance;
+	}
+	
+	protected abstract double calculate(EObject model) throws Exception;
 }
