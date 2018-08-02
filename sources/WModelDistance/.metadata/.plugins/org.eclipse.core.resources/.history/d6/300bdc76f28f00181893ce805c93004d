@@ -1,5 +1,0 @@
-package PacmanGame.search;
-
-public interface IEReferenceNavigator {
-
-}

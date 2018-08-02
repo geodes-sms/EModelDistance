@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<section name="RefactoringWizard.preview">
-		<item value="600" key="width"/>
-		<item value="400" key="height"/>
-	</section>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="false" key="updateQualifiedNames"/>
 		<item value="*" key="patterns"/>
@@ -14,10 +10,21 @@
 	<section name="SelfEncapsulateFieldWizard">
 		<item value="false" key="GenerateJavadoc"/>
 	</section>
+	<section name="NewClassWizardPage">
+		<item value="false" key="create_constructor"/>
+		<item value="true" key="create_unimplemented"/>
+	</section>
+	<section name="OptionalMessageDialog.hide.">
+		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
+	</section>
+	<section name="RefactoringWizard.preview">
+		<item value="600" key="width"/>
+		<item value="400" key="height"/>
+	</section>
 	<section name="javadoc">
-		<item value="public" key="access"/>
+		<item value="private" key="access"/>
 		<item value="false" key="noindex"/>
-		<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman\javadoc.xml" key="antpath"/>
+		<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emfmodeldistance\javadoc.xml" key="antpath"/>
 		<item value="false" key="nodeprecatedlist"/>
 		<item value="true" key="use"/>
 		<item value="true" key="author"/>
@@ -31,14 +38,9 @@
 		<item value="true" key="splitindex"/>
 		<item value="true" key="fromStandard"/>
 		<item value="false" key="notree"/>
-		<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman\doc" key="destdir"/>
+		<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emfmodeldistance\doc" key="destdir"/>
 		<item value="true" key="openinbrowser"/>
 		<section name="projects">
-			<section name="org.pacman.tests">
-				<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman.tests\javadoc.xml" key="antpath"/>
-				<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman.tests\doc" key="destdir"/>
-				<item value="" key="href"/>
-			</section>
 			<section name="org.pacman.editor">
 				<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman.editor\javadoc.xml" key="antpath"/>
 				<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman.editor\doc" key="destdir"/>
@@ -49,6 +51,11 @@
 				<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman.edit\doc" key="destdir"/>
 				<item value="" key="href"/>
 			</section>
+			<section name="org.geodes.sms.emfmodeldistance">
+				<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emfmodeldistance\javadoc.xml" key="antpath"/>
+				<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emfmodeldistance\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
 			<section name="org.pacman">
 				<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman\javadoc.xml" key="antpath"/>
 				<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman\doc" key="destdir"/>
@@ -56,12 +63,8 @@
 			</section>
 		</section>
 	</section>
-	<section name="NewClassWizardPage">
-		<item value="false" key="create_constructor"/>
-		<item value="true" key="create_unimplemented"/>
-	</section>
-	<section name="OptionalMessageDialog.hide.">
-		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
+	<section name="ClasspathContainerSelectionPage">
+		<item value="0" key="index"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
@@ -71,6 +74,12 @@
 		<item value="566" key="DIALOG_HEIGHT"/>
 		<item value="660" key="DIALOG_X_ORIGIN"/>
 		<item value="231" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="BuildPathsPropertyPage">
+		<item value="3" key="pageIndex"/>
+	</section>
+	<section name="NewPackageWizardPage">
+		<item value="false" key="create_package_info_java"/>
 	</section>
 	<section name="completion_proposal_size">
 	</section>

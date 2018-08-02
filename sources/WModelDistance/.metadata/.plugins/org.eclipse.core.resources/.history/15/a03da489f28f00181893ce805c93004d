@@ -1,9 +1,0 @@
-package PacmanGame.search;
-
-import org.eclipse.emf.ecore.EObject;
-
-public interface IEReferenceNavigator {
-
-	public List<EObject> getNeighbors(EObject node);
-
-}
