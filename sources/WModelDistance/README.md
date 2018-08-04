@@ -17,7 +17,7 @@ The idea behind this project is to generate the optimizing search problem to be 
 The metrics to **minimize** are:<a name="distance"></a>
 * **Move distance**: There is often movement of elements (e.g., pacman moving on the grid, attributes moving around classes). The move distance of a movable object is the length of the shortest path from its position in M1 to its position in M2. Move distance is related to computing the difference with Ecore references.
 * **Element distance**: Is the difference in the presence/absence of elements in M1 and M2. This can be computed by type or aggregated.
-* **Value distance**: Is the difference in attribute values between M1 and M2. We assume that any attribute type can be encoded as an integer. Then the value distance of attribute x becomes `|M2.x - M1.x|`.
+* **Value distance**: Is the difference in attribute values between M1 and M2. We assume that any attribute type can be encoded as an integer. Then the value distance of attribute x becomes `|M2.x - M1.x| / M2.x`. In this case, M2 acts as the expected target.
 * **Rule application distance**: Is the number of rules to apply to get from M1 to M2.
 
 # Installation requirements
