@@ -1,6 +1,7 @@
 package emfmodeldistance;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -17,6 +18,7 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	
 	protected Set<String> movableTypes;
 	protected Set<String> positionTypes;
+	protected Set<String> modifiableTypes;
 	
 	/**
 	 * Returns the movable object types of your metamodel.
@@ -41,7 +43,17 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	}
 	
 	/**
-	 * Returns the object in model that has the same ID as movable (see {@link #getId}).
+	 * Returns the modifiable object types of your metamodel.
+	 * An object is modifiable if, when analyzing the rules,
+	 * one of its attributes changes value.
+	 * @return the set of class names for modifiable types
+	 */
+	public Set<String> getModifiableTypes() {
+		return modifiableTypes;
+	}
+	
+	/**
+	 * Returns the object in model that has the same ID as o (see {@link #getId}).
 	 * @param o the object to look for
 	 * @param model an object in the model, ideally the root, but not necessarily
 	 * @return the object corresponding to o in model
@@ -54,6 +66,8 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 			list = getMovableObjects(model);
 		else if (positionTypes.contains(o.eClass().getName()))
 			list = getPositionObjects(model);
+		else if (modifiableTypes.contains(o.eClass().getName()))
+			list = getModifiableObjects(model);
 		else return null;
 		for (EObject identical_to_o : list) {
 			if (getId(o).equals(getId(identical_to_o))) {
@@ -66,6 +80,24 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	@Override
 	public List<EObject> getNeighbors(EObject o) {
 		return getPositionNeighbors(o);
+	}
+
+	/**
+	 * Converts an object to double. If it is not parsable as a number, then it returns 0.0.
+	 * @param value an object in number form
+	 * @return the double version of value
+	 */
+	public double toDouble(Object value) {
+		if (value instanceof Number) {
+			return ((Number)value).doubleValue();
+		}
+		if (value instanceof String) {
+			Scanner sc = new Scanner((String)value);
+			if (sc.hasNextDouble()) {
+				return Double.parseDouble((String)value);
+			}
+		}
+		return 0.0;
 	}
 
 	/**
@@ -102,6 +134,13 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	 * @return list of all position objects
 	 */
 	public abstract List<EObject> getPositionObjects(EObject root);
+	
+	/**
+	 * Returns all modifiable objects in the model.
+	 * @param root is the root object of the model from which we can access all the objects in the model
+	 * @return list of all modifiable objects
+	 */
+	public abstract List<EObject> getModifiableObjects(EObject root);
 	
 	/**
 	 * Returns the root object in the model where o is defined.

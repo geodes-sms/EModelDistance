@@ -5,19 +5,19 @@ import java.io.File;
 import org.eclipse.emf.ecore.EPackage;
 
 import PacmanGame.PacmanGamePackage;
-import emfmodeldistance.MoveDistance;
+import emfmodeldistance.ValueDistance;
 
 /**
  * This class is automatically generated for the PacmanGame metamodel.
  * @author Eugene Syriani
  *
  */
-public class PacmanGameMoveDistance extends MoveDistance {	
+public class PacmanGameValueDistance extends ValueDistance {	
 	/**
 	 * Initializes the move distance calculator.
 	 * @param targetModel the target model to compare with
 	 */
-	public PacmanGameMoveDistance(File targetModel) {
+	public PacmanGameValueDistance(File targetModel) {
 		super(targetModel);
 		// Generated from metamodel
 		util = PacmanGameDistanceUtilFactory.getInstance();
@@ -30,6 +30,6 @@ public class PacmanGameMoveDistance extends MoveDistance {
 	}
 	
 	public static void initWith(File modelFile) {
-		INSTANCE = new PacmanGameMoveDistance(modelFile);
+		INSTANCE = new PacmanGameValueDistance(modelFile);
 	}
 }

@@ -15,7 +15,7 @@ import PacmanGame.PacmanGamePackage;
 
 import emfmodeldistance.DistanceCalculator;
 
-public class EMFCompareDistanceCalculator extends DistanceCalculator {
+public class EMFCompareDistance extends DistanceCalculator {
 	
 	private EMFCompare ecomp;
 	private double matches;
@@ -34,7 +34,7 @@ public class EMFCompareDistanceCalculator extends DistanceCalculator {
 	private double differences;
 	private double distance;
 	
-	public EMFCompareDistanceCalculator(File targetModel) {
+	public EMFCompareDistance(File targetModel) {
 		super(targetModel);
 		try {
 		this.ecomp = EMFCompare.builder().build();

@@ -3,9 +3,9 @@ package emfmodeldistance;
 import java.io.File;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * This class calculates the value distance between two models M1 and M2.
@@ -36,22 +36,25 @@ public abstract class ValueDistance extends DistanceCalculator {
 		double distance_value = 0.0;
 		int num_attributes = 0;
 		
-		// Get all elements reachable from the root object of M1
-		for (EObject src : EcoreUtil.getAllContents(model, false)) {
+		// Get all modifiable object of M1
+		List<EObject> src_modifiableObjects =  util.getModifiableObjects(model);
+		for (EObject src_modif : src_modifiableObjects) {
 			// Check if object in M1 is also in M2
-			EObject tar = util.getObjectInModel(src, this.targetModel)
-			if (tar != null) {
+			EObject tar_modif = util.getObjectInModel(src_modif, this.targetModel);
+			if (tar_modif != null) {
 				// Get all attributes
-				//TODO: should I do this._getAllAttributes(src) which returns a list of values (hopefully in the same order as for tar. This method converts to double. eAttrToDouble should be overriden in concrete util class.
-				for (Iterator iter = src.eClass().getEAllAttributes().iterator(); iter.hasNext();) {
+				for (EAttribute attr : src_modif.eClass().getEAllAttributes()) {
 					// Compute attribute difference
-					double src_value = util.eAttrToDouble(src.eGet((EAttribute)iter.next())),
-						tar_value = util.eAttrToDouble(tar.eGet((EAttribute)iter.next()));
+					double src_value = util.toDouble(src_modif.eGet((EAttribute)attr)),
+						tar_value = util.toDouble(tar_modif.eGet((EAttribute)attr));
 					distance_value = Math.abs(src_value - tar_value) / tar_value;
+					num_attributes++;
 				}
 			}
+		}
 		// distance_value = Sum(|M1.x-M2.x|/M2.x)/num_attributes
-		distance_value /= num_attributes
-		return distance_value;
+		if (num_attributes == 0)
+			return 0.0;
+		return distance_value / num_attributes;
 	}
 }

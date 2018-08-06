@@ -16,9 +16,9 @@ import PacmanGame.impl.MoveableEntityImpl;
 
 import emfmodeldistance.DistanceCalculator;
 
-public class PacmanGameDistanceCalculator extends DistanceCalculator {
+public class PacmanGameCustomDistance extends DistanceCalculator {
 	
-	public PacmanGameDistanceCalculator(File targetModel) {
+	public PacmanGameCustomDistance(File targetModel) {
 		super(targetModel);
 	}
 	

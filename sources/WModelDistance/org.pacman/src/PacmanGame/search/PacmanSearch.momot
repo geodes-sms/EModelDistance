@@ -8,10 +8,12 @@ import org.moeaframework.core.operator.OnePointCrossover
 import at.ac.tuwien.big.momot.^search.algorithm.operator.mutation.TransformationPlaceholderMutation
 import PacmanGame.PacmanGamePackage
 import java.io.File
+import PacmanGame.^search.PacmanGameValueDistance
 import PacmanGame.^search.PacmanGameMoveDistance
 
 initialization = {
    PacmanGamePackage.eINSTANCE.eClass // register package
+   PacmanGameValueDistance.initWith(new File("models/M2.xmi"));
    PacmanGameMoveDistance.initWith(new File("models/M2.xmi"));
    System.out.println("Search started.");
 }
@@ -36,7 +38,8 @@ search = {
    fitness         = {
       objectives = {
          SolutionLength : minimize new TransformationLengthDimension
-         Distance: minimize {PacmanGameMoveDistance.calculateFitness(root)}
+         ValueDistance: minimize {PacmanGameValueDistance.calculateFitness(root)}
+         MoveDistance: minimize {PacmanGameMoveDistance.calculateFitness(root)}
          
       }
    }

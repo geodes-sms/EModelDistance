@@ -2,6 +2,7 @@ package icmt.tool.momot.demo;
 
 import PacmanGame.PacmanGamePackage;
 import PacmanGame.search.PacmanGameMoveDistance;
+import PacmanGame.search.PacmanGameValueDistance;
 import at.ac.tuwien.big.moea.SearchAnalysis;
 import at.ac.tuwien.big.moea.SearchExperiment;
 import at.ac.tuwien.big.moea.experiment.analyzer.SearchAnalyzer;
@@ -65,16 +66,31 @@ public class PacmanSearch {
   }
   
   protected double _createObjectiveHelper_1(final TransformationSolution solution, final EGraph graph, final EObject root) {
-    return PacmanGameMoveDistance.calculateFitness(root);
+    return PacmanGameValueDistance.calculateFitness(root);
   }
   
   protected IFitnessDimension<TransformationSolution> _createObjective_1(final TransformationSearchOrchestration orchestration) {
-    return new AbstractEGraphFitnessDimension("Distance", at.ac.tuwien.big.moea.search.fitness.dimension.IFitnessDimension.FunctionType.Minimum) {
+    return new AbstractEGraphFitnessDimension("ValueDistance", at.ac.tuwien.big.moea.search.fitness.dimension.IFitnessDimension.FunctionType.Minimum) {
        @Override
        protected double internalEvaluate(TransformationSolution solution) {
           EGraph graph = solution.execute();
           EObject root = MomotUtil.getRoot(graph);
           return _createObjectiveHelper_1(solution, graph, root);
+       }
+    };
+  }
+  
+  protected double _createObjectiveHelper_2(final TransformationSolution solution, final EGraph graph, final EObject root) {
+    return PacmanGameMoveDistance.calculateFitness(root);
+  }
+  
+  protected IFitnessDimension<TransformationSolution> _createObjective_2(final TransformationSearchOrchestration orchestration) {
+    return new AbstractEGraphFitnessDimension("MoveDistance", at.ac.tuwien.big.moea.search.fitness.dimension.IFitnessDimension.FunctionType.Minimum) {
+       @Override
+       protected double internalEvaluate(TransformationSolution solution) {
+          EGraph graph = solution.execute();
+          EObject root = MomotUtil.getRoot(graph);
+          return _createObjectiveHelper_2(solution, graph, root);
        }
     };
   }
@@ -91,6 +107,7 @@ public class PacmanSearch {
     IEGraphMultiDimensionalFitnessFunction function = new EGraphMultiDimensionalFitnessFunction();
     function.addObjective(_createObjective_0(orchestration));
     function.addObjective(_createObjective_1(orchestration));
+    function.addObjective(_createObjective_2(orchestration));
     return function;
   }
   
@@ -289,7 +306,9 @@ public class PacmanSearch {
   public static void initialization() {
     PacmanGamePackage.eINSTANCE.eClass();
     File _file = new File("models/M2.xmi");
-    PacmanGameMoveDistance.initWith(_file);
+    PacmanGameValueDistance.initWith(_file);
+    File _file_1 = new File("models/M2.xmi");
+    PacmanGameMoveDistance.initWith(_file_1);
     System.out.println("Search started.");
   }
   

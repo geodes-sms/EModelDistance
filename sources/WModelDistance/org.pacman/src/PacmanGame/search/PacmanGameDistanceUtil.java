@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import PacmanGame.Ghost;
 import PacmanGame.GridNode;
 import PacmanGame.Pacman;
+import PacmanGame.Scoreboard;
 import PacmanGame.impl.GameImpl;
 
 import emfmodeldistance.DistanceUtil;
@@ -27,16 +28,23 @@ class PacmanGameDistanceUtil extends DistanceUtil {
 	PacmanGameDistanceUtil() {
 		movableTypes = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("Pacman", "Ghost")));
 		positionTypes = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("GridNode")));
+		modifiableTypes = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("Scoreboard")));
 	}
 	
 	@Override
 	public Object getId(EObject object) {
+		/**
+		 * If object has no attribute with setID(true),
+		 * then you have to make up one unique on your own
+		 */
 		if (object instanceof Pacman)
 			return ((Pacman)object).getId();
 		else if (object instanceof Ghost)
 			return ((Ghost)object).getId();
 		else if (object instanceof GridNode)
 			return ((GridNode)object).getId();
+		else if (object instanceof Scoreboard)
+			return true;	// there is only one instance of them and has no explicit ID
 		else
 			return null;
 	}
@@ -75,6 +83,12 @@ class PacmanGameDistanceUtil extends DistanceUtil {
 		root = getRoot(root);
 		return ((GameImpl)root).getGridnodes().stream().filter(
 				e -> getPositionTypes().contains(e.eClass().getName())).collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<EObject> getModifiableObjects(EObject root) {
+		root = getRoot(root);
+		return Arrays.asList(((GameImpl)root).getScoreboard());
 	}
 	
 	@Override
