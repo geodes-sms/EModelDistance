@@ -1,0 +1,70 @@
+Number of variables: 30
+  Variable[0]: -Placeholder-
+
+  Variable[1]: -Placeholder-
+
+  Variable[2]: -Placeholder-
+
+  Variable[3]: -Placeholder-
+
+  Variable[4]: -Placeholder-
+
+  Variable[5]: -Placeholder-
+
+  Variable[6]: -Placeholder-
+
+  Variable[7]: -Placeholder-
+
+  Variable[8]: -Placeholder-
+
+  Variable[9]: -Placeholder-
+
+  Variable[10]: Match for rule 'moveDown':
+- parameter 'mover' => 'g1'
+
+  Variable[11]: Match for rule 'moveDown':
+- parameter 'mover' => 'g1'
+
+  Variable[12]: -Placeholder-
+
+  Variable[13]: -Placeholder-
+
+  Variable[14]: -Placeholder-
+
+  Variable[15]: -Placeholder-
+
+  Variable[16]: -Placeholder-
+
+  Variable[17]: -Placeholder-
+
+  Variable[18]: -Placeholder-
+
+  Variable[19]: -Placeholder-
+
+  Variable[20]: -Placeholder-
+
+  Variable[21]: -Placeholder-
+
+  Variable[22]: -Placeholder-
+
+  Variable[23]: Match for rule 'moveRight':
+- parameter 'mover' => 'p1'
+
+  Variable[24]: -Placeholder-
+
+  Variable[25]: -Placeholder-
+
+  Variable[26]: -Placeholder-
+
+  Variable[27]: -Placeholder-
+
+  Variable[28]: -Placeholder-
+
+  Variable[29]: -Placeholder-
+
+Number of attributes: 1
+  AggregatedFitness: 3.0
+Number of objectives: 2
+  SolutionLength: 3.0
+  Distance: 0.0
+Number of constraints: 0

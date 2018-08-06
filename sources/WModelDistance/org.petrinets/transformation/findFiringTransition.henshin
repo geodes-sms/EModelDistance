@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_uXEbkJluEeiUIc7ySLU6ZQ">
+  <imports href="../metamodel/petrinets.ecore#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_TH2_oJlrEeiUIc7ySLU6ZQ" name="findFiriingTransition">
+    <parameters xmi:id="_m_hRIJlsEeiUIc7ySLU6ZQ" name="tr" kind="VAR"/>
+    <parameters xmi:id="_pwHJcJlsEeiUIc7ySLU6ZQ" name="tok" kind="VAR"/>
+    <lhs xmi:id="_TIAwpJlrEeiUIc7ySLU6ZQ" name="Lhs"/>
+    <rhs xmi:id="_TIAwpZlrEeiUIc7ySLU6ZQ" name="Rhs"/>
+    <attributeConditions xmi:id="_9Ae8AJluEeiUIc7ySLU6ZQ" name="has tokens" conditionText="tok>0"/>
+    <multiRules xmi:id="_XwCEo5lrEeiUIc7ySLU6ZQ">
+      <parameters xmi:id="_XwLOkJlrEeiUIc7ySLU6ZQ" name="tr" kind="VAR"/>
+      <parameters xmi:id="_pwHJcZlsEeiUIc7ySLU6ZQ" name="tok" kind="VAR"/>
+      <lhs xmi:id="_XwCEpJlrEeiUIc7ySLU6ZQ" name="Lhs">
+        <nodes xmi:id="_XwCEoJlrEeiUIc7ySLU6ZQ" outgoing="_f22I0JltEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Place"/>
+          <attributes xmi:id="_qYQukJlsEeiUIc7ySLU6ZQ" value="tok">
+            <type href="../metamodel/petrinets.ecore#//Place/tokens"/>
+          </attributes>
+        </nodes>
+        <nodes xmi:id="_iYIPQJlsEeiUIc7ySLU6ZQ" incoming="_f22I0JltEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Transition"/>
+          <attributes xmi:id="_kB0w8JlsEeiUIc7ySLU6ZQ" value="tr">
+            <type href="../metamodel/petrinets.ecore#//Transition/name"/>
+          </attributes>
+        </nodes>
+        <edges xmi:id="_f22I0JltEeiUIc7ySLU6ZQ" source="_XwCEoJlrEeiUIc7ySLU6ZQ" target="_iYIPQJlsEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Place/p2t"/>
+        </edges>
+      </lhs>
+      <rhs xmi:id="_XwCEpZlrEeiUIc7ySLU6ZQ" name="Rhs">
+        <nodes xmi:id="_XwCEoZlrEeiUIc7ySLU6ZQ" outgoing="_f22I0ZltEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Place"/>
+          <attributes xmi:id="_qYQukZlsEeiUIc7ySLU6ZQ" value="tok">
+            <type href="../metamodel/petrinets.ecore#//Place/tokens"/>
+          </attributes>
+        </nodes>
+        <nodes xmi:id="_iYIPQZlsEeiUIc7ySLU6ZQ" incoming="_f22I0ZltEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Transition"/>
+          <attributes xmi:id="_kB0w8ZlsEeiUIc7ySLU6ZQ" value="tr">
+            <type href="../metamodel/petrinets.ecore#//Transition/name"/>
+          </attributes>
+        </nodes>
+        <edges xmi:id="_f22I0ZltEeiUIc7ySLU6ZQ" source="_XwCEoZlrEeiUIc7ySLU6ZQ" target="_iYIPQZlsEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Place/p2t"/>
+        </edges>
+      </rhs>
+      <mappings xmi:id="_XwCEoplrEeiUIc7ySLU6ZQ" origin="_XwCEoJlrEeiUIc7ySLU6ZQ" image="_XwCEoZlrEeiUIc7ySLU6ZQ"/>
+      <mappings xmi:id="_iYIPQplsEeiUIc7ySLU6ZQ" origin="_iYIPQJlsEeiUIc7ySLU6ZQ" image="_iYIPQZlsEeiUIc7ySLU6ZQ"/>
+    </multiRules>
+  </units>
+</henshin:Module>

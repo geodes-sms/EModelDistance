@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_0st-wJldEeiUIc7ySLU6ZQ">
+  <imports href="../metamodel/petrinets.ecore#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_13fIwJldEeiUIc7ySLU6ZQ" name="consumeTokens">
+    <lhs xmi:id="_15R4gJldEeiUIc7ySLU6ZQ" name="Lhs"/>
+    <rhs xmi:id="_15R4gZldEeiUIc7ySLU6ZQ" name="Rhs"/>
+  </units>
+</henshin:Module>

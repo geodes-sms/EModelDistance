@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_0st-wJldEeiUIc7ySLU6ZQ">
+  <imports href="../metamodel/petrinets.ecore#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_13fIwJldEeiUIc7ySLU6ZQ" name="produceTokens">
+    <parameters xmi:id="_pL-C8JleEeiUIc7ySLU6ZQ" name="t">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <parameters xmi:id="_FbmhcJlfEeiUIc7ySLU6ZQ" name="tok">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </parameters>
+    <lhs xmi:id="_15R4gJldEeiUIc7ySLU6ZQ" name="Lhs">
+      <nodes xmi:id="_4OrpoJldEeiUIc7ySLU6ZQ">
+        <type href="../metamodel/petrinets.ecore#//Transition"/>
+        <attributes xmi:id="_X4vAkJleEeiUIc7ySLU6ZQ" value="t">
+          <type href="../metamodel/petrinets.ecore#//Transition/name"/>
+        </attributes>
+      </nodes>
+    </lhs>
+    <rhs xmi:id="_15R4gZldEeiUIc7ySLU6ZQ" name="Rhs">
+      <nodes xmi:id="_4O0zkJldEeiUIc7ySLU6ZQ">
+        <type href="../metamodel/petrinets.ecore#//Transition"/>
+        <attributes xmi:id="_X4vAkZleEeiUIc7ySLU6ZQ" value="t">
+          <type href="../metamodel/petrinets.ecore#//Transition/name"/>
+        </attributes>
+      </nodes>
+    </rhs>
+    <mappings xmi:id="_4O0zkZldEeiUIc7ySLU6ZQ" origin="_4OrpoJldEeiUIc7ySLU6ZQ" image="_4O0zkJldEeiUIc7ySLU6ZQ"/>
+    <multiRules xmi:id="_6BMwI5ldEeiUIc7ySLU6ZQ">
+      <parameters xmi:id="_uwZ74pleEeiUIc7ySLU6ZQ" name="t">
+        <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </parameters>
+      <parameters xmi:id="_eakD8JlgEeiUIc7ySLU6ZQ" name="tok">
+        <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      </parameters>
+      <lhs xmi:id="_6BMwJJldEeiUIc7ySLU6ZQ" name="Lhs">
+        <nodes xmi:id="_6BMwKJldEeiUIc7ySLU6ZQ" outgoing="_fIA_0JlgEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Transition"/>
+        </nodes>
+        <nodes xmi:id="_6BMwIJldEeiUIc7ySLU6ZQ" incoming="_fIA_0JlgEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Place"/>
+          <attributes xmi:id="_uwZ74JleEeiUIc7ySLU6ZQ" value="tok">
+            <type href="../metamodel/petrinets.ecore#//Place/tokens"/>
+          </attributes>
+        </nodes>
+        <edges xmi:id="_fIA_0JlgEeiUIc7ySLU6ZQ" source="_6BMwKJldEeiUIc7ySLU6ZQ" target="_6BMwIJldEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Transition/t2p"/>
+        </edges>
+      </lhs>
+      <rhs xmi:id="_6BMwJZldEeiUIc7ySLU6ZQ" name="Rhs">
+        <nodes xmi:id="_6BMwJpldEeiUIc7ySLU6ZQ" outgoing="_fIA_0ZlgEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Transition"/>
+        </nodes>
+        <nodes xmi:id="_6BMwIZldEeiUIc7ySLU6ZQ" incoming="_fIA_0ZlgEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Place"/>
+          <attributes xmi:id="_uwZ74ZleEeiUIc7ySLU6ZQ" value="tok-1">
+            <type href="../metamodel/petrinets.ecore#//Place/tokens"/>
+          </attributes>
+        </nodes>
+        <edges xmi:id="_fIA_0ZlgEeiUIc7ySLU6ZQ" source="_6BMwJpldEeiUIc7ySLU6ZQ" target="_6BMwIZldEeiUIc7ySLU6ZQ">
+          <type href="../metamodel/petrinets.ecore#//Transition/t2p"/>
+        </edges>
+      </rhs>
+      <mappings xmi:id="_6BMwKpldEeiUIc7ySLU6ZQ" origin="_6BMwKJldEeiUIc7ySLU6ZQ" image="_6BMwJpldEeiUIc7ySLU6ZQ"/>
+      <mappings xmi:id="_6BMwIpldEeiUIc7ySLU6ZQ" origin="_6BMwIJldEeiUIc7ySLU6ZQ" image="_6BMwIZldEeiUIc7ySLU6ZQ"/>
+      <multiMappings xmi:id="_6BMwJ5ldEeiUIc7ySLU6ZQ" origin="_4O0zkJldEeiUIc7ySLU6ZQ" image="_6BMwJpldEeiUIc7ySLU6ZQ"/>
+      <multiMappings xmi:id="_6BMwKZldEeiUIc7ySLU6ZQ" origin="_4OrpoJldEeiUIc7ySLU6ZQ" image="_6BMwKJldEeiUIc7ySLU6ZQ"/>
+    </multiRules>
+  </units>
+</henshin:Module>

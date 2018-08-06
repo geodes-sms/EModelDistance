@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_Smc7sJlrEeiUIc7ySLU6ZQ">
+  <imports href="../metamodel/petrinets.ecore#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_TH2_oJlrEeiUIc7ySLU6ZQ" name="produceTokens">
+    <parameters xmi:id="_V4etIJlrEeiUIc7ySLU6ZQ" name="t" kind="VAR">
+      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </parameters>
+    <lhs xmi:id="_TIAwpJlrEeiUIc7ySLU6ZQ" name="Lhs"/>
+    <rhs xmi:id="_TIAwpZlrEeiUIc7ySLU6ZQ" name="Rhs"/>
+  </units>
+</henshin:Module>

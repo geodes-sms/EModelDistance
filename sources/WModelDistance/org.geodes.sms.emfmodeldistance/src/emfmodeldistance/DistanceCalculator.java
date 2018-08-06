@@ -51,8 +51,6 @@ public abstract class DistanceCalculator {
 		return secondResourcePath;
 	}
 	
-	protected static DistanceCalculator INSTANCE;
-	
 	public EObject loadModel(String uri) {
 		// register XMI resource factory for .xmi extension
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
@@ -78,10 +76,6 @@ public abstract class DistanceCalculator {
 	protected double distance;
 	public double getDistance() {
 		return distance;
-	}
-
-	public static double calculateFitness(EObject model) {
-		return INSTANCE.calculateDistance(model);
 	}
 
 	public String getReportLine()

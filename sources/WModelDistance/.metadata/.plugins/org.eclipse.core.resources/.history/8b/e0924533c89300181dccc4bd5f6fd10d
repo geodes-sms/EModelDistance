@@ -1,7 +1,0 @@
-package PacmanGame.search;
-
-public interface ISingletonUtil {
-	
-	public synchronized static PacmanDistanceUtil getInstance();
-
-}

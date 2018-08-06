@@ -2,6 +2,7 @@ package PacmanGame.search;
 
 import java.io.File;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import PacmanGame.PacmanGamePackage;
@@ -27,6 +28,12 @@ public class PacmanGameMoveDistance extends MoveDistance {
 	protected EPackage getEPackageInstance() {
 		// Generated from metamodel
 		return PacmanGamePackage.eINSTANCE;
+	}
+	
+	private static PacmanGameMoveDistance INSTANCE;
+	
+	public static double calculateFitness(EObject model) {
+		return INSTANCE.calculateDistance(model);
 	}
 	
 	public static void initWith(File modelFile) {

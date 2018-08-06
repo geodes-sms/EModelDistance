@@ -34,6 +34,16 @@ public class EMFCompareDistance extends DistanceCalculator {
 	private double differences;
 	private double distance;
 	
+	private static EMFCompareDistance INSTANCE;
+	
+	public static double calculateFitness(EObject model) {
+		return INSTANCE.calculateDistance(model);
+	}
+	
+	public static void initWith(File modelFile) {
+		INSTANCE = new EMFCompareDistance(modelFile);
+	}
+	
 	public EMFCompareDistance(File targetModel) {
 		super(targetModel);
 		try {

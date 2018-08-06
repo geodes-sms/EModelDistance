@@ -18,12 +18,18 @@ import emfmodeldistance.DistanceCalculator;
 
 public class PacmanGameCustomDistance extends DistanceCalculator {
 	
-	public PacmanGameCustomDistance(File targetModel) {
-		super(targetModel);
+	private static PacmanGameCustomDistance INSTANCE;
+	
+	public static double calculateFitness(EObject model) {
+		return INSTANCE.calculateDistance(model);
 	}
 	
 	public static void initWith(File modelFile) {
-		INSTANCE = new PacmanGameMoveDistance(modelFile);
+		INSTANCE = new PacmanGameCustomDistance(modelFile);
+	}
+	
+	public PacmanGameCustomDistance(File targetModel) {
+		super(targetModel);
 	}
 	
 	@Override

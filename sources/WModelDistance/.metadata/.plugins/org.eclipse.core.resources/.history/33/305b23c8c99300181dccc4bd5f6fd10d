@@ -1,7 +1,0 @@
-package PacmanGame.search;
-
-public abstract class DistanceUtilFactory {
-
-
-	public static DistanceUtil getInstance();
-}

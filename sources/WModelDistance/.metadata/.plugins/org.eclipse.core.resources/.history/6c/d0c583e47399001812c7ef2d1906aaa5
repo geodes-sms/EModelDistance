@@ -1,0 +1,6 @@
+eMOEA:
+    Hypervolume: 0.25
+    InvertedGenerationalDistance: 0.0
+NSGAIII:
+    Hypervolume: 0.0
+    InvertedGenerationalDistance: 0.6680942941124782
