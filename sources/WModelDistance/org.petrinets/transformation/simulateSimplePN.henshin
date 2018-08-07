@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_tmMwkJl0EeiUIc7ySLU6ZQ">
   <imports href="../metamodel/petrinets.ecore#/"/>
+  <imports href="http://www.eclipse.org/emf/2011/Henshin/Trace#/"/>
   <units xsi:type="henshin:Rule" xmi:id="_udxRwJl0EeiUIc7ySLU6ZQ" name="findFiringTransition">
     <parameters xmi:id="_u2yOsJl0EeiUIc7ySLU6ZQ" name="tr" kind="OUT">
-      <type xsi:type="ecore:EClass" href="../metamodel/petrinets.ecore#//Transition"/>
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
     </parameters>
     <parameters xmi:id="_u2yOsZl0EeiUIc7ySLU6ZQ" name="tok" kind="VAR">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -23,7 +24,7 @@
       </edges>
     </lhs>
     <rhs xmi:id="_ud7CwZl0EeiUIc7ySLU6ZQ" name="Rhs">
-      <nodes xmi:id="_x9jLUZl0EeiUIc7ySLU6ZQ" name="tr" incoming="_ifaFgZl4EeiUIc7ySLU6ZQ">
+      <nodes xmi:id="_x9jLUZl0EeiUIc7ySLU6ZQ" incoming="_ifaFgZl4EeiUIc7ySLU6ZQ _UKVIAJoVEeiPnO7qnU4cwA">
         <type href="../metamodel/petrinets.ecore#//Transition"/>
       </nodes>
       <nodes xmi:id="_d3AXAZl4EeiUIc7ySLU6ZQ" outgoing="_ifaFgZl4EeiUIc7ySLU6ZQ">
@@ -32,94 +33,126 @@
           <type href="../metamodel/petrinets.ecore#//Place/tokens"/>
         </attributes>
       </nodes>
+      <nodes xmi:id="_AjwxEJoVEeiPnO7qnU4cwA" name="tr" outgoing="_UKVIAJoVEeiPnO7qnU4cwA">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
       <edges xmi:id="_ifaFgZl4EeiUIc7ySLU6ZQ" source="_d3AXAZl4EeiUIc7ySLU6ZQ" target="_x9jLUZl0EeiUIc7ySLU6ZQ">
         <type href="../metamodel/petrinets.ecore#//Place/p2t"/>
+      </edges>
+      <edges xmi:id="_UKVIAJoVEeiPnO7qnU4cwA" source="_AjwxEJoVEeiPnO7qnU4cwA" target="_x9jLUZl0EeiUIc7ySLU6ZQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
       </edges>
     </rhs>
     <attributeConditions xmi:id="_mw9hoJl1EeiUIc7ySLU6ZQ" name="has tokens" conditionText="tok>0"/>
     <mappings xmi:id="_x9jLUpl0EeiUIc7ySLU6ZQ" origin="_x9jLUJl0EeiUIc7ySLU6ZQ" image="_x9jLUZl0EeiUIc7ySLU6ZQ"/>
     <mappings xmi:id="_d3AXApl4EeiUIc7ySLU6ZQ" origin="_d3AXAJl4EeiUIc7ySLU6ZQ" image="_d3AXAZl4EeiUIc7ySLU6ZQ"/>
   </units>
-  <units xsi:type="henshin:Rule" xmi:id="_XSDjoJl1EeiUIc7ySLU6ZQ" name="produceTokens">
-    <parameters xmi:id="_YHEgEJl1EeiUIc7ySLU6ZQ" name="tr" kind="OUT">
-      <type xsi:type="ecore:EClass" href="../metamodel/petrinets.ecore#//Transition"/>
+  <units xsi:type="henshin:Rule" xmi:id="_XSDjoJl1EeiUIc7ySLU6ZQ" name="consumeTokens">
+    <parameters xmi:id="_YHEgEJl1EeiUIc7ySLU6ZQ" name="tr" kind="INOUT">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
     </parameters>
     <parameters xmi:id="_YHEgEZl1EeiUIc7ySLU6ZQ" name="tok" kind="VAR">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </parameters>
     <lhs xmi:id="_XSWekJl1EeiUIc7ySLU6ZQ" name="Lhs">
-      <nodes xmi:id="_amqH8Jl1EeiUIc7ySLU6ZQ" name="tr" outgoing="_pu6ZIJl4EeiUIc7ySLU6ZQ">
+      <nodes xmi:id="_amqH8Jl1EeiUIc7ySLU6ZQ" incoming="_Vdn74JoVEeiPnO7qnU4cwA _hvoDkJoWEeiPnO7qnU4cwA">
         <type href="../metamodel/petrinets.ecore#//Transition"/>
       </nodes>
-      <nodes xmi:id="_n8c9AJl4EeiUIc7ySLU6ZQ" incoming="_pu6ZIJl4EeiUIc7ySLU6ZQ">
+      <nodes xmi:id="_n8c9AJl4EeiUIc7ySLU6ZQ" outgoing="_hvoDkJoWEeiPnO7qnU4cwA">
         <type href="../metamodel/petrinets.ecore#//Place"/>
         <attributes xmi:id="_ozCmwJl4EeiUIc7ySLU6ZQ" value="tok">
           <type href="../metamodel/petrinets.ecore#//Place/tokens"/>
         </attributes>
       </nodes>
-      <edges xmi:id="_pu6ZIJl4EeiUIc7ySLU6ZQ" source="_amqH8Jl1EeiUIc7ySLU6ZQ" target="_n8c9AJl4EeiUIc7ySLU6ZQ">
-        <type href="../metamodel/petrinets.ecore#//Transition/t2p"/>
+      <nodes xmi:id="_CCq_EJoVEeiPnO7qnU4cwA" name="tr" outgoing="_Vdn74JoVEeiPnO7qnU4cwA">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_Vdn74JoVEeiPnO7qnU4cwA" source="_CCq_EJoVEeiPnO7qnU4cwA" target="_amqH8Jl1EeiUIc7ySLU6ZQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_hvoDkJoWEeiPnO7qnU4cwA" source="_n8c9AJl4EeiUIc7ySLU6ZQ" target="_amqH8Jl1EeiUIc7ySLU6ZQ">
+        <type href="../metamodel/petrinets.ecore#//Place/p2t"/>
       </edges>
     </lhs>
     <rhs xmi:id="_XSWekZl1EeiUIc7ySLU6ZQ" name="Rhs">
-      <nodes xmi:id="_amqH8Zl1EeiUIc7ySLU6ZQ" name="tr" outgoing="_pu6ZIZl4EeiUIc7ySLU6ZQ">
+      <nodes xmi:id="_amqH8Zl1EeiUIc7ySLU6ZQ" incoming="_Vdn74ZoVEeiPnO7qnU4cwA _hvoDkZoWEeiPnO7qnU4cwA">
         <type href="../metamodel/petrinets.ecore#//Transition"/>
       </nodes>
-      <nodes xmi:id="_n8c9AZl4EeiUIc7ySLU6ZQ" incoming="_pu6ZIZl4EeiUIc7ySLU6ZQ">
+      <nodes xmi:id="_n8c9AZl4EeiUIc7ySLU6ZQ" outgoing="_hvoDkZoWEeiPnO7qnU4cwA">
         <type href="../metamodel/petrinets.ecore#//Place"/>
-        <attributes xmi:id="_ozCmwZl4EeiUIc7ySLU6ZQ" value="tok+1">
+        <attributes xmi:id="_S372kJoWEeiPnO7qnU4cwA" value="tok-1">
           <type href="../metamodel/petrinets.ecore#//Place/tokens"/>
         </attributes>
       </nodes>
-      <edges xmi:id="_pu6ZIZl4EeiUIc7ySLU6ZQ" source="_amqH8Zl1EeiUIc7ySLU6ZQ" target="_n8c9AZl4EeiUIc7ySLU6ZQ">
-        <type href="../metamodel/petrinets.ecore#//Transition/t2p"/>
+      <nodes xmi:id="_CCq_EZoVEeiPnO7qnU4cwA" outgoing="_Vdn74ZoVEeiPnO7qnU4cwA">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_Vdn74ZoVEeiPnO7qnU4cwA" source="_CCq_EZoVEeiPnO7qnU4cwA" target="_amqH8Zl1EeiUIc7ySLU6ZQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_hvoDkZoWEeiPnO7qnU4cwA" source="_n8c9AZl4EeiUIc7ySLU6ZQ" target="_amqH8Zl1EeiUIc7ySLU6ZQ">
+        <type href="../metamodel/petrinets.ecore#//Place/p2t"/>
       </edges>
     </rhs>
     <mappings xmi:id="_amz48Jl1EeiUIc7ySLU6ZQ" origin="_amqH8Jl1EeiUIc7ySLU6ZQ" image="_amqH8Zl1EeiUIc7ySLU6ZQ"/>
     <mappings xmi:id="_n8c9Apl4EeiUIc7ySLU6ZQ" origin="_n8c9AJl4EeiUIc7ySLU6ZQ" image="_n8c9AZl4EeiUIc7ySLU6ZQ"/>
+    <mappings xmi:id="_CCq_EpoVEeiPnO7qnU4cwA" origin="_CCq_EJoVEeiPnO7qnU4cwA" image="_CCq_EZoVEeiPnO7qnU4cwA"/>
   </units>
-  <units xsi:type="henshin:Rule" xmi:id="_eyfPMJl1EeiUIc7ySLU6ZQ" name="consumeTokens">
-    <parameters xmi:id="_gIlfcJl1EeiUIc7ySLU6ZQ" name="tr" kind="OUT">
-      <type xsi:type="ecore:EClass" href="../metamodel/petrinets.ecore#//Transition"/>
+  <units xsi:type="henshin:Rule" xmi:id="_eyfPMJl1EeiUIc7ySLU6ZQ" name="produceTokens">
+    <parameters xmi:id="_gIlfcJl1EeiUIc7ySLU6ZQ" name="tr" kind="INOUT">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
     </parameters>
     <parameters xmi:id="_gIlfcZl1EeiUIc7ySLU6ZQ" name="tok" kind="VAR">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </parameters>
     <lhs xmi:id="_eyfPNZl1EeiUIc7ySLU6ZQ" name="Lhs">
-      <nodes xmi:id="_jhLL4Jl1EeiUIc7ySLU6ZQ" name="tr" incoming="_tFPbwJl4EeiUIc7ySLU6ZQ">
+      <nodes xmi:id="_jhLL4Jl1EeiUIc7ySLU6ZQ" incoming="_WNc2UJoVEeiPnO7qnU4cwA" outgoing="_la_iEJoWEeiPnO7qnU4cwA">
         <type href="../metamodel/petrinets.ecore#//Transition"/>
       </nodes>
-      <nodes xmi:id="_rKMrYJl4EeiUIc7ySLU6ZQ" outgoing="_tFPbwJl4EeiUIc7ySLU6ZQ">
+      <nodes xmi:id="_rKMrYJl4EeiUIc7ySLU6ZQ" incoming="_la_iEJoWEeiPnO7qnU4cwA">
         <type href="../metamodel/petrinets.ecore#//Place"/>
         <attributes xmi:id="_r-5ewJl4EeiUIc7ySLU6ZQ" value="tok">
           <type href="../metamodel/petrinets.ecore#//Place/tokens"/>
         </attributes>
       </nodes>
-      <edges xmi:id="_tFPbwJl4EeiUIc7ySLU6ZQ" source="_rKMrYJl4EeiUIc7ySLU6ZQ" target="_jhLL4Jl1EeiUIc7ySLU6ZQ">
-        <type href="../metamodel/petrinets.ecore#//Place/p2t"/>
+      <nodes xmi:id="_Ci-20JoVEeiPnO7qnU4cwA" name="tr" outgoing="_WNc2UJoVEeiPnO7qnU4cwA">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_WNc2UJoVEeiPnO7qnU4cwA" source="_Ci-20JoVEeiPnO7qnU4cwA" target="_jhLL4Jl1EeiUIc7ySLU6ZQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_la_iEJoWEeiPnO7qnU4cwA" source="_jhLL4Jl1EeiUIc7ySLU6ZQ" target="_rKMrYJl4EeiUIc7ySLU6ZQ">
+        <type href="../metamodel/petrinets.ecore#//Transition/t2p"/>
       </edges>
     </lhs>
     <rhs xmi:id="_eyfPNpl1EeiUIc7ySLU6ZQ" name="Rhs">
-      <nodes xmi:id="_jhLL4Zl1EeiUIc7ySLU6ZQ" name="tr" incoming="_tFPbwZl4EeiUIc7ySLU6ZQ">
+      <nodes xmi:id="_jhLL4Zl1EeiUIc7ySLU6ZQ" incoming="_Zxo5UZoWEeiPnO7qnU4cwA" outgoing="_la_iEZoWEeiPnO7qnU4cwA">
         <type href="../metamodel/petrinets.ecore#//Transition"/>
       </nodes>
-      <nodes xmi:id="_rKMrYZl4EeiUIc7ySLU6ZQ" outgoing="_tFPbwZl4EeiUIc7ySLU6ZQ">
+      <nodes xmi:id="_rKMrYZl4EeiUIc7ySLU6ZQ" incoming="_la_iEZoWEeiPnO7qnU4cwA">
         <type href="../metamodel/petrinets.ecore#//Place"/>
-        <attributes xmi:id="_r-5ewZl4EeiUIc7ySLU6ZQ" value="tok-1">
+        <attributes xmi:id="_O25DAJoWEeiPnO7qnU4cwA" value="tok+1">
           <type href="../metamodel/petrinets.ecore#//Place/tokens"/>
         </attributes>
       </nodes>
-      <edges xmi:id="_tFPbwZl4EeiUIc7ySLU6ZQ" source="_rKMrYZl4EeiUIc7ySLU6ZQ" target="_jhLL4Zl1EeiUIc7ySLU6ZQ">
-        <type href="../metamodel/petrinets.ecore#//Place/p2t"/>
+      <nodes xmi:id="_ZxiysJoWEeiPnO7qnU4cwA" outgoing="_Zxo5UZoWEeiPnO7qnU4cwA">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xmi:id="_Zxo5UZoWEeiPnO7qnU4cwA" source="_ZxiysJoWEeiPnO7qnU4cwA" target="_jhLL4Zl1EeiUIc7ySLU6ZQ">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xmi:id="_la_iEZoWEeiPnO7qnU4cwA" source="_jhLL4Zl1EeiUIc7ySLU6ZQ" target="_rKMrYZl4EeiUIc7ySLU6ZQ">
+        <type href="../metamodel/petrinets.ecore#//Transition/t2p"/>
       </edges>
     </rhs>
     <mappings xmi:id="_jhLL4pl1EeiUIc7ySLU6ZQ" origin="_jhLL4Jl1EeiUIc7ySLU6ZQ" image="_jhLL4Zl1EeiUIc7ySLU6ZQ"/>
     <mappings xmi:id="_rKMrYpl4EeiUIc7ySLU6ZQ" origin="_rKMrYJl4EeiUIc7ySLU6ZQ" image="_rKMrYZl4EeiUIc7ySLU6ZQ"/>
+    <mappings xmi:id="_Zxo5UJoWEeiPnO7qnU4cwA" origin="_Ci-20JoVEeiPnO7qnU4cwA" image="_ZxiysJoWEeiPnO7qnU4cwA"/>
   </units>
-  <units xsi:type="henshin:IteratedUnit" xmi:id="_1u0oEJl1EeiUIc7ySLU6ZQ" name="simulate" subUnit="_NDr1sJl2EeiUIc7ySLU6ZQ" iterations="1"/>
-  <units xsi:type="henshin:SequentialUnit" xmi:id="_NDr1sJl2EeiUIc7ySLU6ZQ" name="fire" subUnits="_udxRwJl0EeiUIc7ySLU6ZQ _XSDjoJl1EeiUIc7ySLU6ZQ _eyfPMJl1EeiUIc7ySLU6ZQ">
-    <parameters xmi:id="_TlcSgJl2EeiUIc7ySLU6ZQ" name="tr" kind="OUT">
-      <type xsi:type="ecore:EClass" href="../metamodel/petrinets.ecore#//Transition"/>
+  <units xsi:type="henshin:IteratedUnit" xmi:id="_1u0oEJl1EeiUIc7ySLU6ZQ" name="simulate" subUnit="_NDr1sJl2EeiUIc7ySLU6ZQ" iterations="8"/>
+  <units xsi:type="henshin:SequentialUnit" xmi:id="_NDr1sJl2EeiUIc7ySLU6ZQ" name="fire" subUnits="_udxRwJl0EeiUIc7ySLU6ZQ _XSDjoJl1EeiUIc7ySLU6ZQ _eyfPMJl1EeiUIc7ySLU6ZQ" rollback="false">
+    <parameters xmi:id="_TlcSgJl2EeiUIc7ySLU6ZQ" name="tr" kind="VAR">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
     </parameters>
     <parameterMappings xmi:id="_aMbNkJl2EeiUIc7ySLU6ZQ" source="_TlcSgJl2EeiUIc7ySLU6ZQ" target="_u2yOsJl0EeiUIc7ySLU6ZQ"/>
     <parameterMappings xmi:id="_aMbNkZl2EeiUIc7ySLU6ZQ" source="_u2yOsJl0EeiUIc7ySLU6ZQ" target="_TlcSgJl2EeiUIc7ySLU6ZQ"/>
