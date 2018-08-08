@@ -1,0 +1,9 @@
+*.log
+*.out
+*.gz
+*.aux
+*.bbl
+*.blg
+*.lnk
+*.class
+*.history*
