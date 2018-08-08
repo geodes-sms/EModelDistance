@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import PacmanGame.Food;
 import PacmanGame.Ghost;
 import PacmanGame.GridNode;
 import PacmanGame.Pacman;
 import PacmanGame.Scoreboard;
 import PacmanGame.impl.GameImpl;
-
 import emfmodeldistance.DistanceUtil;
 
 /**
@@ -35,7 +35,8 @@ class PacmanGameDistanceUtil extends DistanceUtil {
 	public Object getId(EObject object) {
 		/**
 		 * If object has no attribute with setID(true),
-		 * then you have to make up one unique on your own
+		 * then you have to make up one unique on your own.
+		 * Otherwise, just call super.
 		 */
 		if (object instanceof Pacman)
 			return ((Pacman)object).getId();
@@ -44,7 +45,12 @@ class PacmanGameDistanceUtil extends DistanceUtil {
 		else if (object instanceof GridNode)
 			return ((GridNode)object).getId();
 		else if (object instanceof Scoreboard)
-			return true;	// there is only one instance of them and has no explicit ID
+			// there is only one instance of them and has no explicit ID
+			return true;
+		else if (object instanceof Food) {
+			// The identity of food is its position
+			return getId(((Food)object).getOn());
+		}
 		else
 			return null;
 	}
@@ -89,6 +95,14 @@ class PacmanGameDistanceUtil extends DistanceUtil {
 	public List<EObject> getModifiableObjects(EObject root) {
 		root = getRoot(root);
 		return Arrays.asList(((GameImpl)root).getScoreboard());
+	}
+	
+	@Override
+	public List<Object> getModifiableAttributes(EObject object) {
+		if (object instanceof Scoreboard)
+			return Arrays.asList(((Scoreboard)object).getScore());
+		else
+			return Collections.emptyList();
 	}
 	
 	@Override

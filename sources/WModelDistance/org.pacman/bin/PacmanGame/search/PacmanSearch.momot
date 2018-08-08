@@ -47,7 +47,7 @@ search = {
    algorithms      = {
       //Random  : moea.createRandomSearch()
       NSGAIII : moea.createNSGAII()
-      eMOEA   : moea.createEpsilonMOEA()
+      //eMOEA   : moea.createEpsilonMOEA()
    }
 }
 

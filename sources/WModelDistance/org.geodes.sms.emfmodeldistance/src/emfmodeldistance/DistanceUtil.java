@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * This class defines the interface of the utility functions to compute the distance
@@ -51,6 +53,17 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	public Set<String> getModifiableTypes() {
 		return modifiableTypes;
 	}
+
+	/**
+	 * Returns the unique identifier that characterizes a position or movable object.
+	 * By default, it returns the object's ID as a String
+	 * {@link org.eclipse.emf.ecore.util.EcoreUtil.getID}
+	 * @param object a position or movable object
+	 * @return the identifier value, null if not found
+	 */
+	public Object getId(EObject object) {
+		return EcoreUtil.getID(object);
+	}
 	
 	/**
 	 * Returns the object in model that has the same ID as o (see {@link #getId}).
@@ -88,24 +101,19 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	 * @return the double version of value
 	 */
 	public double toDouble(Object value) {
+		//TODO: cover all Ecore data types
 		if (value instanceof Number) {
 			return ((Number)value).doubleValue();
 		}
 		if (value instanceof String) {
 			Scanner sc = new Scanner((String)value);
 			if (sc.hasNextDouble()) {
+				sc.close();
 				return Double.parseDouble((String)value);
 			}
 		}
 		return 0.0;
 	}
-
-	/**
-	 * Returns the unique identifier that characterizes a position or movable object.
-	 * @param object a position or movable object
-	 * @return the identifier value
-	 */
-	public abstract Object getId(EObject object);
 
 	/**
 	 * Returns the position of a movable object.
@@ -141,6 +149,13 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	 * @return list of all modifiable objects
 	 */
 	public abstract List<EObject> getModifiableObjects(EObject root);
+	
+	/**
+	 * Returns all attribute values subject to modification for a given object.
+	 * @param object the container of the attributes
+	 * @return ordered list of attributes of all modifiable attributes
+	 */
+	public abstract List<Object> getModifiableAttributes(EObject object);
 	
 	/**
 	 * Returns the root object in the model where o is defined.

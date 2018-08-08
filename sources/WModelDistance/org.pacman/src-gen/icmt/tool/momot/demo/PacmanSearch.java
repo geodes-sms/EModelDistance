@@ -12,7 +12,6 @@ import at.ac.tuwien.big.moea.print.IPopulationWriter;
 import at.ac.tuwien.big.moea.print.ISolutionWriter;
 import at.ac.tuwien.big.moea.search.algorithm.EvolutionaryAlgorithmFactory;
 import at.ac.tuwien.big.moea.search.algorithm.LocalSearchAlgorithmFactory;
-import at.ac.tuwien.big.moea.search.algorithm.provider.AbstractRegisteredAlgorithm;
 import at.ac.tuwien.big.moea.search.algorithm.provider.IRegisteredAlgorithm;
 import at.ac.tuwien.big.moea.search.fitness.dimension.IFitnessDimension;
 import at.ac.tuwien.big.momot.ModuleManager;
@@ -32,7 +31,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
-import org.moeaframework.algorithm.EpsilonMOEA;
 import org.moeaframework.algorithm.NSGAII;
 import org.moeaframework.core.Population;
 import org.moeaframework.util.progress.ProgressListener;
@@ -116,11 +114,6 @@ public class PacmanSearch {
     return _createNSGAII;
   }
   
-  protected AbstractRegisteredAlgorithm<EpsilonMOEA> _createRegisteredAlgorithm_1(final TransformationSearchOrchestration orchestration, final EvolutionaryAlgorithmFactory<TransformationSolution> moea, final LocalSearchAlgorithmFactory<TransformationSolution> local) {
-    AbstractRegisteredAlgorithm<EpsilonMOEA> _createEpsilonMOEA = moea.createEpsilonMOEA();
-    return _createEpsilonMOEA;
-  }
-  
   protected ProgressListener _createListener_0() {
     SeedRuntimePrintListener _seedRuntimePrintListener = new SeedRuntimePrintListener();
     return _seedRuntimePrintListener;
@@ -143,7 +136,6 @@ public class PacmanSearch {
     EvolutionaryAlgorithmFactory<TransformationSolution> moea = orchestration.createEvolutionaryAlgorithmFactory(populationSize);
     LocalSearchAlgorithmFactory<TransformationSolution> local = orchestration.createLocalSearchAlgorithmFactory();
     orchestration.addAlgorithm("NSGAIII", _createRegisteredAlgorithm_0(orchestration, moea, local));
-    orchestration.addAlgorithm("eMOEA", _createRegisteredAlgorithm_1(orchestration, moea, local));
     
     return orchestration;
   }

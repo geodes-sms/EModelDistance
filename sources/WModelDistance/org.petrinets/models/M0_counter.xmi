@@ -10,15 +10,11 @@
       p2t="//@transitions.0"/>
   <places name="p2"
       p2t="//@transitions.1"/>
-  <places name="p3"
-      p2t="//@transitions.2"/>
+  <places name="counter"/>
   <transitions
       name="t1"
-      t2p="//@places.1"/>
+      t2p="//@places.1 //@places.2"/>
   <transitions
       name="t2"
-      t2p="//@places.2"/>
-  <transitions
-      name="t3"
-      t2p="//@places.0"/>
+      t2p="//@places.0 //@places.2"/>
 </Petrinet:PetriNet>

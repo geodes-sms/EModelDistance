@@ -14,7 +14,7 @@ public final class PacmanGameDistanceUtilFactory {
 	 * @return utility object
 	 */
 	public synchronized static PacmanGameDistanceUtil getInstance() {
-		if(INSTANCE == null){
+		if(INSTANCE == null) {
 	        synchronized (PacmanGameDistanceUtil.class) {
 	            if(INSTANCE == null){
 	            	INSTANCE = new PacmanGameDistanceUtil();

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_J2VNEJlvEeiUIc7ySLU6ZQ">
-  <imports href="../metamodel/petrinets.ecore#/"/>
-  <units xsi:type="henshin:SequentialUnit" xmi:id="_bI0zIJlwEeiUIc7ySLU6ZQ" name="Simulate">
-    <parameters xmi:id="_inCRIJlwEeiUIc7ySLU6ZQ" name="tr" kind="VAR">
-      <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </parameters>
-  </units>
-</henshin:Module>

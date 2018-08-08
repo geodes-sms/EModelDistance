@@ -38,16 +38,19 @@ public abstract class ValueDistance extends DistanceCalculator {
 		
 		// Get all modifiable object of M1
 		List<EObject> src_modifiableObjects =  util.getModifiableObjects(model);
-		for (EObject src_modif : src_modifiableObjects) {
+		for (EObject src : src_modifiableObjects) {
 			// Check if object in M1 is also in M2
-			EObject tar_modif = util.getObjectInModel(src_modif, this.targetModel);
-			if (tar_modif != null) {
+			EObject tar = util.getObjectInModel(src, this.targetModel);
+			if (tar != null) {
 				// Get all attributes
-				for (EAttribute attr : src_modif.eClass().getEAllAttributes()) {
+				List<Object> src_attr = util.getModifiableAttributes(src),
+						tar_attr = util.getModifiableAttributes(tar);
+				for (int i = 0; i < src_attr.size(); i++) {
 					// Compute attribute difference
-					double src_value = util.toDouble(src_modif.eGet((EAttribute)attr)),
-						tar_value = util.toDouble(tar_modif.eGet((EAttribute)attr));
-					distance_value = Math.abs(src_value - tar_value) / tar_value;
+					double src_value = util.toDouble(src_attr.get(i)),
+						tar_value = util.toDouble(tar_attr.get(i));
+					double denominator = (tar_value == 0) ? 1.0 : tar_value;
+					distance_value += Math.abs((src_value - tar_value) / denominator);
 					num_attributes++;
 				}
 			}

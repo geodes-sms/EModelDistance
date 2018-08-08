@@ -20,6 +20,10 @@ public abstract class DistanceCalculator {
 	
 	protected EObject targetModel;
 	
+	/**
+	 * Initializes the distance calculator
+	 * @param targetModel the target model to compare an input model to
+	 */
 	public DistanceCalculator(File targetModel) {
 		try {
 			this.targetModel = loadModel(targetModel.getAbsolutePath());
@@ -91,8 +95,8 @@ public abstract class DistanceCalculator {
 	
 	/**
 	 * Calculates the distance from model to target model.
-	 * @param model the original model
-	 * @return a value between 0 and 1, the lower the value the more similar the models are.
+	 * @param model the input model
+	 * @return a positive number, the lower the value the more similar the models are.
 	 * 0 means they are an exact match.
 	 */
 	public final double calculateDistance(EObject model) {
@@ -115,5 +119,11 @@ public abstract class DistanceCalculator {
 		return distance;
 	}
 	
+	/**
+	 * Core distance calculation algorithm that is specific to the type of distance.
+	 * @param model the input model
+	 * @return the value of how distant model is from the target model
+	 * @throws Exception if the computation fails
+	 */
 	protected abstract double calculate(EObject model) throws Exception;
 }

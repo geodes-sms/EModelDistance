@@ -38,7 +38,7 @@ public interface PetrinetPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.geodes.org/Pacman";
+	String eNS_URI = "http://www.geodes.org/Petrinet";
 
 	/**
 	 * The package namespace name.
