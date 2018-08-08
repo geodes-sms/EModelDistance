@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_gJ6aMZrrEeiycPkumFDpIg" type="Henshin" name="fireWFnet.henshin_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_g14IUJrrEeiycPkumFDpIg" type="2001" fontName="Segoe UI" italic="true" lineColor="0">
+    <children xmi:type="notation:DecorationNode" xmi:id="_g14vYJrrEeiycPkumFDpIg" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_g14vYZrrEeiycPkumFDpIg" type="7001"/>
+    <element xmi:type="henshin:Rule" href="fireWFnet.henshin#_g1yowJrrEeiycPkumFDpIg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g14IUZrrEeiycPkumFDpIg" x="337" y="61" width="561" height="299"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_gJ6aMprrEeiycPkumFDpIg"/>
+  <element xmi:type="henshin:Module" href="fireWFnet.henshin#_gJ6aMJrrEeiycPkumFDpIg"/>
+</notation:Diagram>

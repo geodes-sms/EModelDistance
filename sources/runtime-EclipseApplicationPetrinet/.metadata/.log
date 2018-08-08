@@ -1,0 +1,39 @@
+!SESSION 2018-08-08 08:49:26.445 -----------------------------------------------
+eclipse.buildId=4.8.0.I20180611-0500
+java.version=1.8.0_161
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Framework arguments:  -product org.eclipse.platform.ide
+Command-line arguments:  -product org.eclipse.platform.ide -data D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance/../runtime-EclipseApplicationPetrinet -dev file:D:/Documents/Documents/UdM/sms/pub/19.DistanceBasedChangeDetection/dbcd/sources/WModelDistance/.metadata/.plugins/org.eclipse.pde.core/Eclipse Petrinet/dev.properties -os win32 -ws win32 -arch x86 -consoleLog
+
+!ENTRY org.eclipse.emf.ecp.cdo.core 1 0 2018-08-08 08:53:29.576
+!MESSAGE Could not open socket on port 7778
+
+!ENTRY org.eclipse.emf.ecp.core 4 0 2018-08-08 09:18:24.534
+!MESSAGE [org.eclipse.emf.ecp.core.ecpProviderRegistry(27)] findMethod: Suitable but non-accessible method deactivate found in class org.eclipse.net4j.util.lifecycle.Lifecycle, subclass of org.eclipse.emf.ecp.internal.core.ECPProviderRegistryImpl
+
+!ENTRY org.eclipse.emf.ecp.core 4 0 2018-08-08 09:18:24.534
+!MESSAGE [org.eclipse.emf.ecp.core.ecpRepositoryManager(28)] findMethod: Suitable but non-accessible method deactivate found in class org.eclipse.net4j.util.lifecycle.Lifecycle, subclass of org.eclipse.emf.ecp.internal.core.ECPRepositoryManagerImpl
+
+!ENTRY org.eclipse.emf.ecp.core 4 0 2018-08-08 09:18:24.534
+!MESSAGE [org.eclipse.emf.ecp.core.ecpProjectManager(29)] findMethod: Suitable but non-accessible method deactivate found in class org.eclipse.net4j.util.lifecycle.Lifecycle, subclass of org.eclipse.emf.ecp.internal.core.ECPProjectManagerImpl
+!SESSION 2018-08-08 09:53:56.590 -----------------------------------------------
+eclipse.buildId=4.8.0.I20180611-0500
+java.version=1.8.0_161
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Framework arguments:  -product org.eclipse.platform.ide
+Command-line arguments:  -product org.eclipse.platform.ide -data D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance/../runtime-EclipseApplicationPetrinet -dev file:D:/Documents/Documents/UdM/sms/pub/19.DistanceBasedChangeDetection/dbcd/sources/WModelDistance/.metadata/.plugins/org.eclipse.pde.core/Eclipse Petrinet/dev.properties -os win32 -ws win32 -arch x86 -consoleLog
+
+!ENTRY org.eclipse.ui 4 4 2018-08-08 09:54:23.965
+!MESSAGE Plug-in 'org.eclipse.emf.henshin.diagram' contributed an invalid Menu Extension (Path: 'org.eclipse.emf.henshin.menu' is invalid): org.eclipse.emf.henshin.diagram.InitDiagramAction
+!SESSION 2018-08-08 10:01:56.673 -----------------------------------------------
+eclipse.buildId=4.8.0.I20180611-0500
+java.version=1.8.0_161
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Framework arguments:  -product org.eclipse.platform.ide
+Command-line arguments:  -product org.eclipse.platform.ide -data D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance/../runtime-EclipseApplicationPetrinet -dev file:D:/Documents/Documents/UdM/sms/pub/19.DistanceBasedChangeDetection/dbcd/sources/WModelDistance/.metadata/.plugins/org.eclipse.pde.core/Eclipse Petrinet/dev.properties -os win32 -ws win32 -arch x86 -consoleLog
+
+!ENTRY org.eclipse.emf.ecp.cdo.core 1 0 2018-08-08 11:27:10.951
+!MESSAGE Could not open socket on port 7778

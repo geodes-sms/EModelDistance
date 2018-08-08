@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_gJ6aMZrrEeiycPkumFDpIg" type="Henshin" name="fireWFnet.henshin_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_g14IUJrrEeiycPkumFDpIg" type="2001" fontName="Segoe UI" italic="true" lineColor="0">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_oXs7A5rrEeiycPkumFDpIg" source="defaultAction">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_oXs7BJrrEeiycPkumFDpIg" key="value" value="preserve"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_g14vYJrrEeiycPkumFDpIg" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_g14vYZrrEeiycPkumFDpIg" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_oXzBoJrrEeiycPkumFDpIg" type="3001" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_oXzBoprrEeiycPkumFDpIg" type="5002"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_oXzBo5rrEeiycPkumFDpIg" type="5003"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_oXzBpJrrEeiycPkumFDpIg" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_oXzBpZrrEeiycPkumFDpIg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_oXzBpprrEeiycPkumFDpIg"/>
+        </children>
+        <element xmi:type="henshin:Node" href="fireWFnet.henshin#_oXs7AJrrEeiycPkumFDpIg"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oXzBoZrrEeiycPkumFDpIg" x="41" y="51"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_o083sprrEeiycPkumFDpIg" type="3001" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_o083tJrrEeiycPkumFDpIg" type="5002"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_o083tZrrEeiycPkumFDpIg" type="5003"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_o083tprrEeiycPkumFDpIg" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_o083t5rrEeiycPkumFDpIg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_o083uJrrEeiycPkumFDpIg"/>
+        </children>
+        <element xmi:type="henshin:Node" href="fireWFnet.henshin#_o02xEJrrEeiycPkumFDpIg"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_o083s5rrEeiycPkumFDpIg" x="409" y="50"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_pV0wI5rrEeiycPkumFDpIg" type="3001" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_pV0wJZrrEeiycPkumFDpIg" type="5002"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_pV0wJprrEeiycPkumFDpIg" type="5003"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_pV0wJ5rrEeiycPkumFDpIg" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_pV0wKJrrEeiycPkumFDpIg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_pV0wKZrrEeiycPkumFDpIg"/>
+        </children>
+        <element xmi:type="henshin:Node" href="fireWFnet.henshin#_pV0wIJrrEeiycPkumFDpIg"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pV0wJJrrEeiycPkumFDpIg" x="243" y="53"/>
+      </children>
+    </children>
+    <element xmi:type="henshin:Rule" href="fireWFnet.henshin#_g1yowJrrEeiycPkumFDpIg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g14IUZrrEeiycPkumFDpIg" x="337" y="61" width="561" height="299"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_gJ6aMprrEeiycPkumFDpIg"/>
+  <element xmi:type="henshin:Module" href="fireWFnet.henshin#_gJ6aMJrrEeiycPkumFDpIg"/>
+</notation:Diagram>

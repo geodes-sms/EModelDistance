@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Petrinet:PetriNet
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:Petrinet="http://www.geodes.org/Pacman"
+    xsi:schemaLocation="http://www.geodes.org/Pacman ../metamodel/petrinets.ecore">
+  <places name="p1"
+      tokens="10"
+      p2t="//@transitions.0"/>
+  <places name="p2"
+      p2t="//@transitions.1"/>
+  <places name="counter"/>
+  <transitions
+      name="t1"
+      t2p="//@places.1 //@places.2"/>
+  <transitions
+      name="t2"
+      t2p="//@places.0 //@places.2"/>
+</Petrinet:PetriNet>

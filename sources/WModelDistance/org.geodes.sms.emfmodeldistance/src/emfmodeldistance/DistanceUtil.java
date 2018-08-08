@@ -21,6 +21,7 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	protected Set<String> movableTypes;
 	protected Set<String> positionTypes;
 	protected Set<String> modifiableTypes;
+	protected Set<String> otherTypes;
 	
 	/**
 	 * Returns the movable object types of your metamodel.
@@ -53,6 +54,15 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	public Set<String> getModifiableTypes() {
 		return modifiableTypes;
 	}
+	
+	/**
+	 * Returns all other object types of your metamodel that is not
+	 * a position, movable, or modifiable.
+	 * @return the set of class names for other types
+	 */
+	public Set<String> getOtherTypes() {
+		return otherTypes;
+	}
 
 	/**
 	 * Returns the unique identifier that characterizes a position or movable object.
@@ -73,17 +83,24 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	 */
 	public EObject getObjectInModel(EObject o, EObject model)
 	{
+		Object oid = getId(o);
+		if (oid == null)
+			return null;
+		String oclass = o.eClass().getName();
 		model = getRoot(model);
 		List<EObject> list;
-		if (movableTypes.contains(o.eClass().getName()))
+		if (movableTypes.contains(oclass))
 			list = getMovableObjects(model);
-		else if (positionTypes.contains(o.eClass().getName()))
+		else if (positionTypes.contains(oclass))
 			list = getPositionObjects(model);
-		else if (modifiableTypes.contains(o.eClass().getName()))
+		else if (modifiableTypes.contains(oclass))
 			list = getModifiableObjects(model);
-		else return null;
+		else if (otherTypes.contains(oclass))
+			list = getOtherObjects(model);
+		else return null;	// Shouldn't be reached
 		for (EObject identical_to_o : list) {
-			if (getId(o).equals(getId(identical_to_o))) {
+			if (identical_to_o != null && identical_to_o != null
+					&& oid.equals(getId(identical_to_o))) {
 				return identical_to_o;
 			}
 		}
@@ -149,6 +166,13 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	 * @return list of all modifiable objects
 	 */
 	public abstract List<EObject> getModifiableObjects(EObject root);
+	
+	/**
+	 * Returns all other objects in the model.
+	 * @param root is the root object of the model from which we can access all the objects in the model
+	 * @return list of all other objects
+	 */
+	public abstract List<EObject> getOtherObjects(EObject root);
 	
 	/**
 	 * Returns all attribute values subject to modification for a given object.

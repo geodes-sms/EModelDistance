@@ -29,6 +29,7 @@ class PacmanGameDistanceUtil extends DistanceUtil {
 		movableTypes = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("Pacman", "Ghost")));
 		positionTypes = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("GridNode")));
 		modifiableTypes = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("Scoreboard")));
+		otherTypes = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("Food")));
 	}
 	
 	@Override
@@ -48,7 +49,7 @@ class PacmanGameDistanceUtil extends DistanceUtil {
 			// there is only one instance of them and has no explicit ID
 			return true;
 		else if (object instanceof Food) {
-			// The identity of food is its position
+			// The identity of food is its position, since I can only have one per position
 			return getId(((Food)object).getOn());
 		}
 		else
@@ -95,6 +96,13 @@ class PacmanGameDistanceUtil extends DistanceUtil {
 	public List<EObject> getModifiableObjects(EObject root) {
 		root = getRoot(root);
 		return Arrays.asList(((GameImpl)root).getScoreboard());
+	}
+	
+	@Override
+	public List<EObject> getOtherObjects(EObject root) {
+		root = getRoot(root);
+		return ((GameImpl)root).getEntites().stream().filter(
+				e -> getOtherTypes().contains(e.eClass().getName())).collect(Collectors.toList());
 	}
 	
 	@Override
