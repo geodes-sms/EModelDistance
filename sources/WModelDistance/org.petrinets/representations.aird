@@ -12,6 +12,7 @@
     <semanticResources>models/M0_counter.xmi</semanticResources>
     <semanticResources>transformation/fireWFnet.henshin</semanticResources>
     <semanticResources>transformation/fireWFnet.henshin_diagram</semanticResources>
+    <semanticResources>models/M0_transformed.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_nqJ5oJlYEeiUIc7ySLU6ZQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_oYx6NZlYEeiUIc7ySLU6ZQ" name=" class diagram" repPath="#_oXJigJlYEeiUIc7ySLU6ZQ">

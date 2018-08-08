@@ -42,19 +42,14 @@
 		<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emfmodeldistance\doc" key="destdir"/>
 		<item value="true" key="openinbrowser"/>
 		<section name="projects">
-			<section name="org.pacman.editor">
-				<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman.editor\javadoc.xml" key="antpath"/>
-				<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman.editor\doc" key="destdir"/>
-				<item value="" key="href"/>
-			</section>
-			<section name="org.pacman.edit">
-				<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman.edit\javadoc.xml" key="antpath"/>
-				<item value="D:\Documents\Documents\UdM\sms\dev\workplaces\WPacman\org.pacman.edit\doc" key="destdir"/>
-				<item value="" key="href"/>
-			</section>
 			<section name="org.geodes.sms.emfmodeldistance">
 				<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emfmodeldistance\javadoc.xml" key="antpath"/>
 				<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emfmodeldistance\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="org.petrinets">
+				<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.petrinets\javadoc.xml" key="antpath"/>
+				<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.petrinets\doc" key="destdir"/>
 				<item value="" key="href"/>
 			</section>
 			<section name="org.pacman">
@@ -81,6 +76,35 @@
 	</section>
 	<section name="NewPackageWizardPage">
 		<item value="false" key="create_package_info_java"/>
+	</section>
+	<section name="JavaSearchPage">
+		<item value="2" key="HISTORY_SIZE"/>
+		<item value="true" key="CASE_SENSITIVE"/>
+		<item value="11" key="INCLUDE_MASK"/>
+		<section name="HISTORY0">
+			<item value="true" key="isCaseSensitive"/>
+			<item value="" key="javaElement"/>
+			<item value="0" key="scope"/>
+			<item value="11" key="includeMask"/>
+			<item value="getId" key="pattern"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="matchLocations"/>
+			<item value="1" key="searchFor"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY1">
+			<item value="false" key="isCaseSensitive"/>
+			<item value="" key="javaElement"/>
+			<item value="0" key="scope"/>
+			<item value="11" key="includeMask"/>
+			<item value="getId(" key="pattern"/>
+			<item value="2" key="limitTo"/>
+			<item value="0" key="matchLocations"/>
+			<item value="1" key="searchFor"/>
+			<list key="workingSets">
+			</list>
+		</section>
 	</section>
 	<section name="completion_proposal_size">
 	</section>

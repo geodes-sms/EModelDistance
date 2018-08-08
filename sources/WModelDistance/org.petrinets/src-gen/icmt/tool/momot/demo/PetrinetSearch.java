@@ -43,7 +43,7 @@ public class PetrinetSearch {
   
   protected final String[] modules = new String[] { "transformation/fireWFnet.henshin" };
   
-  protected final String[] unitsToRemove = new String[] { "fireRule" };
+  protected final String[] unitsToRemove = new String[] { "fire" };
   
   protected final int populationSize = 100;
   

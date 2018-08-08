@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.group.model="http://org/eclipse/emf/ecp/view/group/model" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1170" xmi:id="_D1stgCgFEeamAsoQTsUi7A">
+  <rootEClass href="http://www.eclipse.org/emf/2002/Ecore#//EParameter"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_D1stgSgFEeamAsoQTsUi7A" name="Standard" groupType="Collapsible">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_D1stgigFEeamAsoQTsUi7A" name="Control name">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_D1stgygFEeamAsoQTsUi7A">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_D1sthCgFEeamAsoQTsUi7A" name="Control upperBound">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_D1sthSgFEeamAsoQTsUi7A">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/upperBound"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_D1sthigFEeamAsoQTsUi7A" name="Control eType">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_D1sthygFEeamAsoQTsUi7A">
+        <domainModelEFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/eType"/>
+      </domainModelReference>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_D1stiCgFEeamAsoQTsUi7A" name="Advanced" groupType="Collapsible" collapsed="true">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_D1stiSgFEeamAsoQTsUi7A" name="Control required">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_D1stiigFEeamAsoQTsUi7A">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/required"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_D1stiygFEeamAsoQTsUi7A" name="Control many">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_D1stjCgFEeamAsoQTsUi7A">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/many"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_D1stjSgFEeamAsoQTsUi7A" name="Control unique">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_D1stjigFEeamAsoQTsUi7A">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/unique"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_D1stjygFEeamAsoQTsUi7A" name="Control ordered">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_D1stkCgFEeamAsoQTsUi7A">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/ordered"/>
+      </domainModelReference>
+    </children>
+  </children>
+</org.eclipse.emf.ecp.view.model:View>
