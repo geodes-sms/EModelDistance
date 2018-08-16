@@ -50,7 +50,7 @@ class PacmanGameDistanceUtil extends DistanceUtil {
 			return true;
 		else if (object instanceof Food) {
 			// The identity of food is its position, since I can only have one per position
-			return getId(((Food)object).getOn());
+			return "f" + getId(((Food)object).getOn());
 		}
 		else
 			return null;
@@ -81,15 +81,13 @@ class PacmanGameDistanceUtil extends DistanceUtil {
 	@Override
 	public List<EObject> getMovableObjects(EObject root) {
 		root = getRoot(root);
-		return ((GameImpl)root).getEntites().stream().filter(
-			e -> getMovableTypes().contains(e.eClass().getName())).collect(Collectors.toList());
+		return ((GameImpl)root).getEntites().stream().filter(isInTypes(getMovableTypes())).collect(Collectors.toList());
 	}
 	
 	@Override
 	public List<EObject> getPositionObjects(EObject root) {
 		root = getRoot(root);
-		return ((GameImpl)root).getGridnodes().stream().filter(
-				e -> getPositionTypes().contains(e.eClass().getName())).collect(Collectors.toList());
+		return ((GameImpl)root).getGridnodes().stream().filter(isInTypes(getPositionTypes())).collect(Collectors.toList());
 	}
 	
 	@Override
@@ -101,8 +99,7 @@ class PacmanGameDistanceUtil extends DistanceUtil {
 	@Override
 	public List<EObject> getOtherObjects(EObject root) {
 		root = getRoot(root);
-		return ((GameImpl)root).getEntites().stream().filter(
-				e -> getOtherTypes().contains(e.eClass().getName())).collect(Collectors.toList());
+		return ((GameImpl)root).getEntites().stream().filter(isInTypes(getOtherTypes())).collect(Collectors.toList());
 	}
 	
 	@Override

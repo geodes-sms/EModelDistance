@@ -27,7 +27,6 @@ public abstract class DistanceCalculator {
 	public DistanceCalculator(File targetModel) {
 		try {
 			this.targetModel = loadModel(targetModel.getAbsolutePath());
-			//this.ecomp = EMFCompare.builder().build();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

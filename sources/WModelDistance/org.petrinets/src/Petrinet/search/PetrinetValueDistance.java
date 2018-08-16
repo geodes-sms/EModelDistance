@@ -15,7 +15,7 @@ import emfmodeldistance.ValueDistance;
  */
 public class PetrinetValueDistance extends ValueDistance {	
 	/**
-	 * Initializes the move distance calculator.
+	 * Initializes the value distance calculator.
 	 * @param targetModel the target model to compare with
 	 */
 	public PetrinetValueDistance(File targetModel) {
@@ -29,7 +29,6 @@ public class PetrinetValueDistance extends ValueDistance {
 		// Generated from metamodel
 		return PetrinetPackage.eINSTANCE;
 	}
-
 	
 	private static PetrinetValueDistance INSTANCE;
 	

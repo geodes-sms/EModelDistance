@@ -1,6 +1,8 @@
 package icmt.tool.momot.demo;
 
 import Petrinet.PetrinetPackage;
+import Petrinet.search.PetrinetElementDistance;
+import Petrinet.search.PetrinetMoveDistance;
 import Petrinet.search.PetrinetValueDistance;
 import at.ac.tuwien.big.moea.SearchAnalysis;
 import at.ac.tuwien.big.moea.SearchExperiment;
@@ -37,7 +39,7 @@ import org.moeaframework.util.progress.ProgressListener;
 
 @SuppressWarnings("all")
 public class PetrinetSearch {
-  protected final static String INITIAL_MODEL = "models/M0.xmi";
+  protected final static String INITIAL_MODEL = "models/input10.0.0.xmi";
   
   protected final static int SOLUTION_LENGTH = 30;
   
@@ -80,6 +82,36 @@ public class PetrinetSearch {
     };
   }
   
+  protected double _createObjectiveHelper_2(final TransformationSolution solution, final EGraph graph, final EObject root) {
+    return PetrinetMoveDistance.calculateFitness(root);
+  }
+  
+  protected IFitnessDimension<TransformationSolution> _createObjective_2(final TransformationSearchOrchestration orchestration) {
+    return new AbstractEGraphFitnessDimension("MoveDistance", at.ac.tuwien.big.moea.search.fitness.dimension.IFitnessDimension.FunctionType.Minimum) {
+       @Override
+       protected double internalEvaluate(TransformationSolution solution) {
+          EGraph graph = solution.execute();
+          EObject root = MomotUtil.getRoot(graph);
+          return _createObjectiveHelper_2(solution, graph, root);
+       }
+    };
+  }
+  
+  protected double _createObjectiveHelper_3(final TransformationSolution solution, final EGraph graph, final EObject root) {
+    return PetrinetElementDistance.calculateFitness(root);
+  }
+  
+  protected IFitnessDimension<TransformationSolution> _createObjective_3(final TransformationSearchOrchestration orchestration) {
+    return new AbstractEGraphFitnessDimension("ElementDistance", at.ac.tuwien.big.moea.search.fitness.dimension.IFitnessDimension.FunctionType.Minimum) {
+       @Override
+       protected double internalEvaluate(TransformationSolution solution) {
+          EGraph graph = solution.execute();
+          EObject root = MomotUtil.getRoot(graph);
+          return _createObjectiveHelper_3(solution, graph, root);
+       }
+    };
+  }
+  
   protected ModuleManager createModuleManager() {
     ModuleManager manager = new ModuleManager();
     for(String module : modules) {
@@ -93,6 +125,8 @@ public class PetrinetSearch {
     IEGraphMultiDimensionalFitnessFunction function = new EGraphMultiDimensionalFitnessFunction();
     function.addObjective(_createObjective_0(orchestration));
     function.addObjective(_createObjective_1(orchestration));
+    function.addObjective(_createObjective_2(orchestration));
+    function.addObjective(_createObjective_3(orchestration));
     return function;
   }
   
@@ -285,8 +319,12 @@ public class PetrinetSearch {
   public static void initialization() {
     PetrinetPackage.eINSTANCE.eClass();
     TraceFactory.eINSTANCE.eClass();
-    File _file = new File("models/M1.xmi");
+    File _file = new File("models/target1.6.3.xmi");
     PetrinetValueDistance.initWith(_file);
+    File _file_1 = new File("models/target1.6.3.xmi");
+    PetrinetMoveDistance.initWith(_file_1);
+    File _file_2 = new File("models/target1.6.3.xmi");
+    PetrinetElementDistance.initWith(_file_2);
     System.out.println("Search started.");
   }
   

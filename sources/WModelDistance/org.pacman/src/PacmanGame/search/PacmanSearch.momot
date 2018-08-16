@@ -10,17 +10,19 @@ import PacmanGame.PacmanGamePackage
 import java.io.File
 import PacmanGame.^search.PacmanGameValueDistance
 import PacmanGame.^search.PacmanGameMoveDistance
+import PacmanGame.^search.PacmanGameElementDistance
 
 initialization = {
    PacmanGamePackage.eINSTANCE.eClass // register package
-   PacmanGameValueDistance.initWith(new File("models/M2.xmi"));
-   PacmanGameMoveDistance.initWith(new File("models/M2.xmi"));
+   PacmanGameValueDistance.initWith(new File("models/target.xmi"));
+   PacmanGameMoveDistance.initWith(new File("models/target.xmi"));
+   PacmanGameElementDistance.initWith(new File("models/target.xmi"));
    System.out.println("Search started.");
 }
 
 search = {
    model          = {
-      file       = "models/M1.xmi"
+      file       = "models/input.xmi"
    }
    
    solutionLength  = 30 // at most 30 orchestrated transformation units
@@ -40,6 +42,7 @@ search = {
          SolutionLength : minimize new TransformationLengthDimension
          ValueDistance: minimize {PacmanGameValueDistance.calculateFitness(root)}
          MoveDistance: minimize {PacmanGameMoveDistance.calculateFitness(root)}
+         ElementDistance: minimize {PacmanGameElementDistance.calculateFitness(root)}
          
       }
    }

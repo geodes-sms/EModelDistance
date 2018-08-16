@@ -47,7 +47,7 @@ public class EMFCompareDistance extends DistanceCalculator {
 	public EMFCompareDistance(File targetModel) {
 		super(targetModel);
 		try {
-		this.ecomp = EMFCompare.builder().build();
+			this.ecomp = EMFCompare.builder().build();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

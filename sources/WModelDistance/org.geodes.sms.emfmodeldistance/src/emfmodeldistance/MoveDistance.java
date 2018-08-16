@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EPackage;
  * This class calculates the move distance between two models.
  * The move distance of a movable object is the length of the shortest path from its position in a model
  * to its position in another model.
- * This class should be automatically generated.
  * @author Eugene Syriani
  *
  */

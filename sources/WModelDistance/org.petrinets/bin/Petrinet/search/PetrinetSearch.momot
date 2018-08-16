@@ -10,17 +10,21 @@ import Petrinet.PetrinetPackage
 import java.io.File
 import org.eclipse.emf.henshin.trace.TraceFactory
 import Petrinet.^search.PetrinetValueDistance
+import Petrinet.^search.PetrinetMoveDistance
+import Petrinet.^search.PetrinetElementDistance
 
 initialization = {
    PetrinetPackage.eINSTANCE.eClass // register package
    TraceFactory.eINSTANCE.eClass
-   PetrinetValueDistance.initWith(new File("models/M1.xmi"));
+   PetrinetValueDistance.initWith(new File("models/target1.6.3.xmi"));
+   PetrinetMoveDistance.initWith(new File("models/target1.6.3.xmi"));
+   PetrinetElementDistance.initWith(new File("models/target1.6.3.xmi"));
    System.out.println("Search started.");
 }
 
 search = {
    model          = {
-      file       = "models/M0.xmi"
+      file       = "models/input10.0.0.xmi"
    }
    
    solutionLength  = 30
@@ -34,7 +38,8 @@ search = {
       objectives = {
          SolutionLength : minimize new TransformationLengthDimension
          ValueDistance: minimize {PetrinetValueDistance.calculateFitness(root)}
-         
+         MoveDistance: minimize {PetrinetMoveDistance.calculateFitness(root)}
+         ElementDistance: minimize {PetrinetElementDistance.calculateFitness(root)}
       }
    }
 

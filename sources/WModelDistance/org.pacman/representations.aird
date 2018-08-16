@@ -6,7 +6,10 @@
     <semanticResources>metamodel/pacman.genmodel</semanticResources>
     <semanticResources>transformation/play_game.henshin_diagram</semanticResources>
     <semanticResources>transformation/play_game.henshin</semanticResources>
-    <semanticResources>models/M2.xmi</semanticResources>
+    <semanticResources>models/input.xmi</semanticResources>
+    <semanticResources>models/input12missing.xmi</semanticResources>
+    <semanticResources>models/target.xmi</semanticResources>
+    <semanticResources>models/targetNoPac.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_guNpwIWlEeijDqzqI5Jk0g">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_iM-t0IWlEeijDqzqI5Jk0g" name="PacmanGame class diagram" repPath="#_iK8tgIWlEeijDqzqI5Jk0g">

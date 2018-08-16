@@ -3,16 +3,15 @@
   <viewpoint:DAnalysis xmi:id="_dWeDUJlYEeiUIc7ySLU6ZQ" selectedViews="_nqJ5oJlYEeiUIc7ySLU6ZQ _nqc0kJlYEeiUIc7ySLU6ZQ _nqc0kZlYEeiUIc7ySLU6ZQ _nql-gJlYEeiUIc7ySLU6ZQ" version="13.0.0.201804031646">
     <semanticResources>metamodel/petrinets.ecore</semanticResources>
     <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
-    <semanticResources>models/M0.xmi</semanticResources>
-    <semanticResources>models/M1.xmi</semanticResources>
     <semanticResources>transformation/simulateSimplePN.henshin</semanticResources>
     <semanticResources>transformation/simulateSimplePN.henshin_diagram</semanticResources>
     <semanticResources>src/Petrinet/search/PetrinetSearch.momot</semanticResources>
     <semanticResources>metamodel/petrinets.genmodel</semanticResources>
-    <semanticResources>models/M0_counter.xmi</semanticResources>
     <semanticResources>transformation/fireWFnet.henshin</semanticResources>
     <semanticResources>transformation/fireWFnet.henshin_diagram</semanticResources>
     <semanticResources>models/M0_transformed.xmi</semanticResources>
+    <semanticResources>models/input10.0.0.xmi</semanticResources>
+    <semanticResources>models/target1.6.3.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_nqJ5oJlYEeiUIc7ySLU6ZQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_oYx6NZlYEeiUIc7ySLU6ZQ" name=" class diagram" repPath="#_oXJigJlYEeiUIc7ySLU6ZQ">

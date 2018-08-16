@@ -1,13 +1,11 @@
 package Petrinet.search;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -27,6 +25,7 @@ class PetrinetDistanceUtil extends DistanceUtil {
 		movableTypes = Collections.emptySet();
 		positionTypes = Collections.emptySet();
 		modifiableTypes = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("Place")));
+		otherTypes = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("Transition")));
 	}
 	
 	@Override
@@ -73,8 +72,7 @@ class PetrinetDistanceUtil extends DistanceUtil {
 	@Override
 	public List<EObject> getOtherObjects(EObject root) {
 		root = getRoot(root);
-		return ((PetriNetImpl)root).getTransitions().stream().filter(
-				e -> getOtherTypes().contains(e.eClass().getName())).collect(Collectors.toList());
+		return ((PetriNetImpl)root).getTransitions().stream().collect(Collectors.toList());
 	}
 	
 	@Override

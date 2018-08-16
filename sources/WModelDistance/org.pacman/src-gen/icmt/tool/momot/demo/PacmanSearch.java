@@ -1,6 +1,7 @@
 package icmt.tool.momot.demo;
 
 import PacmanGame.PacmanGamePackage;
+import PacmanGame.search.PacmanGameElementDistance;
 import PacmanGame.search.PacmanGameMoveDistance;
 import PacmanGame.search.PacmanGameValueDistance;
 import at.ac.tuwien.big.moea.SearchAnalysis;
@@ -37,7 +38,7 @@ import org.moeaframework.util.progress.ProgressListener;
 
 @SuppressWarnings("all")
 public class PacmanSearch {
-  protected final static String INITIAL_MODEL = "models/M1.xmi";
+  protected final static String INITIAL_MODEL = "models/input.xmi";
   
   protected final static int SOLUTION_LENGTH = 30;
   
@@ -93,6 +94,21 @@ public class PacmanSearch {
     };
   }
   
+  protected double _createObjectiveHelper_3(final TransformationSolution solution, final EGraph graph, final EObject root) {
+    return PacmanGameElementDistance.calculateFitness(root);
+  }
+  
+  protected IFitnessDimension<TransformationSolution> _createObjective_3(final TransformationSearchOrchestration orchestration) {
+    return new AbstractEGraphFitnessDimension("ElementDistance", at.ac.tuwien.big.moea.search.fitness.dimension.IFitnessDimension.FunctionType.Minimum) {
+       @Override
+       protected double internalEvaluate(TransformationSolution solution) {
+          EGraph graph = solution.execute();
+          EObject root = MomotUtil.getRoot(graph);
+          return _createObjectiveHelper_3(solution, graph, root);
+       }
+    };
+  }
+  
   protected ModuleManager createModuleManager() {
     ModuleManager manager = new ModuleManager();
     for(String module : modules) {
@@ -106,6 +122,7 @@ public class PacmanSearch {
     function.addObjective(_createObjective_0(orchestration));
     function.addObjective(_createObjective_1(orchestration));
     function.addObjective(_createObjective_2(orchestration));
+    function.addObjective(_createObjective_3(orchestration));
     return function;
   }
   
@@ -297,10 +314,12 @@ public class PacmanSearch {
   
   public static void initialization() {
     PacmanGamePackage.eINSTANCE.eClass();
-    File _file = new File("models/M2.xmi");
+    File _file = new File("models/target.xmi");
     PacmanGameValueDistance.initWith(_file);
-    File _file_1 = new File("models/M2.xmi");
+    File _file_1 = new File("models/target.xmi");
     PacmanGameMoveDistance.initWith(_file_1);
+    File _file_2 = new File("models/target.xmi");
+    PacmanGameElementDistance.initWith(_file_2);
     System.out.println("Search started.");
   }
   

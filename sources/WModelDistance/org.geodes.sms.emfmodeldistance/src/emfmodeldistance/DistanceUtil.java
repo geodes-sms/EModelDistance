@@ -1,10 +1,14 @@
 package emfmodeldistance;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -22,6 +26,7 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	protected Set<String> positionTypes;
 	protected Set<String> modifiableTypes;
 	protected Set<String> otherTypes;
+	protected Set<String> allTypes;
 	
 	/**
 	 * Returns the movable object types of your metamodel.
@@ -63,23 +68,40 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	public Set<String> getOtherTypes() {
 		return otherTypes;
 	}
+	
+	/**
+	 * Returns all object types of your metamodel.
+	 * @return the set of class names for other types
+	 */
+	public Set<String> getAllTypes() {
+		if (allTypes == null) {
+			allTypes = new HashSet<>();
+			allTypes.addAll(movableTypes);
+			allTypes.addAll(positionTypes);
+			allTypes.addAll(modifiableTypes);
+			allTypes.addAll(otherTypes);
+			allTypes = Collections.unmodifiableSet(allTypes);
+		}
+		return allTypes;
+	}
 
 	/**
 	 * Returns the unique identifier that characterizes a position or movable object.
-	 * By default, it returns the object's ID as a String
-	 * {@link org.eclipse.emf.ecore.util.EcoreUtil.getID}
+	 * By default, it returns the object's ID as a String.
 	 * @param object a position or movable object
 	 * @return the identifier value, null if not found
+	 * @see org.eclipse.emf.ecore.util.EcoreUtil#getID()
 	 */
 	public Object getId(EObject object) {
 		return EcoreUtil.getID(object);
 	}
 	
 	/**
-	 * Returns the object in model that has the same ID as o (see {@link #getId}).
+	 * Returns the object in model that has the same ID as o.
 	 * @param o the object to look for
 	 * @param model an object in the model, ideally the root, but not necessarily
 	 * @return the object corresponding to o in model
+	 * @see #getId
 	 */
 	public EObject getObjectInModel(EObject o, EObject model)
 	{
@@ -130,6 +152,47 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 			}
 		}
 		return 0.0;
+	}
+	
+	/**
+	 * Returns all objects in the model.
+	 * @param root is the root object of the model from which we can access all the objects in the model
+	 * @return set of all objects
+	 */
+	public Set<EObject> getAllObjects(EObject root) {
+		List<EObject> collection = new ArrayList<EObject>();
+		List<EObject> list = getMovableObjects(root);
+		if (list != null)
+			collection.addAll(list);
+		list = getModifiableObjects(root);
+		if (list != null)
+			collection.addAll(list);
+		list = getPositionObjects(root);
+		if (list != null)
+			collection.addAll(list);
+		list = getOtherObjects(root);
+		if (list != null)
+			collection.addAll(list);
+		return new HashSet<EObject>(collection);
+	}
+	
+	/**
+	 * Returns the id of all objects in the model.
+	 * @param root is the root object of the model from which we can access all the objects in the model
+	 * @return list of all ids
+	 */
+	public Set<Object> getAllObjectIds(EObject root) {
+		return getAllObjects(root).stream().map(
+				e -> getId(e)).collect(Collectors.toSet());
+	}
+	
+	/**
+	 * Predicate that tests if each EObject is of a type in typeSet.
+	 * @param typeSet set of desired types
+	 * @return the predicate 
+	 */
+	public Predicate<EObject> isInTypes(Set<String> typeSet) {
+		return e -> typeSet.contains(e.eClass().getName());
 	}
 
 	/**
