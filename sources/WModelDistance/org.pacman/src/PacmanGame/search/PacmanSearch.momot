@@ -14,15 +14,15 @@ import PacmanGame.^search.PacmanGameElementDistance
 
 initialization = {
    PacmanGamePackage.eINSTANCE.eClass // register package
-   PacmanGameValueDistance.initWith(new File("models/target.xmi"));
-   PacmanGameMoveDistance.initWith(new File("models/target.xmi"));
-   PacmanGameElementDistance.initWith(new File("models/target.xmi"));
+   PacmanGameValueDistance.initWith(new File("models/targetNoPac.xmi"));
+   PacmanGameMoveDistance.initWith(new File("models/targetNoPac.xmi"));
+   PacmanGameElementDistance.initWith(new File("models/targetNoPac.xmi"));
    System.out.println("Search started.");
 }
 
 search = {
    model          = {
-      file       = "models/input.xmi"
+      file       = "models/input12missing.xmi"
    }
    
    solutionLength  = 30 // at most 30 orchestrated transformation units

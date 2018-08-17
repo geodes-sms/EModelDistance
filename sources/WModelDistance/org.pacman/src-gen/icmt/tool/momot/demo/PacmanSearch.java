@@ -38,7 +38,7 @@ import org.moeaframework.util.progress.ProgressListener;
 
 @SuppressWarnings("all")
 public class PacmanSearch {
-  protected final static String INITIAL_MODEL = "models/input.xmi";
+  protected final static String INITIAL_MODEL = "models/input12missing.xmi";
   
   protected final static int SOLUTION_LENGTH = 30;
   
@@ -314,11 +314,11 @@ public class PacmanSearch {
   
   public static void initialization() {
     PacmanGamePackage.eINSTANCE.eClass();
-    File _file = new File("models/target.xmi");
+    File _file = new File("models/targetNoPac.xmi");
     PacmanGameValueDistance.initWith(_file);
-    File _file_1 = new File("models/target.xmi");
+    File _file_1 = new File("models/targetNoPac.xmi");
     PacmanGameMoveDistance.initWith(_file_1);
-    File _file_2 = new File("models/target.xmi");
+    File _file_2 = new File("models/targetNoPac.xmi");
     PacmanGameElementDistance.initWith(_file_2);
     System.out.println("Search started.");
   }

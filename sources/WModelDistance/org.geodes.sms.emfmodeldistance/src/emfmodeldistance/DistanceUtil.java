@@ -121,8 +121,7 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 			list = getOtherObjects(model);
 		else return null;	// Shouldn't be reached
 		for (EObject identical_to_o : list) {
-			if (identical_to_o != null && identical_to_o != null
-					&& oid.equals(getId(identical_to_o))) {
+			if (identical_to_o != null && oid.equals(getId(identical_to_o))) {
 				return identical_to_o;
 			}
 		}
@@ -160,7 +159,7 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 	 * @return set of all objects
 	 */
 	public Set<EObject> getAllObjects(EObject root) {
-		List<EObject> collection = new ArrayList<EObject>();
+		HashSet<EObject> collection = new HashSet<EObject>();
 		List<EObject> list = getMovableObjects(root);
 		if (list != null)
 			collection.addAll(list);
@@ -173,7 +172,7 @@ public abstract class DistanceUtil implements IEReferenceNavigator {
 		list = getOtherObjects(root);
 		if (list != null)
 			collection.addAll(list);
-		return new HashSet<EObject>(collection);
+		return collection;
 	}
 	
 	/**

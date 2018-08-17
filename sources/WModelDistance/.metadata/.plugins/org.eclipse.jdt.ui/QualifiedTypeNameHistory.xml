@@ -17,15 +17,9 @@
 <fullyQualifiedTypeName name="org.eclipse.emf.compare.Match"/>
 <fullyQualifiedTypeName name="java.util.Stack"/>
 <fullyQualifiedTypeName name="org.eclipse.emf.ecore.EPackage"/>
-<fullyQualifiedTypeName name="java.util.stream.Collectors"/>
-<fullyQualifiedTypeName name="java.util.Set"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
-<fullyQualifiedTypeName name="java.util.HashSet"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="PacmanGame.GridNode"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="PacmanGame.search.FloydWarshall"/>
-<fullyQualifiedTypeName name="org.eclipse.emf.ecore.EObject"/>
 <fullyQualifiedTypeName name="PacmanGame.search.MoveDistance"/>
 <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.INSTANCEOF"/>
 <fullyQualifiedTypeName name="PacmanGame.impl.GameImpl"/>
@@ -43,7 +37,15 @@
 <fullyQualifiedTypeName name="java.util.stream.StreamSupport"/>
 <fullyQualifiedTypeName name="Petrinet.search.PetrinetValueDistance"/>
 <fullyQualifiedTypeName name="org.eclipse.emf.ecore.EAttribute"/>
-<fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="PacmanGame.Scoreboard"/>
 <fullyQualifiedTypeName name="org.eclipse.emf.ecore.util.EcoreUtil"/>
+<fullyQualifiedTypeName name="org.eclipse.emf.ecore.EObject"/>
+<fullyQualifiedTypeName name="java.util.function.Predicate"/>
+<fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="java.util.HashSet"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="emfmodeldistance.ElementDistance"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

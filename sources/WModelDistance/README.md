@@ -18,7 +18,7 @@ The metrics to **minimize** are:<a name="distance"></a>
 * **Move distance**: There is often movement of elements (e.g., pacman moving on the grid, attributes moving around classes). The move distance of a movable object is the length of the shortest path from its position in M1 to its position in M2. Move distance is related to computing the difference with Ecore references.
 * **Element distance**: Is the difference in the presence/absence of elements in M1 and M2. The element distance is the ratio, between 0 and 1, of the number of differences with respect to the total number of objects in M1 and M2.
 * **Value distance**: <a name="value"></a>Is the difference in attribute values between M1 and M2. We assume that any attribute type can be encoded as numbers. Then the value distance of attribute x is its *margin of error*: `|M2.x - M1.x| / M2.x`. In this case, M2 acts as the expected target.
-* **Rule application distance**: Is the number of rules to apply to get from M1 to M2.
+* **Rule application distance**: Is the number of rules to apply to get from M1 to M2. This distance is already taken into account in MOMot and returns a positive integer.
 
 # Installation requirements
 
@@ -69,13 +69,27 @@ public final class MM_nameDistanceUtilFactory {
 
 ## Documentation
 
-The automatically generated Java documentation of the search package is accessible at [org.geodes.sms.emfmodeldistance/doc](org.pacman/doc/index.html).
+The automatically generated Java documentation of the search package is accessible at [org.geodes.sms.emfmodeldistance/doc](org.geodes.sms.emfmodeldistance/doc/index.html).
 
 ## Testing
 
-To test the current implementation, run `PacmanSearch.momot` on models `models/input.xmi` (input) and `models/target.xmi` (target) in the `org.pacman` project. The search should find one optimal solution (with move, value and element distance 0.0) where ghost g1 has to move down twice, pacman p1 has to move right once and ate the food on that grid node. This can be done in 4 rule applications.
+Here are some test cases to verify the implementation.
 
-The `org.petrinets` project focuses on value distance. Run `PetrinetSearch.momot` on models `models/input10.0.0.xmi` (input) and `models/target1.6.3.xmi` (target). The search should find one optimal solution (with value distance 0.0) where p1 has 1 token, p2 has 6 tokens and p3 has 3 tokens, applied in 12 rule applications.
+### Test 1 (overall)
+This tests all distance measures on a simple 3x3 connected grid with 1 ghost, 1 pacman, and 1 food.
+Run `PacmanSearch.momot` on models `models/input.xmi` (input) and `models/target.xmi` (target) in the `org.pacman` project. The search should find one optimal solution (with move, value and element distance 0.0) where ghost g1 has to move down twice, pacman p1 has to move right once and ate the food on that grid node. This can be done in 4 rule applications.
+
+### Test 2 (element)
+This test is similar to Test 1, but now pacman p1 is deleted. This means that the element distance gears the rules towards a new solution.
+Run `PacmanSearch.momot` on models `models/input.xmi` (input) and `models/targetNoPac.xmi` (target) in the `org.pacman` project. The search should find one optimal solution (with move, value and element distance 0.0) where ghost g1 has to move down twice, pacman p1 has to move right twice, ate the food along the way, and g1 kills p1. This can be done in 6 rule applications.
+
+### Test 3 (disconnect move)
+In this test, the 3x3 grid is missing the grid node south of the ghost in the input model, forcing it to take a different path then in Test 1. Here, we test how the move distance behaves when the position elements are not identically connected.
+Run `PacmanSearch.momot` on models `models/input12missing.xmi` (input) and `models/target.xmi` (target) in the `org.pacman` project. The search should find one optimal solution (with move and value distance 0.0) where ghost g1 has to move left then down twice then right, pacman p1 has to move right once and ate the food on that grid node. This can be done in 6 rule applications.
+
+### Test 4 (value)
+This tests the value distance measure specifically, by counting the number of tokens in the 3 places. Initially, only p1 has 10 tokens.
+In the `org.petrinets` project, run `PetrinetSearch.momot` on models `models/input10.0.0.xmi` (input) and `models/target1.6.3.xmi` (target). The search should find one optimal solution (with value distance 0.0) where p1 has 1 token, p2 has 6 tokens and p3 has 3 tokens, applied in 12 rule applications.
 
 # Next steps
 
@@ -83,7 +97,7 @@ The `org.petrinets` project focuses on value distance. Run `PetrinetSearch.momot
 
 The current implementation assumes that M1 and M2 have the same position objects (none are deleted or created). This is too restrictive. Therefore M1 and M2 should be preprocessed by merging their position elements and then use the move distance. One possibility is to use EMFCompare to merge M1 and M2 based on the position elements.
 
-The rule application distance is already taken into account in MOMot.
+Interestingly, when you run the Pacman test with `models/input12missing.xmi` and `models/targetNoPac.xmi` in one signle run, you don't necessarily get always the same sequence of rule applications. That is because p1 can be killed anywhere along the path of g1. Also, on this test, you **sometimes** get an exception *"Comparison method violates its general contract!"* at the *org.moeaframework.core.Population.sort(Population.java:283)*. Something to fix in MOMot?
 
 Implement the code generator that produces the search package for your metamodel.
 
