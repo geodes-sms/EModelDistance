@@ -1,0 +1,156 @@
+\documentclass{jot}
+
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{microtype} % optional, for aesthetics
+\usepackage{tabularx} % nice to have
+\usepackage{booktabs} % necessary for style
+
+%\usepackage[bookmarks,bookmarksopen,bookmarksdepth=2]{hyperref} %sections as bookmarks in adobe pdf
+%\hypersetup{pdfpagemode=UseNone}
+
+
+%%% Article metadata
+\title{Domain-specific Distance Measures}
+\runningtitle{Domain-specific distance measures}
+
+\author[affiliation=UL, nowrap] % , photo=FILE]
+    {Manuel Wimmer}
+    {is a ... in ... at ....
+    Contact him at \email{EMAIL}, or visit \url{URL}.}
+
+\author[affiliation=UdeM, nowrap] % , photo=FILE]
+{Eugene Syriani}
+{is an associate professor in the department of computer science and operations research at Universit{\'e} de Montr{\'e}al.
+	Contact him at \email{syriani@iro.umontreal.ca}, or visit \url{www.iro.umontreal.ca/~syriani}.}
+
+\author[affiliation=UV, nowrap] % , photo=FILE]
+{Robert Bill}
+{is a ... in ... at ....
+	Contact him at \email{EMAIL}, or visit \url{URL}.}
+
+\affiliation{UdeM}{Universit{\'e} de Montr{\'e}al}
+\affiliation{UV}{University of Vienna}
+\affiliation{UL}{University of Linz}
+
+\runningauthor{Wimmer et al.}
+
+\jotdetails{
+    volume=V,
+    number=N,
+    articleno=M,
+    year=2011,
+    doisuffix=jot.201Y.VV.N.aN,
+    license=ccbynd % choose from ccby, ccbynd, ccbyncnd
+}
+
+% Put edit comments in a really ugly standout display
+\usepackage{ifthen}
+\usepackage{amssymb}
+\newboolean{showcomments}
+\setboolean{showcomments}{true} % toggle to show or hide comments
+\ifthenelse{\boolean{showcomments}}
+{\newcommand{\nb}[2]{
+		\fcolorbox{gray}{yellow}{\bfseries\sffamily\scriptsize#1}
+		{$\blacktriangleright$#2$\blacktriangleleft$}
+	}
+	\newcommand{\version}{\emph{\scriptsize$-$working$-$}}
+}
+{\newcommand{\nb}[2]{}
+	\newcommand{\version}{}
+}
+
+\newcommand\es[1]{\nb{ES}{\textcolor{red}{\textsl{#1}}}}
+\newcommand\mw[1]{\nb{MW}{\textcolor{red}{\textsl{#1}}}}
+\newcommand\rb[1]{\nb{RB}{\textcolor{red}{\textsl{#1}}}}
+
+% For URLs in the references
+\usepackage{url}
+\usepackage{hyperref}
+%\usepackage{verbatim}
+
+% Advanced Math
+%\usepackage{amsmath}
+%\usepackage{amssymb}	% double line font letters (for number sets N,Z,D,Q,R)
+
+% Images and Floats
+\usepackage{epsfig}
+%\usepackage{epstopdf}
+
+%\usepackage{caption}
+%\usepackage{subcaption}
+%\usepackage{lscape}			% landscape
+%\usepackage{array}			% align vertically in tables
+%\usepackage{multirow}
+%\usepackage{rotating}
+
+% Theorems, Definitions, ... (always after 'amsmath')
+%\usepackage{amsthm}
+%\theoremstyle{definition}
+%\newtheorem{prop}{Property}%[section]
+%\newtheorem{defn}{Definition}%[section]
+
+% Algorithm environment
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+
+% Commutative diagrams
+%\usepackage{diagrams}
+
+%\usepackage{enumitem}
+
+%\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Standard shortcuts
+\newcommand{\eg}{e.g.,~}										% exempli gratia (for the sake of example)
+\newcommand{\ie}{i.e.,~}										% id est (that is)
+\newcommand{\etal}{~et al.}									% et alia (and others)
+\newcommand{\Fig}[1]{Figure~\ref{#1}}  			% choose Fig. or Figure, depending on the style
+\newcommand{\Table}[1]{Table~\ref{#1}}	    % Table reference
+\newcommand{\Sect}[1]{Section~\ref{#1}}	  	% section name always with a capital S
+\newcommand{\Model}[1]{\textsf{\small{#1}}} % name of any modeling artifact (e.g., formalism, model element, rule, ...)
+\newcommand{\Code}[1]{\texttt{\small{#1}}}	% inline code
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}	% scientific notation: x.10^y
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\begin{abstract}
+TODO
+\end{abstract}
+
+\keywords{Three; Keywords.}
+
+\section{INTRODUCTION}
+\input{01_intro.tex}
+
+\section{BACKGROUND}
+\input{02_background.tex}
+
+\section{DOMAIN-SPECIFIC DISTANCES}
+\input{03_approach.tex}
+
+\section{EVALUATION AND DISCUSSION}
+\input{04_eval_discussion.tex}
+
+\section{RELATED WORK}
+\input{05_related.tex}
+
+\section{CONCLUSIONS AND FUTURE WORK}
+\input{06_conclusions.tex}
+
+\bibliographystyle{alphaurl}
+\bibliography{biblio}
+
+\abouttheauthors
+
+\begin{acknowledgments}
+This work has been sponsored by
+\end{acknowledgments}
+
+\end{document}
