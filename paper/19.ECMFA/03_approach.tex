@@ -1,7 +1,59 @@
-Running example
+\subsection{Running example}
+Pacman
 
-Metrics
+\subsection{Metrics}
+The idea is to generate the optimizing search problem to be tailored for the domain. In this sense, we customize the fitness function based on a distance metric. The metrics to minimize are:
+\begin{itemize}
+	\item[Move distance:] There is often movement of elements (\eg pacman moving on the grid, attributes moving around classes). The move distance of a movable object is the length of the shortest path from its position in M1 to its position in M2. Move distance is related to computing the difference with Ecore references.
+	\item[Element distance:] Is the difference in the presence/absence of elements in M1 and M2. The element distance is the ratio, between 0 and 1, of the number of differences with respect to the total number of objects in M1 and M2.
+	\item[Value distance:] Is the difference in attribute values between M1 and M2. We assume that any attribute type can be encoded as numbers. Then the value distance of attribute x is its margin of error: $|M2.x - M1.x| / M2.x$. In this case, M2 acts as the expected target.
+	\item[Rule application distance:] Is the number of rules to apply to get from M1 to M2. This distance is already taken into account in MOMot and returns a positive integer.
+\end{itemize}
 
-Generation of domain-specific metrics
+The \emph{Move distance} relies on the Floyd-Marshall algorithm that computes the shortest from any position element to any position element in an Ecore model. This code is in EcoreShortestPaths and is independent from the domain. Its only external dependency is an interface IEReferenceNavigator which provides a function that gives the neighbor(s) of a position element. DistanceUtil provides all the necessary methods the move distance requires.
 
-Customization
+The \emph{Value distance} is an average of all attribute distances. We only consider attributes of objects present in both M1 and M2 because the element distance takes care of absence and presence of elements. We assume that any attribute value can be represented as a unique number. DistanceUtil provides the toDouble method to perform that conversion. Currently, it only supports number values encoded as Number or String data types. For each attribute, we compute its margin of error.
+
+The \emph{Element distance} looks for the objects present in M1 but not M2 and M2 but not M1. This is then divided by the size of M1 and M2. We only consider objects instances of metamodel classes. So references and attributes are not taken into account in this measure. This distance relies on the unique ID of each object as returned by the getId method.
+
+DistanceCalculator is the abstract class at the root that should be inherited by your distance function. For example MoveDistance only relies on the move distance between M1 and M2.
+
+\subsection{Generation of domain-specific metrics}
+
+This implementation is just a proof of concept. It has been implemented with the mindset that the distance calculation is generated automatically from analyzing the metamodel and the transformation rules.
+
+Given a metamodel MM and Henshin rules R, we want to generate the distance calculator that will be used by the MOMot script.
+
+The domain-specific distance classes (e.g., the move, element, value distances) can be easily generated. They have two dependencies to the metamodel:
+
+The package instance, by overriding the getEPackageInstance() function
+The constructor, by instantiating the appropriate DistanceUtil singleton object specific to the metamodel
+
+Only the utility class (e.g., PacmanDistanceUtil) must be generated after analyzing MM and R. Following the code in PacmanDistanceUtil should guide you to know how to generate the code. Here are special considerations:
+
+Your Utility class must inherit from DistanceUtil.
+It should import all movable, position, modifiable, and other classes.
+It must provide a function used for its singleton instantiation as follows.
+
+It should have 4 attributes for movable, position, modifiable, and all other types.
+
+It should override all abstract methods from DistanceUtil.
+The tricky part is the generation of the Object getId(EObject object) method. If each object has attribute with setID(true) you can rely on super. Otherwise, you have to make up one unique on your own. For example, if you know for sure that an attribute is unique, then you can rely on it (e.g., Places and Transitions in the Petrinet example). If there is only one possible instance of this element, then return true (e.g., Scoreboard in the Pacman example). It can also rely on an object it references or that references it (e.g., Food in the Pacman example).
+
+You also need to generate the DistanceUtilFactory specific to the metamodel (e.g., PacmanGameDistanceUtilFactory). Its only purpose is to make the concrete DistanceUtil accessible as a singleton.
+
+\subsubsection{Customization}
+
+The only code that is specific to the metamodel is the class that implements DistanceUtil. This is where you define the functions that provide the following information:
+
+\begin{itemize}
+	\item[The movable objects:] An object is movable if, when analyzing the rules, it has a reference to a position object and the rules modify that reference. Note that it could also be that a position object references a movable object.
+	\item[The position objects:] An object is a position if, when analyzing the rules, it is what movable objects are always linked to. Note that it could also be that a position object references a movable object.
+	\item[The modifiable objects:] An object is modifiable if, when analyzing the rules, one of its attributes changes value.
+	\item[The other objects:] Any object that is not movable, position or modifiable.
+	\item[The ID of an object:] the value that uniquely identifies an object. This is used to find similar elements between M1 and M2.
+	\item[The modifiable attributes:] All attribute values subject to modification for a given object.
+	\item[Accessing the position:] the attribute used to know the position of a movable object.
+	\item[Accessing the neighbors of a position:] the attribute used to connect position objects.
+	\item[Accessing the root:] used to find the root object of M1 and M2.
+\end{itemize}

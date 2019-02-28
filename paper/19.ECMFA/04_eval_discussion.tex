@@ -1,4 +1,8 @@
-Experiment setup
+\subsection{Objective}
+Research questions.
+Compare with EMFCompare.
+
+\subsection{Experiment setup}
 
 Pacman
 
@@ -6,8 +10,11 @@ Petri nets
 
 OO refactoring
 
-Analysis
+\subsection{Analysis}
 
-Threats to validity
+\subsection{Threats to validity}
 
-Discussion
+\subsection{Discussion}
+The current implementation assumes that M1 and M2 have the same position objects (none are deleted or created). This is too restrictive. Therefore M1 and M2 should be preprocessed by merging their position elements and then use the move distance. One possibility is to use EMFCompare to merge M1 and M2 based on the position elements.
+
+Interestingly, when you run the Pacman test with models/input12missing.xmi and models/targetNoPac.xmi in one signle run, you don't necessarily get always the same sequence of rule applications. That is because p1 can be killed anywhere along the path of g1.
