@@ -130,7 +130,7 @@ Petrinet & 26 & 30 & 45 & \textbf{.016} \\
 \hline
 Refactor (100) & 22 & 47 & 32 & .11 \\
 \hline
-Refactor (1000) & & & & \\
+Refactor (1000) & 243 & 488 & 270 & .13 \\
 \hline
 \end{tabular}
 \label{tab:resultsrq1}
@@ -138,7 +138,7 @@ Refactor (1000) & & & & \\
 
 Table~\ref{tab:resultsrq1} shows the differences in the results quality for both approaches. For the Pacman case, we generated 8x8 fields with one Pacman, three ghosts, and 15 food, where all food and all other entities were randomly distributed. The Petrinet case used 10 places and 1 to 2 transitions per place and 1 to 2 outgoing place per transition. Also, the net was initialized with between 2 and 4 tokens. The Refactor case used 6 entities, 1 to 5 attributes per entity, where each name was one of 8 possible names and each attribute name was associated to 1 to 3 types. Also, each entity had a 50\% chance to have a random superclass. 
 
-The Pacman case was rather hard for both fitness functions - all the equal values are due to no solution being found in either case. However, in this instance the domain specific fitness function could show its benefits, as it could solve the problem in 27 cases, while the generic one could only solve it in one case, yielding a significant difference. In contrast, the Petrinet case was rather easy for both algorithms, as most of the equal values were due to both algorithms finding solutions having the exact same quality. Still, the domain specific fitness function allowed us was at least statistically significantly better.
+The Pacman case was rather hard for both fitness functions - all the equal values are due to no solution being found in either case. However, in this instance the domain specific fitness function could show its benefits, as it could solve the problem in 27 cases, while the generic one could only solve it in one case, yielding a significant difference. In contrast, the Petrinet case was rather easy for both algorithms, as most of the equal values were due to both algorithms finding solutions having the exact same quality. Still, the domain specific fitness function allowed us was at least statistically significantly better. In contrast, we could not achieve statistically significantly better results in the refactor case. While there was a trend towards the domain specific distance function, this trend did not turn into a statistically significant advantage for larger example sizes.
 
 
 \subsubsection{Results for RQ2 Search Time}
