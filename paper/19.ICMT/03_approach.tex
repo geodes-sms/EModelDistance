@@ -1,5 +1,45 @@
 \subsection{Running example}
-Pacman
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{images/pacman_example}
+    \caption{The initial and target models of the Pacman game configuration}
+    \label{fig:example}
+\end{figure}
+%
+We rely on the running example of a simplified Pacman game, a well-known game where Pacman navigates through grid nodes searching for food to eat, while ghosts try to kill him.
+We implemented a DSL to define game configurations, based on~\cite{Syriani2013a}.
+\Fig{fig:example} illustrates two Pacman game models in the concrete syntax of the DSL.
+Pacman, food, and ghosts are positioned grid nodes with an \texttt{on} reference.
+Grid nodes are connected by \texttt{left}, \texttt{right}, \texttt{up}, and \texttt{down} references to define the permissible navigation of Pacman and ghosts.
+A score object keeps track of the number of food Pacman eats.
+We define the operational semantics of the DSL in terms of an inplace model transformation, implemented with graph transformation rules as in~\cite{Syriani2013a}.
+One rule represents Pacman eating food on a grid node and updating the score.
+Another represents the ghost killing Pacman when they are on the same grid node.
+Four rules represent Pacman moving up, down, left, or right to an adjacent grid node.
+For similar rules represent ghost movements.\es{should we show one rule in Henshin?}
+Although the rules should obey a certain scheduling, \eg killing has priority over moving to end the game, in this work we assume a graph grammar \ie any rule can be applied at any time during the execution of the transformation\es{do we need this assumption?}.
+
+In this work, we want to detect the sequence of rule applications starting from the initial model leading to the target model in \Fig{fig:example}.
+Relying on a search-based technique allow us to infer the sequence of rules by generating intermediate models such that the fitness function is improved.
+Let us assume that the fitness function uses model difference metrics to decide whether the current sequence of rules will lead to the target model.
+
+
+Regular difference results:
+3 food objects deleted ;
+2 on references modified ;
+1 score value attribute modified
+
+Distance results:
+Move distance is $3+2=5$ ;
+Value distance is $\frac{|4-1|}{4}=0.75$ ;
+Element distance is $\frac{3+0}{13+10}=0.13$ ;
+
+Minimal rules applied:
+1 Pacman Move Up ;
+2 Pacman Move Right ;
+3 Pacman Eats Food ;
+2 Ghost Move Left
 
 \subsection{Metrics}
 The idea is to generate the optimizing search problem to be tailored for the domain. In this sense, we customize the fitness function based on a distance metric. The metrics to minimize are:
