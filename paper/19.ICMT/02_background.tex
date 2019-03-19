@@ -1,0 +1,21 @@
+In this section, we explain the background of our work. As every software artifact, also software models are subject to continuous evolution. Knowing the operations applied between two successive versions of a model is not only crucial for helping developers to efficiently understand the model's evolution (Koegel et al., 2010), but it is also a major prerequisite for model management tasks REF. In general, we may distinguish between two categories of model diffing approaches. The first category describes model diffs as atomic operations, such as additions, deletions, updates, and moves. The second category uses domain-specific operations (Sunyé et al., 2001) consisting of a set of cohesive atomic operations, which are applied within one transaction to achieve one common goal. We detail both categories in the following.
+
+\subsection{Model Diffs as Atomic Operations}
+
+Current model comparison tools often apply a two-phase process: (i) correspondences between model elements are computed by model matching algorithms (Kolovos et al., 2009), and (ii) a model diffing phase computes the differences between two models from the established correspondences. For instance, EMF Compare (Brun and Pierantonio, 2008) – a prominent representative of model comparison tools in the Eclipse ecosystem – is capable of detecting the following types of atomic operations:
+
+\begin{itemize}
+  \item Add: A model element only exists in the revised version.
+  \item Delete: A model element only exists in the origin version.
+  \item Update: A feature of a model element has a different value in the revised version than in the origin version.
+  \item Move: A model element has a different container in the revised version than in the origin version.
+\end{itemize}
+
+
+\subsection{Model Diffs as Domain-Specific Operations}
+
+To raise the level of abstraction for model diffs, a more concise view of model differences is required that aggregates the atomic operations into domain-specific operation applications such that the intent of the change is becoming explicit. Existing solutions (Hartung et al., 2010, Küster et al., 2008, Xing and Stroulia, 2006, Langer, Kehrer) provide language-specific operation detection algorithms. Often model transformations are the technique of choice used for specifying executable domain-specific operations. In particular, the operations are specified by transformation rules stating the operation's preconditions, postconditions, and actions that have to be executed for applying the operation. Especially, the approaches  proposed by Langer and Kehrer build on model transformations for operation detection between two model versions. The output of these approaches is a set of transformation rule applications which correspond to the list of domain-specific operation applications. By following these approaches, the difference models can be compressed as shown in different studies REF. 
+
+\subsection{Synopsis}
+
+While both atomic operations and domain-specific operations allow to reason about the differences between two models on different granularity levels, both fail to reason on distances. Assume just as a simple example a difference in the stored values of an attribute of type Integer. The same difference is reported if the values are mostly equal, e.g., 1 and 0.9999 or totally different, e.g. 1 and 100. Therefore, we propose the usage of additional distance metrics to provide additional information on top of difference models in the next section and show their benefits for a particular use case in Section 4.   
