@@ -34,24 +34,24 @@ However, the comparison needs to be tailored to both the DSL and its semantics t
 In this example, the notion of Pacman and ghost movements must be encoded in the comparison.
 Inplace model transformation rules typically encode semantical operations, such as operational semantics or refactoring~\cite{Lucio2016}.
 Therefore, we propose a set of domain-specific distance metrics that take into consideration abstract syntax changes as well as the semantics of the transformation to optimize the search space for identifying the minimal sequence of rule applications.
-
-\es{to be used where needed}\begin{itemize}
-    \item[Regular difference results:]
-        3 food objects deleted ;
-        2 on references modified ;
-        1 score value attribute modified.
-    
-    \item[Distance results:]
-        Move distance is $3+2=5$ ;
-        Value distance is $\frac{|4-1|}{4}=0.75$ ;
-        Element distance is $\frac{3+0}{13+10}=0.13$.
-    
-    \item[Minimal rules applied:]
-        1 Pacman Move Up ;
-        2 Pacman Move Right ;
-        3 Pacman Eats Food ;
-        2 Ghost Move Left.
-\end{itemize}
+%
+%\es{to be used where needed}\begin{itemize}
+%    \item[Regular difference results:]
+%        3 food objects deleted ;
+%        2 on references modified ;
+%        1 score value attribute modified.
+%    
+%    \item[Distance results:]
+%        Move distance is $3+2=5$ ;
+%        Value distance is $\frac{|4-1|}{4}=0.75$ ;
+%        Element distance is $\frac{3+0}{13+10}=0.13$.
+%    
+%    \item[Minimal rules applied:]
+%        1 Pacman Move Up ;
+%        2 Pacman Move Right ;
+%        3 Pacman Eats Food ;
+%        2 Ghost Move Left.
+%\end{itemize}
 
 \subsection{Model distance metrics}
 
@@ -87,7 +87,7 @@ The move distance of a movable object as the length of the shortest path from it
 We define $\delta_M(v_1,v_2)$ as the length of the shortest sequence of neighbor edges connecting $v_1$ to $v_2 \in Pos$.
 In \Fig{fig:example}, $\delta_M(pacman,grid_{13})=3$ and $\delta_M(ghost,grid_{21})=2$, which is equivalent to the Manhattan distance in this grid layout.
 To compute the move distance between M1 and M2, we identify the common connected subgraph $G_{12}$ of their respective graphs $G_1$ and $G_2$.
-We define the move distance between two models as
+We define the move distance between two models as:
 \[
 \Delta_M(G_1,G_2)=\sum_{v_1,v_2 \in Mov_{12}}{\delta_M(p(v_1),p(v_2))} \mbox{, where } l(v_1)=l(v_2)
 \]
@@ -100,7 +100,7 @@ The dynamic programming implementation takes $O(|Pos|^3)$ to compute all distanc
 \subsubsection{Element distance}
 The next metric is concerned with the presence and absence of metamodel class instances between M1 and M2.
 This is similar to what a model difference algorithm outputs.
-We define the element distance as
+We define the element distance as:
 \[
 \Delta_E(G_1,G_2)=\frac{|\{v \in V_1 | \nexists v_2 \in V_2, l(v_2)=l(v)\}|+|\{v \in V_2 | \nexists v_1 \in V_1, l(v_1)=l(v)\}|}{|V_1|+|V_2|}
 \]
@@ -115,7 +115,7 @@ Note that the element distance is not concerned with edges as this is already ta
 \subsubsection{Value distance}
 The third metric is concerned with the difference in attribute values between objects in M1 and M2.
 We assume that any attribute value can be encoded as a unique number, as it is common practice for metrics~\cite{Bertoa2018}.
-We define the value distance of attribute $x$ of node $v$ between $G_1$ and $G_2$ as
+We define the value distance of attribute $x$ of node $v$ between $G_1$ and $G_2$ as:
 \[
 \delta_V(v,x)=\frac{|a(v,x)-a(v_1,x)|}{a(v,x)} \mbox{, where } v_1 \in V_1, v \in V_2 \mbox{ and } l(v)=l(v1)
 \]
