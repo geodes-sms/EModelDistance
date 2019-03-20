@@ -19,7 +19,7 @@ We define the operational semantics of the DSL in terms of an inplace model tran
 One rule represents Pacman eating food on a grid node and updating the score.
 Another represents the ghost killing Pacman when they are on the same grid node.
 Four rules for Pacman and four others for the ghost represent moving in each direction to an adjacent grid node.\es{should we show one rule in Henshin?}
-Although the rules should obey certain scheduling, \eg killing has priority over moving to end the game, in this work we assume that the transformation is a graph grammar \ie any rule can be applied at any time during the execution of the transformation\es{do we need this assumption?}.
+Although the rules should obey certain scheduling, \eg killing has priority over moving to end the game, in this work, we assume that the transformation is a graph grammar \ie any rule can be applied at any time during the execution of the transformation\es{do we need this assumption?}.
 
 Our goal is to find the minimal sequence of rule applications starting from the initial model leading to the target model.
 Search-based techniques are very useful to solve this problem.
@@ -69,7 +69,7 @@ Formally, we represent a model as a labeled, attributed multi-graph $G=\langle V
 We identify three subsets of nodes $Mov,Pos,Mod \subset V$ corresponding to the movable, position, and modifiable objects.
 In our running example, grid nodes are the position nodes and Pacman and ghosts are movable nodes.
 Note that, in general, $Pos$ may be different for each $v \in Mov$.
-Additionally, all three subsets need not to be disjoint nor complete: an object can move between positions, but it can also serve as position for other movable objects, and it can have attributes modified.
+Additionally, all three subsets need not to be disjoint nor complete: an object can move between positions, but it can also serve as a position for other movable objects, and it can have attributes modified.
 Among the set of edges $e:V \rightarrow V \in E$, we identify two subsets $N,P \subset E$.
 Neighbor edges $n: Pos \rightarrow Pos \in N$ only connect position nodes, \eg \texttt{left}, \texttt{right}, \texttt{up}, and \texttt{down} references between grid nodes.
 Position edges $p: Mov \rightarrow Pos \in P$, like the \texttt{on} references, connect a movable node to a position node.
@@ -104,7 +104,7 @@ To normalize the distance as a ratio between 0 and 1, we divide by the total num
 In our example, $\Delta_E(M1,M2)=\frac{3+0}{13+10}=0.13$.
 We can interpret this distance as the ratio of objects added or removed between the two models.
 In this particular case, 13\% of the objects in M1 have been removed in M2.
-Note that the element distance is not concerned with edges, since they are already taken care of by the move distance.
+Note that the element distance is not concerned with edges since they are already taken care of by the move distance.
 
 
 \subsubsection{Value distance}
@@ -114,7 +114,7 @@ We define the value distance of attribute $x$ of node $v$ between $G_1$ and $G_2
 \[
 \delta_V(v,x)=\frac{|a(v,x)-a(v_1,x)|}{a(v,x)} \mbox{, where } v_1 \in Mod_1, v \in Mod_2 \mbox{ and } l(v)=l(v1)
 \]
-Here, we only consider attributes of objects present in both M1 and M2 because the element distance already takes care of absence and presence of elements.
+Here, we only consider attributes of objects present in both M1 and M2 because the element distance already takes care of the absence and presence of elements.
 This distance computes the margin of error needed to obtain the value of $x$ in $v$ from its value in $v_1$.
 We define the value distance between two models as the average of $\delta_V$ for all attributes of all nodes in $G_{12}$.
 This calculates the average margin of error between all attribute values of the two models.
@@ -136,47 +136,89 @@ In our example, $\Delta_V(M1,M2)=\delta_V(score,value)=\frac{|4-1|}{4}=0.75$.
 %
 %DistanceCalculator is the abstract class at the root that should be inherited by your distance function. For example MoveDistance only relies on the move distance between M1 and M2.
 
-\subsection{Generation of domain-specific metrics}
+\subsection{Adapting distance metrics to the DSL}
 
-This implementation is just a proof of concept. It has been implemented with the mindset that the distance calculation is generated automatically from analyzing the metamodel and the transformation rules.
+The distance metrics presented in \Sect{sec:metrics} are generic model distances to compare two models.
+We now describe how to adapt these metrics for a particular DSL and its semantics.
+We aim to produce a distance calculator given the metamodel of the DSL and a set of inplace model transformation rules encoding its semantics.
+Typically, these rules have a precondition and a postcondition pattern.
 
-Given a metamodel MM and Henshin rules R, we want to generate the distance calculator that will be used by the MOMot script.
+We need to identify the metamodel classes corresponding to the sets of nodes $Pos$ and $Mov$, and the associations corresponding to the sets of edges $N$ and $P$.
+The potential candidates for $Mov$ are classes that have an association to another class in the metamodel with cardinality at most 1.
+We denote $A$ the potentially movable class and $r$ its association to the other class $B$.
+Instances of $A,r,$ and $B$ must be in the precondition of a rule and $r$ must be modified in the postcondition to reference another class instance.
+Then, potentially $A$ is a class of movable nodes, $r$ is a position edge type, and $B$ is a class of position nodes.
+In our example, these are, among others, the \texttt{Pacman} class, the \texttt{on} association, and the \texttt{GridNode} class, respectively.
+It is also possible that $r$ is an association from $B$ to $A$.
+Furthermore, it may be that the second instance $A$ refers to is of another type than $B$, say $C$.
+If there is a reference $s$ between $B$ and $C$, then $s$ is likely to be a neighbor edge.
+Note that this is a necessary condition but not sufficient.
+For example, it may be the case where the movable and position classes are connected directly but through an intermediate class.
 
-The domain-specific distance classes (e.g., the move, element, value distances) can be easily generated. They have two dependencies to the metamodel:
+Similarly, we analyze the classes of the metamodel such that one of its attribute value is modified in the postcondition of a rule.
+Such classes define the type of the nodes in $Mod$.
 
-The package instance, by overriding the getEPackageInstance() function
-The constructor, by instantiating the appropriate DistanceUtil singleton object specific to the metamodel
+The three distance metrics rely on the label function to correspond similar nodes between the two models.
+For example in \Fig{fig:example}, the grid nodes are identified by their identifier (\eg 11, 12, \ldots).
+However, not all classes in the metamodel of the DSL have an identifying attribute.
+Since the label function must uniquely identify each node, we must compute a label for each object that does not have one.
+We can compute the label structurally.
+For example, we can ascertain that there is at most one food on a grid node.
+Then the label of a food object can rely on the label of the grid node it is on.
+Another case is if we can ascertain that a class is a singleton, then we assign the same label to its instance.
 
-Only the utility class (e.g., PacmanDistanceUtil) must be generated after analyzing MM and R. Following the code in PacmanDistanceUtil should guide you to know how to generate the code. Here are special considerations:
+From the above, we understand that automatically adapting the distance metrics to the DSL is very challenging.
+Therefore, we implemented the distance metrics as a Java library that can compute the metrics on any Ecore model in the Eclipse Modeling Framework.
+The library encapsulates all dependencies on the metamodel of the DSL within one abstract class \texttt{DistanceUtility}.
+The developer must override the five sets $Pos,Mov,Mod,N,$ and $P$ for his DSL.
+He must also define the \texttt{getId()} function for each class of the metamodel, if it does not already have an identity attribute.
 
-Your Utility class must inherit from DistanceUtil.
-It should import all movable, position, modifiable, and other classes.
-It must provide a function used for its singleton instantiation as follows.
 
-It should have 4 attributes for movable, position, modifiable, and all other types.
 
-It should override all abstract methods from DistanceUtil.
-The tricky part is the generation of the Object getId(EObject object) method. If each object has attribute with setID(true) you can rely on super. Otherwise, you have to make up one unique on your own. For example, if you know for sure that an attribute is unique, then you can rely on it (e.g., Places and Transitions in the Petrinet example). If there is only one possible instance of this element, then return true (e.g., Scoreboard in the Pacman example). It can also rely on an object it references or that references it (e.g., Food in the Pacman example).
+%is movable if, when analyzing the rules, it has a reference to a position object and the rules modify that reference.
+%Note that it could also be that a position object references a movable object.
+%
+%
+%This implementation is just a proof of concept. It has been implemented with the mindset that the distance calculation is generated automatically from analyzing the metamodel and the transformation rules.
+%
+%Given a metamodel MM and Henshin rules R, we want to generate the distance calculator that will be used by the MOMot script.
+%
+%The domain-specific distance classes (e.g., the move, element, value distances) can be easily generated. They have two dependencies to the metamodel:
+%
+%The package instance, by overriding the getEPackageInstance() function
+%The constructor, by instantiating the appropriate DistanceUtil singleton object specific to the metamodel
+%
+%Only the utility class (e.g., PacmanDistanceUtil) must be generated after analyzing MM and R. Following the code in PacmanDistanceUtil should guide you to know how to generate the code. Here are special considerations:
+%
+%Your Utility class must inherit from DistanceUtil.
+%It should import all movable, position, modifiable, and other classes.
+%It must provide a function used for its singleton instantiation as follows.
+%
+%It should have 4 attributes for movable, position, modifiable, and all other types.
+%
+%It should override all abstract methods from DistanceUtil.
+%The tricky part is the generation of the Object getId(EObject object) method. If each object has attribute with setID(true) you can rely on super. Otherwise, you have to make up one unique on your own. For example, if you know for sure that an attribute is unique, then you can rely on it (e.g., Places and Transitions in the Petrinet example). If there is only one possible instance of this element, then return true (e.g., Scoreboard in the Pacman example). It can also rely on an object it references or that references it (e.g., Food in the Pacman example).
+%
+%You also need to generate the DistanceUtilFactory specific to the metamodel (e.g., PacmanGameDistanceUtilFactory). Its only purpose is to make the concrete DistanceUtil accessible as a singleton.
+%
+%\subsubsection{Customization}
+%
+%The only code that is specific to the metamodel is the class that implements DistanceUtil. This is where you define the functions that provide the following information:
+%
+%\begin{itemize}
+%	\item[The movable objects:] An object is movable if, when analyzing the rules, it has a reference to a position object and the rules modify that reference. Note that it could also be that a position object references a movable object.
+%	\item[The position objects:] An object is a position if, when analyzing the rules, it is what movable objects are always linked to. Note that it could also be that a position object references a movable object.
+%	\item[The modifiable objects:] An object is modifiable if, when analyzing the rules, one of its attributes changes value.
+%	\item[The other objects:] Any object that is not movable, position or modifiable.
+%	\item[The ID of an object:] the value that uniquely identifies an object. This is used to find similar elements between M1 and M2.
+%	\item[The modifiable attributes:] All attribute values subject to modification for a given object.
+%	\item[Accessing the position:] the attribute used to know the position of a movable object.
+%	\item[Accessing the neighbors of a position:] the attribute used to connect position objects.
+%	\item[Accessing the root:] used to find the root object of M1 and M2.
+%\end{itemize}
 
-You also need to generate the DistanceUtilFactory specific to the metamodel (e.g., PacmanGameDistanceUtilFactory). Its only purpose is to make the concrete DistanceUtil accessible as a singleton.
 
-\subsubsection{Customization}
-
-The only code that is specific to the metamodel is the class that implements DistanceUtil. This is where you define the functions that provide the following information:
-
-\begin{itemize}
-	\item[The movable objects:] An object is movable if, when analyzing the rules, it has a reference to a position object and the rules modify that reference. Note that it could also be that a position object references a movable object.
-	\item[The position objects:] An object is a position if, when analyzing the rules, it is what movable objects are always linked to. Note that it could also be that a position object references a movable object.
-	\item[The modifiable objects:] An object is modifiable if, when analyzing the rules, one of its attributes changes value.
-	\item[The other objects:] Any object that is not movable, position or modifiable.
-	\item[The ID of an object:] the value that uniquely identifies an object. This is used to find similar elements between M1 and M2.
-	\item[The modifiable attributes:] All attribute values subject to modification for a given object.
-	\item[Accessing the position:] the attribute used to know the position of a movable object.
-	\item[Accessing the neighbors of a position:] the attribute used to connect position objects.
-	\item[Accessing the root:] used to find the root object of M1 and M2.
-\end{itemize}
-
-\subsection{Genetic programming with domain-specific model distances}
+\section{Finding a sequence of rule applications}
 
 \es{as a subsection or a section on its own. This is where we can talk about implementation: MOMot, Henshin, Ecore, etc.}
 
