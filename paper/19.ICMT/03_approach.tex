@@ -10,16 +10,16 @@
 We rely on the running example of a simplified Pacman game, a well-known game where Pacman navigates through grid nodes searching for food to eat, while ghosts try to kill him.
 We implemented a DSL to define game configurations, based on~\cite{Syriani2013a}.
 \Fig{fig:example} illustrates two Pacman game models in the concrete syntax of the DSL.
-Pacman, food, and ghosts are positioned grid nodes with an \texttt{on} reference.
+Pacman, food, and ghosts are placed on grid nodes with an \texttt{on} reference.
 Grid nodes are connected by \texttt{left}, \texttt{right}, \texttt{up}, and \texttt{down} references to define the permissible navigation of Pacman and ghosts.
 The concrete syntax represents references by topological alignment rather than arrows.
-Pacman is on grid node 21 which has an up reference to 11 and a right reference to 22.
+Pacman is on grid node 21 which has an \texttt{up} reference to grid node 11 and a \texttt{right} reference to grid node 22.
 A score object keeps track of the number of food Pacman eats.
 We define the operational semantics of the DSL in terms of an inplace model transformation, implemented with graph transformation rules as in~\cite{Syriani2013a}.
 One rule represents Pacman eating food on a grid node and updating the score.
 Another represents the ghost killing Pacman when they are on the same grid node.
 Four rules for Pacman and four others for the ghost represent moving in each direction to an adjacent grid node.\es{should we show one rule in Henshin?}
-Although the rules should obey certain scheduling, \eg killing has priority over moving to end the game, in this work we assume a graph grammar \ie any rule can be applied at any time during the execution of the transformation\es{do we need this assumption?}.
+Although the rules should obey certain scheduling, \eg killing has priority over moving to end the game, in this work we assume that the transformation is a graph grammar \ie any rule can be applied at any time during the execution of the transformation\es{do we need this assumption?}.
 
 Our goal is to find the minimal sequence of rule applications starting from the initial model leading to the target model.
 Search-based techniques are very useful to solve this problem.
@@ -32,8 +32,8 @@ For example, if Pacman moves right first, then he will have to go through the to
 Common model difference approaches rely solely on changes in the abstract syntax.
 However, the comparison needs to be tailored to both the DSL and its semantics to find the best rule sequence.
 In this example, the notion of Pacman and ghost movements must be encoded in the comparison.
-Inplace model transformation rules typically encode semantical operations, such as operational semantics or refactoring~\cite{Lucio2016}.
-Therefore, we propose a set of domain-specific distance metrics that take into consideration abstract syntax changes as well as the semantics of the transformation to optimize the search space for identifying the minimal sequence of rule applications.
+Inplace model transformation rules typically encode semantic operations, such as operational semantics or refactoring~\cite{Lucio2016}.
+Therefore, we propose a set of domain-specific distance metrics that take into consideration abstract syntax changes as well as the semantics of the transformation to optimize the search space of identifying the minimal sequence of rule applications.
 %
 %\es{to be used where needed}\begin{itemize}
 %    \item[Regular difference results:]
@@ -60,30 +60,25 @@ For our purpose, we need metrics that are tailored to the DSL both in terms of t
 Therefore, we propose the following three model distance metrics.
 These metrics are measured between two models M1 and M2, where M2 is the result of applying a sequence of rules on M1.
 
-\subsubsection{Move distance}
-The semantics of many formalisms rely on movements of model elements.
+The semantics of many formalisms relies on movements of model elements.
 Some of their elements are \emph{movable} while others represent \emph{positions} where an element can move to.
-For example, Pacman moves on the grid, attributes move to superclasses, or tokens move between places in a Petri net.
-%Formally, we consider a model to be a labeled, attributed multi-graph.
-%We extract a subgraph to represent the layout of the positions.
-%The nodes in the layout subgraph are the position objects and the edges are the references between them along which movable objects can move.
-%In the Pacman example, grid nodes are the nodes for position objects.
-%The edges correspond to the \texttt{left}, \texttt{right}, \texttt{up}, and \texttt{down} references between them.
-%
-%\es{Formal notation if needed:}
+For example, Pacman moves on the grid in our example, attributes move to superclasses in class diagrams, or tokens move between places in a Petri net.
+Furthermore, some elements are \emph{modifiable} meaning that the transformation changes some of their attribute values, like the score in the rule Pacman Eats Food.
+
 Formally, we represent a model as a labeled, attributed multi-graph $G=\langle V,E,l,a \rangle$.
-We identify two subsets of nodes $Mov,Pos \subset V$ corresponding to the movable and position objects.
-Among the edges $e:V \rightarrow V \in E$, we identify two subsets of edges $N,P \subset V$
-we distinguish neighbor edges $n: Pos \rightarrow Pos \in N$ and position edges $p: Mov \rightarrow Pos \in P$.
+We identify three subsets of nodes $Mov,Pos,Mod \subset V$ corresponding to the movable, position, and modifiable objects.
+In our running example, grid nodes are the position nodes and Pacman and ghosts are movable nodes.
+Note that, in general, $Pos$ may be different for each $v \in Mov$.
+Additionally, all three subsets need not to be disjoint nor complete: an object can move between positions, but it can also serve as position for other movable objects, and it can have attributes modified.
+Among the set of edges $e:V \rightarrow V \in E$, we identify two subsets $N,P \subset E$.
+Neighbor edges $n: Pos \rightarrow Pos \in N$ only connect position nodes, \eg \texttt{left}, \texttt{right}, \texttt{up}, and \texttt{down} references between grid nodes.
+Position edges $p: Mov \rightarrow Pos \in P$, like the \texttt{on} references, connect a movable node to a position node.
 The label function $l:V \rightarrow \Sigma^*$ assigns a unique string label to each node.
 The attribute function $a:V \times \Sigma^* \rightarrow \mathbb{N}$ assigns numerical values to each attribute name of a node.
 %$w:Pos \rightarrow \mathbb{N}$ assigns numerical weight to each position edge.
-Note that, in general, $Pos$ may be different for each $v \in Mov$.
-In our running example, grid nodes are the position nodes and Pacman and ghosts are movable nodes.
-Neighbor edges correspond to the \texttt{left}, \texttt{right}, \texttt{up}, and \texttt{down} references between grid nodes.
-Position edges correspond to the \texttt{on} references.
 
-The move distance of a movable object as the length of the shortest path from its position in model M1 to its position in model M2.
+\subsubsection{Move distance}
+The move distance of a movable object is the length of the shortest path from its position in model M1 to its position in model M2.
 We define $\delta_M(v_1,v_2)$ as the length of the shortest sequence of neighbor edges connecting $v_1$ to $v_2 \in Pos$.
 In \Fig{fig:example}, $\delta_M(pacman,grid_{13})=3$ and $\delta_M(ghost,grid_{21})=2$, which is equivalent to the Manhattan distance in this grid layout.
 To compute the move distance between M1 and M2, we identify the common connected subgraph $G_{12}$ of their respective graphs $G_1$ and $G_2$.
@@ -94,11 +89,11 @@ We define the move distance between two models as:
 Here, $p(v_1)$ is the position of $v_1$ in $G_1$ and $p(v_2)$ is its corresponding position in $G_2$.
 In our example, $\Delta_M(M1,M2)=5$.
 We rely on the popular Floyd-Warshall algorithm~\cite{Floyd1962,Warshall1962} to compute the shortest path between two nodes in a connected graph.
-The dynamic programming implementation takes $O(|Pos|^3)$ to compute all distances between any two nodes and $O(|N|)$ two output the path.
+The dynamic programming implementation takes $O(|Pos|^3)$ to compute all distances between any two nodes and $O(|N|)$ to output the path.
 
 
 \subsubsection{Element distance}
-The next metric is concerned with the presence and absence of metamodel class instances between M1 and M2.
+This metric is concerned with the presence and absence of metamodel class instances between M1 and M2.
 This is similar to what a model difference algorithm outputs.
 We define the element distance as:
 \[
@@ -109,15 +104,15 @@ To normalize the distance as a ratio between 0 and 1, we divide by the total num
 In our example, $\Delta_E(M1,M2)=\frac{3+0}{13+10}=0.13$.
 We can interpret this distance as the ratio of objects added or removed between the two models.
 In this particular case, 13\% of the objects in M1 have been removed in M2.
-Note that the element distance is not concerned with edges as this is already taken care of with the move distance.
+Note that the element distance is not concerned with edges, since they are already taken care of by the move distance.
 
 
 \subsubsection{Value distance}
 The third metric is concerned with the difference in attribute values between objects in M1 and M2.
-We assume that any attribute value can be encoded as a unique number, as it is common practice for metrics~\cite{Bertoa2018}.
+We assume that any attribute value can be encoded as a unique number, a common practice for metrics~\cite{Bertoa2018}.
 We define the value distance of attribute $x$ of node $v$ between $G_1$ and $G_2$ as:
 \[
-\delta_V(v,x)=\frac{|a(v,x)-a(v_1,x)|}{a(v,x)} \mbox{, where } v_1 \in V_1, v \in V_2 \mbox{ and } l(v)=l(v1)
+\delta_V(v,x)=\frac{|a(v,x)-a(v_1,x)|}{a(v,x)} \mbox{, where } v_1 \in Mod_1, v \in Mod_2 \mbox{ and } l(v)=l(v1)
 \]
 Here, we only consider attributes of objects present in both M1 and M2 because the element distance already takes care of absence and presence of elements.
 This distance computes the margin of error needed to obtain the value of $x$ in $v$ from its value in $v_1$.
