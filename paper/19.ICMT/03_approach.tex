@@ -16,32 +16,43 @@ A score object keeps track of the number of food Pacman eats.
 We define the operational semantics of the DSL in terms of an inplace model transformation, implemented with graph transformation rules as in~\cite{Syriani2013a}.
 One rule represents Pacman eating food on a grid node and updating the score.
 Another represents the ghost killing Pacman when they are on the same grid node.
-Four rules represent Pacman moving up, down, left, or right to an adjacent grid node.
-For similar rules represent ghost movements.\es{should we show one rule in Henshin?}
+Four rules for Pacman and four others for the ghost represent moving in each direction to an adjacent grid node.\es{should we show one rule in Henshin?}
 Although the rules should obey a certain scheduling, \eg killing has priority over moving to end the game, in this work we assume a graph grammar \ie any rule can be applied at any time during the execution of the transformation\es{do we need this assumption?}.
 
-In this work, we want to detect the sequence of rule applications starting from the initial model leading to the target model in \Fig{fig:example}.
-Relying on a search-based technique allow us to infer the sequence of rules by generating intermediate models such that the fitness function is improved.
-Let us assume that the fitness function uses model difference metrics to decide whether the current sequence of rules will lead to the target model.
+Our goal is to find the minimal sequence of rule applications starting from the initial model leading to the target model.
+Search-based techniques are very useful to solve this problem.
+They explore all possibilities of the search-space by generating intermediate models as a result of applying the rules, while optimizing the objective to get closer to the target model.
+For the example in \Fig{fig:example}, a minimal rule sequence is Pacman moves up once, then moves right three times, each time eating the food.
+The ghost also moves left twice.
+\es{In current approaches? cite?}To compute the difference between the two models, a generic model comparison tool, like EMFCompare, would report that three food objects are deleted, two \texttt{on} references (Pacman and ghost) are changed, and the attribute value of the score is modified.
+This information is not precise enough to identify the minimal sequence of rules.
+For example, if Pacman moves right first, then he will have to go through the top center grid node at least twice.
+Common model difference approaches rely solely on changes in the abstract syntax.
+However, the comparison needs to be tailored to both the DSL and its semantics to find the best rule sequence.
+In this example, the notion of Pacman and ghost movements must be encoded in the comparison.
+Inplace model transformation rules typically encode semantical operations, such as operational semantics or refactoring~\cite{Lucio2016}.
+Therefore, we propose a set of domain-specific distance metrics that take into consideration abstract syntax changes as well as semantics of the transformation to optimize the search space for identifying the minimal sequence of rule applications.
 
+\es{to be used where needed}\begin{itemize}
+    \item[Regular difference results:]
+        3 food objects deleted ;
+        2 on references modified ;
+        1 score value attribute modified.
+    
+    \item[Distance results:]
+        Move distance is $3+2=5$ ;
+        Value distance is $\frac{|4-1|}{4}=0.75$ ;
+        Element distance is $\frac{3+0}{13+10}=0.13$.
+    
+    \item[Minimal rules applied:]
+        1 Pacman Move Up ;
+        2 Pacman Move Right ;
+        3 Pacman Eats Food ;
+        2 Ghost Move Left.
+\end{itemize}
 
-Regular difference results:
-3 food objects deleted ;
-2 on references modified ;
-1 score value attribute modified
+\subsection{Model distance metrics}
 
-Distance results:
-Move distance is $3+2=5$ ;
-Value distance is $\frac{|4-1|}{4}=0.75$ ;
-Element distance is $\frac{3+0}{13+10}=0.13$ ;
-
-Minimal rules applied:
-1 Pacman Move Up ;
-2 Pacman Move Right ;
-3 Pacman Eats Food ;
-2 Ghost Move Left
-
-\subsection{Metrics}
 The idea is to generate the optimizing search problem to be tailored for the domain. In this sense, we customize the fitness function based on a distance metric. The metrics to minimize are:
 \begin{itemize}
 	\item[Move distance:] There is often movement of elements (\eg pacman moving on the grid, attributes moving around classes). The move distance of a movable object is the length of the shortest path from its position in M1 to its position in M2. Move distance is related to computing the difference with Ecore references.
