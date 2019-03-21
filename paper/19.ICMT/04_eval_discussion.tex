@@ -1,11 +1,3 @@
-This project uses MOMot to search for the sequence of application of model transformation rules that lead an input model M1 to a target model M2. As running example, we use the PacmanGame domain, with the rules specified in Henshin.
-
-Having the evolution recovery problem athand, we apply our search-based framework MOMoT~\cite{Fleck15,FleckTW16}, to find the Pareto-optimal module evolutions. MOMoT\footnote{MOMoT: \url{http://martin-fleck.github.io/momot}} is a task- and algorithm-agnostic approach that combines SBSE and MDE.
-It has been developed in previous work~\cite{Fleck15} and builds upon Henshin\footnote{Henshin: \url{http://www.eclipse.org/henshin}}~\cite{Arendt10} to define model transformations and the MOEA framework\footnote{MOEA Framework: \url{http://www.moeaframework.org}} to provide optimization techniques. In MOMoT, DSLs (i.e., metamodels) are used to model the problem domain and create problem instances (i.e., models), while model transformations are used to manipulate those instances.
-The orchestration of those model transformations, i.e., the order in which the transformation rules are applied and how those rules need to be configured, is derived by using different heuristic search algorithms which are guided by the effect the transformations have on the given objectives.
-In order to apply MOMoT for the given problem, we need to specify the necessary input.
-2 model versions, change operators defined as Henshin rules, and the objectives for the search.
-
 Objectives are either based on diff metrics or on distance metrics.
 
 

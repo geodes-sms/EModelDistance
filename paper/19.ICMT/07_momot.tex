@@ -1,6 +1,22 @@
 
-\es{as a subsection or a section on its own. This is where we can talk about implementation: MOMot, Henshin, Ecore, etc.}
+As motivated in \Sect{sec:example}, we apply domain-specific distance metrics to the problem of finding the minimal sequence of rule application from an initial model M1 to a target model M2.
+We consider this problem as an optimization problem and use search-based techniques to solve it.
 
-The idea is to generate the optimizing search problem to be tailored for the domain. In this sense, we customize the fitness function based on a distance metric. 
-Multi-objective genetic programming with an objective function to minimize for each distance metric.
-We also need to minimize the number of rule applications: the number of rules to apply to get from M1 to M2. This distance is already taken into account in MOMot and returns a positive integer.
+Having the evolution recovery problem at hand, we apply our search-based framework MOMoT~\cite{Fleck15,FleckTW16}, to find the Pareto-optimal module evolutions.
+MOMoT\footnote{
+    MOMoT: \url{http://martin-fleck.github.io/momot}
+} is a task- and algorithm-agnostic approach that combines SBSE and MDE.
+It has been developed in previous work~\cite{Fleck15} and builds upon Henshin\footnote{
+    Henshin: \url{http://www.eclipse.org/henshin}
+}~\cite{Arendt10} to define model transformations and the MOEA framework\footnote{
+    MOEA Framework: \url{http://www.moeaframework.org}
+} to provide optimization techniques.
+In MOMoT, DSLs (\ie metamodels) are used to model the problem domain and create problem instances (\ie models), while model transformations are used to manipulate those instances.
+The orchestration of those model transformations, \ie the order in which the transformation rules are applied and how those rules need to be configured, is derived by using different heuristic search algorithms which are guided by the effect the transformations have on the given objectives.
+For instance, MOEA provides an implementation of NSGA II\es{cite}, a multi-objective genetic programming framework.
+In order to apply MOMoT for the given problem, we need to specify the necessary input: two model versions, change operators defined as Henshin rules, and the objectives for the search.
+
+There are four objectives for the search.
+First, we want to minimize the length of the sequence of rules applied.
+Then, we minimize the three move, element, and value distance metrics tailored for the DSL.
+The computation of the metrics is generated as Java classes that rely on the customized \texttt{DistanceUtility} class provided for that DSL.
