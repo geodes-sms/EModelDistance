@@ -1,22 +1,21 @@
 With respect to the contribution of this paper, we discuss two threads of related work. First, we discuss approaches for model differencing. Second, we discuss approaches which cluster models based on distance metrics in the context of analysing model repositories.
 
-\subsection{Model Differencing} In the last decade, there have been many works published for deriving model differences which are based on atomic operations, e.g., see~\cite{} for concrete approaches and~\cite{} for surveys. In~\cite{} an approach is presented to derive a domain-specific difference language for atomic changes for a particular metamodel.
- To the best of our knowledge, these approaches are not supporting the computation of distances as we propose in this paper.
-In addition to these approaches focusing on atomic operations, there have been also some works published on the detection of domain-specific operations. For instance, Xing and Stroulia [10] present an approach for detecting refactorings in evolving software models which is integrated in UMLDiff. Refactorings
+\subsection{Model Differencing} 
+
+In the last decade, there have been many approaches presented for deriving model differences which are formulated as atomic operations, e.g., see~\cite{} for concrete approaches and~\cite{} for surveys. In~\cite{}, an approach is presented to derive a domain-specific difference language based on atomic changes from metamodels. To the best of our knowledge, these approaches for computing atomic changes as difference models are not supporting the computation of distances as we propose in this paper.
+
+In addition to atomic change detection approaches, there is a dedicated line of research concerned with the detection of domain-specific operations. For instance, Xing and Stroulia~\cite{} present an approach for detecting refactorings in evolving software models which is integrated in UMLDiff. Refactorings
 are expressed by change pattern queries used to search a
 difference model obtained by a state-based model comparison.
-The approach by Vermolen et al. [11] copes with the detection
+The approach by Vermolen et al.~\cite{} copes with the detection
 of complex evolution steps between different versions of a
 metamodel to allow for a higher automation in model
 migration. They use a diff model comprising primitive changes
-as input and calculate, on this basis, complex changes. The
-approach is tailored to the core of object-oriented
-metamodeling languages, but follows a similar methodology as
-UMLDiff. However, a specific feature is the detection of so-called
+as input and calculate, on this basis, complex changes. A specific feature is the detection of so-called
 masked changes, i.e., changes, which are hidden by other
 changes in a way that their effect is partially or also totally
 missing in the revised model, by defining additional detection
-rules. Furthermore, there is the work of Küster et al. [12] for
+rules. Furthermore, there is the work of Küster et al.~\cite{} for
 calculating hierarchical change logs including compound
 changes in the absence of recorded change logs. The authors
 apply the concept of Single-Entry-Single-Exit fragments to
@@ -25,17 +24,10 @@ correspondences between two process models. Thereby,
 several atomic changes are hidden behind one compound
 change. The use of graph transformations to collect atomic
 changes on models into more meaningful changes called user-level
-changes has been reported in [13].
+changes has been reported in~\cite{}. In~\cite{}, we have presented an domain-specific operation detection approach which transforms model transformation rules into diff patterns which can be matched on diff models. In follow-up work, we presented the first search-based approach for detection operation sequences between two model versions without requiring a diff model as basis to detect operations. However, we resorted on atomic diff models in the fitness function to compute how close a computed model is with respect to the given revised model.
 
-In~\cite{} we have presented an domain-specific operation detection approach which transforms model transformation rules into diff patterns which can be matched on diff models. In follow-up work, we presented the first search-based approach for detection operation sequences between two model versions without requiring a diff model as basis to detect operations. However, we resorted on atomic diff models in the fitness function to compute how close a computed model is with respect to the given revised model. 
-
-To sum up, many approaches have been proposed to compute difference models in the past. However, to the best of our knowledge, none focussed on distances as we present in this paper. Also the comparison of using differences or distances for searching for operation sequences is a novel contribution of this paper. 
+To sum up, many approaches have been proposed to compute diff models. However, to the best of our knowledge, none focussed on domain-specific distance metrics as we present in this paper. Also the comparison of using differences or distances for searching for operation sequences between two model versions is a novel contribution of this paper.
 
 \subsection{Model Clustering}
 
-Recent work discusses dedicated support to cluster models in model repositories~\cite{}. Thus the setting is different to the two-way or three-way comparison of models which is mostly studied in the model comparison and model versioning fields. In such cases, it is assumed that many models have to be compared at once. Thus, a generic clustering technique for models is proposed which is based on the translation of model to a vector space model. Based on this vector space representation, clustering distance measures can be reused such as Manhattan distance.
-
-\url{http://ceur-ws.org/Vol-2245/ammore_paper\_2.pdf}
-
-\url{http://www.scitepress.org/DigitalLibrary/Link.aspx?doi=10.5220\%2f0005799103610367}
-
+Recent work discusses dedicated support to cluster models in model repositories for different purposes such as understanding or clone detection~\cite{BaburCB18,BaburCVB16,BaburC17}. This setting is different to the classical two-way or three-way comparison of models which is mostly studied in the model comparison and model versioning fields, respectively. In model repository analytics, it is assumed that many models have to be compared at once. Thus, a generic clustering technique for models is proposed in~\cite{BaburCVB16} which is based on the translation of models to a vector space models. Based on this vector space representation, already existing generic clustering distance measures can be reused such as Manhattan distance. In a follow up work, the authors have proposed n-grams for clustering of models, again based on the usage of generic distance metrics~\cite{BaburC17,BaburCB18}. In contrast to these works in model repository analytics, we propose the usage of domain-specific distance metrics for model comparison. 
