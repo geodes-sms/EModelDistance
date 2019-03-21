@@ -19,4 +19,9 @@ In order to apply MOMoT for the given problem, we need to specify the necessary 
 There are four objectives for the search.
 First, we want to minimize the length of the sequence of rules applied.
 Then, we minimize the three move, element, and value distance metrics tailored for the DSL.
+From \Sect{sec:adapt}, we understand that automatically adapting the distance metrics to the DSL is very challenging.
+Therefore, we implemented the distance metrics as a Java library \texttt{EModelDistance} that computes the metrics on any Ecore model in the Eclipse Modeling Framework.
+The library encapsulates all dependencies on the metamodel of the DSL within one abstract class \texttt{DistanceUtility}.
+The developer must override the five sets $Pos,Mov,Mod,N,$ and $P$ for his DSL.
+He must also define the \texttt{getId()} function for each class of the metamodel, if it does not already have an identity attribute.
 The computation of the metrics is generated as Java classes that rely on the customized \texttt{DistanceUtility} class provided for that DSL.

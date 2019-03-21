@@ -140,7 +140,7 @@ However, the move and value distance will typically discriminate the two as we h
 Furthermore, distance metrics provide a quantitative appreciation of the difference in terms of \emph{``how far''} (thus, comparison distance) M1 is from M2.
 
 
-\subsection{Adapting distance metrics to the DSL}
+\subsection{Adapting distance metrics to the DSL}\label{sec:adapt}
 
 The distance metrics presented in \Sect{sec:metrics} are generic model distances to compare two models.
 We now describe how to adapt these metrics for a particular DSL and its semantics.
@@ -170,9 +170,3 @@ We can compute the label structurally.
 For example, we can ascertain that there is at most one food on a grid node.
 Then the label of a food object can rely on the label of the grid node it is on.
 Another case is if we can ascertain that a class is a singleton, then we assign the same label to its instance.
-
-From the above, we understand that automatically adapting the distance metrics to the DSL is very challenging.
-Therefore, we implemented the distance metrics as a Java library \texttt{EModelDistance} that can compute the metrics on any Ecore model in the Eclipse Modeling Framework.
-The library encapsulates all dependencies on the metamodel of the DSL within one abstract class \texttt{DistanceUtility}.
-The developer must override the five sets $Pos,Mov,Mod,N,$ and $P$ for his DSL.
-He must also define the \texttt{getId()} function for each class of the metamodel, if it does not already have an identity attribute.
