@@ -1,5 +1,31 @@
 With respect to the contribution of this paper, we discuss two threads of related work. First, we discuss approaches for model differencing. Second, we discuss approaches which cluster models based on distance metrics in the context of analysing model repositories.
 
+\es{The next 3 paragraphs are here in case we want to reuse them}
+
+This section reviews related works on model differencing (see also~\cite{StephanC13} for a survey on
+model comparison approaches and applications)
+
+Kolovos et al.~\cite{Kolovos2009} survey current approaches for model matching. These can be: {\em static identity-based}, 
+which assume a unique identifier for objects; {\em signature-based}, which compare objects based on a dynamic signature 
+calculated from the objects' properties; {\em similarity-based}, which match objects based on the aggregated 
+weighted similarity of their properties, but obviates the model semantics; and {\em language-specific}, developed 
+ad-hoc for a modeling language and its semantics. For example, using {\em signifiers}~\cite{LangerWGKV12} 
+(\ie combinations of features of a metamodel class) as comparison criteria falls in the signature-based category, 
+EMFCompare is similarity-based but permits defining custom matching algorithms, and UMLDiff is language-specific. 
+In general, each solution is better fit for certain kinds of problems: a language-specific matching algorithm may 
+be faster and more accurate than a generic algorithm, but its implementation requires more effort.
+
+Maoz et al.~\cite{MaozRR10} argue that existing model differencing approaches are purely syntactic and 
+challenge the community to develop semantic diff operators. These calculate a set of diff witnesses that give 
+a proof of the real change between two models and the effect on their semantics. Two models may be syntactically 
+different but have no diff witnesses, meaning that they are semantically equivalent. For example, a diff witness 
+of two class diagrams would be an object diagram that is an instance of one of the class diagrams but not of 
+the other, while for activity diagrams, it would be an execution trace admitted by only one of the diagrams. 
+Diff witnesses also allow deciding whether the semantics of two versions of a model are equivalent, incomparable, 
+or one refines the other. This approach was later realized in the Diffuse framework~\cite{MaozR18}.
+Extending our approach to deal with model diffs concerned with the instantiability or 
+executability of models as comparison criteria is left for future work.
+
 \subsection{Model Differencing} In the last decade, there have been many works published for deriving model differences which are based on atomic operations, e.g., see~\cite{} for concrete approaches and~\cite{} for surveys. In~\cite{} an approach is presented to derive a domain-specific difference language for atomic changes for a particular metamodel.
  To the best of our knowledge, these approaches are not supporting the computation of distances as we propose in this paper.
 In addition to these approaches focusing on atomic operations, there have been also some works published on the detection of domain-specific operations. For instance, Xing and Stroulia [10] present an approach for detecting refactorings in evolving software models which is integrated in UMLDiff. Refactorings
