@@ -9,13 +9,13 @@
 %
 We rely on the running example of a simplified Pacman game, a well-known game where Pacman navigates through grid nodes searching for food to eat, while ghosts try to kill him.
 We implemented a DSL to define game configurations, based on~\cite{Syriani2013a}.
-\Fig{fig:example} illustrates two Pacman game models in the concrete syntax of the DSL\es{first use of acronym?}.
+\Fig{fig:example} illustrates three Pacman game models in the concrete syntax of the DSL\es{first use of acronym?}.
 Pacman, food, and ghosts are placed on grid nodes with an \texttt{on} reference.
 Grid nodes are connected by \texttt{left}, \texttt{right}, \texttt{up}, and \texttt{down} references to define the permissible navigation of Pacman and ghosts.
 The concrete syntax represents references by topological alignment rather than arrows.
 In M1, Pacman is on grid node 21 which has an \texttt{up} reference to grid node 11 and a \texttt{right} reference to grid node 22.
 A score object keeps track of the points of every food Pacman eats.
-The point for red food is 1 and for green food is 3.
+Red and food score for 1 and points respectively.
 We define the operational semantics of the DSL in terms of an inplace model transformation, implemented with graph transformation rules as in~\cite{Syriani2013a}.
 One rule represents Pacman eating food on a grid node and updating the score.
 Another represents the ghost killing Pacman when they are on the same grid node.
