@@ -116,7 +116,7 @@ We define the value distance of attribute $x$ of node $v$ between $G_1$ and $G_2
 \]
 Here, we only consider attributes of objects present in both M1 and M2 because the element distance already takes care of the absence and presence of elements.
 This distance computes the margin of error needed to obtain the value of $x$ in $v$ from its value in $v_1$.
-We define the value distance between two models as the average of $\delta_V$ for all attributes of all nodes in $G_{12}$.
+We define the value distance $\Delta_V(G1,G2)$ between two models as the average of $\delta_V$ for all attributes of all nodes in $G_{12}$.
 This calculates the average margin of error between all attribute values of the two models.
 In our example, $\Delta_V(M1,M2)=\delta_V(score,value)=\frac{|4-1|}{4}=0.75$.
 
@@ -158,7 +158,7 @@ For example, it may be the case where the movable and position classes are conne
 Similarly, we analyze the classes of the metamodel such that one of its attribute value is modified in the postcondition of a rule.
 Such classes define the type of the nodes in $Mod$.
 
-The three distance metrics rely on the label function to correspond similar nodes between the two models.
+The three distance metrics rely on the label function $l$ to correspond similar nodes between the two models.
 For example in \Fig{fig:example}, the grid nodes are identified by their identifier (\eg 11, 12, \ldots).
 However, not all classes in the metamodel of the DSL have an identifying attribute.
 Since the label function must uniquely identify each node, we must compute a label for each object that does not have one.
