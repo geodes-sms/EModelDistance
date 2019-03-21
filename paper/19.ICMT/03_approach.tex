@@ -2,38 +2,45 @@
 
 \begin{figure}
     \centering
-    \includegraphics[width=.8\linewidth]{images/pacman_example}
-    \caption{The initial and target models of a Pacman game configuration}
+    \includegraphics[width=\linewidth]{images/pacman_example}
+    \caption{The initial model M1 and two possible models resulting from applying different rules of the Pacman game}
     \label{fig:example}
 \end{figure}
 %
 We rely on the running example of a simplified Pacman game, a well-known game where Pacman navigates through grid nodes searching for food to eat, while ghosts try to kill him.
 We implemented a DSL to define game configurations, based on~\cite{Syriani2013a}.
-\Fig{fig:example} illustrates two Pacman game models in the concrete syntax of the DSL.
+\Fig{fig:example} illustrates two Pacman game models in the concrete syntax of the DSL\es{first use of acronym?}.
 Pacman, food, and ghosts are placed on grid nodes with an \texttt{on} reference.
 Grid nodes are connected by \texttt{left}, \texttt{right}, \texttt{up}, and \texttt{down} references to define the permissible navigation of Pacman and ghosts.
 The concrete syntax represents references by topological alignment rather than arrows.
-Pacman is on grid node 21 which has an \texttt{up} reference to grid node 11 and a \texttt{right} reference to grid node 22.
-A score object keeps track of the number of food Pacman eats.
+In M1, Pacman is on grid node 21 which has an \texttt{up} reference to grid node 11 and a \texttt{right} reference to grid node 22.
+A score object keeps track of the points of every food Pacman eats.
+The point for red food is 1 and for green food is 3.
 We define the operational semantics of the DSL in terms of an inplace model transformation, implemented with graph transformation rules as in~\cite{Syriani2013a}.
 One rule represents Pacman eating food on a grid node and updating the score.
 Another represents the ghost killing Pacman when they are on the same grid node.
 Four rules for Pacman and four others for the ghost represent moving in each direction to an adjacent grid node.\es{should we show one rule in Henshin?}
 Although the rules should obey certain scheduling, \eg killing has priority over moving to end the game, in this work, we assume that the transformation is a graph grammar \ie any rule can be applied at any time during the execution of the transformation\es{do we need this assumption?}.
 
-Our goal is to find the minimal sequence of rule applications starting from the initial model leading to the target model.
+In this running example, we are interested in finding the minimal sequence of rule applications starting from the initial model leading to the target model.
 Search-based techniques are very useful to solve this problem.
 They explore all possibilities of the search-space by generating intermediate models as a result of applying the rules while optimizing the objective to get closer to the target model.
-For the example in \Fig{fig:example}, a minimal rule sequence is Pacman moves up once, then moves right three times, each time eating the food.
-The ghost also moves left twice.
-\es{In current approaches? cite?}To compute the difference between the two models, a generic model comparison tool, like EMFCompare, would report that three food objects are deleted, two \texttt{on} references (Pacman and ghost) are changed, and the attribute value of the score is modified.
-This information is not precise enough to identify the minimal sequence of rules.
-For example, if Pacman moves right first, then he will have to go through the top center grid node at least twice.
-Common model difference approaches rely solely on changes in the abstract syntax.
+For example, a minimal rule sequence to go from M1 to M2 in \Fig{fig:example} is Pacman moves up once, then moves right three times, eating the food each time, while the ghost also moves left twice.
+A minimal rule sequence from M1 to M3 is Pacman moves right, then up, then left, eating the food each time, while the ghost moves up once.
+
+Detecting the rule sequence requires to compare models at every step.
+\es{In current approaches? cite?}To compute the difference between M1 and M2, a generic model comparison tool, like EMFCompare, would report that three food objects are deleted, two \texttt{on} references (Pacman and ghost) are changed, and the attribute value of the score is modified.
+This tool would report the same information when we compare M1 and M3.
+However, a domain expert would immediately detect that the there is a clear difference betweem: 10 rules are needed to obtain M2 and 7 rules to obtain M3.
+Furthermore, the score value hints to which type of food Pacman ate.
+Thus, the information output by common model differencing approaches is not precise enough to identify the minimal sequence of rules (\eg for the M2 case, if Pacman moves right first, he will have to go through grid 12 node at least twice).
+The main reason is that they rely solely on changes in the abstract syntax.
 However, the comparison needs to be tailored to both the DSL and its semantics to find the best rule sequence.
-In this example, the notion of Pacman and ghost movements must be encoded in the comparison.
+In this example, relying on creation, deletion, and modification of elements of the metamodel is not sophisticated enough.
+The notion of Pacman and ghost movements as well as a quantification of the score value must be encoded in the comparison.
 Inplace model transformation rules typically encode semantic operations, such as operational semantics or refactoring~\cite{Lucio2016}.
-Therefore, we propose a set of domain-specific distance metrics that take into consideration abstract syntax changes as well as the semantics of the transformation to optimize the search space of identifying the minimal sequence of rule applications.
+Therefore, we propose a set of domain-specific distance metrics that take into consideration abstract syntax changes as well as the semantics of the transformation to provide more precise information when comparing models.
+This would optimize the search space of identifying the minimal sequence of rule applications.
 %
 %\es{to be used where needed}\begin{itemize}
 %    \item[Regular difference results:]
