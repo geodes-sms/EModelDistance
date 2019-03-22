@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy 5 elements to &apos;org.geodes.sms.emfmodeldistance/src&apos;&#x0D;&#x0A;- Original project: &apos;EMFModelDistance&apos;&#x0D;&#x0A;- Destination element: &apos;org.geodes.sms.emfmodeldistance/src&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     IEReferenceNavigator.java&#x0D;&#x0A;     DistanceUtil.java&#x0D;&#x0A;     DistanceCalculator.java&#x0D;&#x0A;     EcoreShortestPaths.java&#x0D;&#x0A;     MoveDistance.java" description="Copy files" destination="=org.geodes.sms.emfmodeldistance/src" element1="src/IEReferenceNavigator.java" element2="src/DistanceUtil.java" element3="src/DistanceCalculator.java" element4="src/EcoreShortestPaths.java" element5="src/MoveDistance.java" files="5" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1533115426914" units="0" version="1.0"/>
-</session>

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;org.pacman/metamodel/pacman.genmodel&apos;" deleteContents="false" description="Delete resource &apos;org.pacman/metamodel/pacman.genmodel&apos;" element1="/org.pacman/metamodel/pacman.genmodel" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1531298380656"/>
-</session>
