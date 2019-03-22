@@ -1,24 +1,88 @@
-In this section, we explain the background of our work. As every software artifact, also software models are subject to continuous evolution. Knowing the operations applied between two successive versions of a model is not only crucial for helping developers to efficiently understand the model's evolution (Koegel et al., 2010), but it is also a major prerequisite for model management tasks REF. In general, we may distinguish between two categories of model diffing approaches. The first category describes model diffs as atomic operations, such as additions, deletions, updates, and moves of model elements. The second category uses domain-specific operations (Sunyé et al., 2001) consisting of a set of cohesive atomic operations, which are applied within one transaction to achieve one common goal often expressed as a kind of model transformation. We detail both categories in the following.
+Like any software artifact, models evolve continuously.
+Knowing the operations applied between two successive versions of a model is crucial for helping developers to understand efficiently the evolution \mw{(Koegel et al., 2010)}.
+It is also a major prerequisite for model management tasks \mw{REF}.
+In general, we distinguish between two categories of model differencing approaches.
+One describes model differences as a set of generic individual operations, while the other uses domain-specific operations that aggregate individual ones to be applied as a single operation.
 
-\subsection{Model Diffs as Atomic Operations}
+\subsection{Model differences as atomic operations}
 
-Current model comparison tools often apply a two-phase process: $(i)$ correspondences between model elements are computed by model matching algorithms (Kolovos et al., 2009), and $(ii)$ a model diffing phase computes the differences between two models from the established correspondences. For instance, EMF Compare (Brun and Pierantonio, 2008) – a prominent representative of model comparison tools in the Eclipse ecosystem – is capable of detecting the following types of atomic operations:
-
-\begin{itemize}
+Current model comparison tools often apply a two-phase process to compare a base model and a revised model.
+First, model matching algorithms compute the correspondences between elements of the two models to compare \mw{(Kolovos et al., 2009)}.
+Then the model differencing phase computes the differences between two models from the established correspondences.
+For instance, EMF Compare~\cite{Brun2008}---a prominent representative of model comparison tools in the Eclipse ecosystem---can detect the following types of atomic operations:
+%
+\begin{itemize}%\vspace{-\baselineskip}
   \item Add: A model element only exists in the revised version.
-  \item Delete: A model element only exists in the origin version.
-  \item Update: A feature of a model element has a different value in the revised version than in the origin version. This includes both attribute values and references.
+  \item Delete: A model element only exists in the base version.
+  \item Update: A feature of a model element (attribute value or reference) has a different value in the revised version than in the base version.
   \item Move: A model element has a different container in the revised version than in the origin version.
 \end{itemize}
 
-The advantage of diffing for atomic operations is that generic tool support is available which works for all types of models. On the downside, working with large atomic differences is challenging and may require a higher level of abstraction. Therefore, the following diffing approaches have been developed over the last years. 
+The advantage of differencing atomic operations is the generic tool support it provides to work for any models of any DSL.
+Its limitation is when there is a large number of atomic differences, which may require a higher level of abstraction.
+Therefore, the following differencing approaches have been developed over the last years. 
 
 
-\subsection{Model Diffs as Domain-Specific Operations}
+\subsection{Model differences as domain-specific operations}
 
-To raise the level of abstraction for model diffs, a more concise view of model differences is required that aggregates the atomic operations into domain-specific operation applications such that the intent of the change is becoming explicit. Existing solutions (Hartung et al., 2010, Küster et al., 2008, Xing and Stroulia, 2006, Langer, Kehrer) provide language-specific operation detection algorithms. Often model transformations are the technique of choice used for specifying executable domain-specific operations. In particular, the operations are specified by transformation rules stating the operation's preconditions, postconditions, and actions that have to be executed for applying the operation. Especially, the approaches  proposed by Langer et al. and Kehrer et al. build on model transformations for operation detection between two model versions. The output of these approaches is a set of transformation rule applications which correspond to the list of domain-specific operation applications. By following these approaches, the difference models can be compressed as shown in different studies REF. However, finding the set of domain-specific operations which best describes a model evolution is a challenging problem, since there are many different evolution paths between two versions and there are dependencies between the execution of the operations which may mask some of them in the revised version of a model. Therefore, search-based approaches have been developed which evaluate different evolution path with respect to the ability if they can produce the revised version of model. Again, for this atomic differences have been used to compare the computed revised versions with the given revised versions. 
+\mw{cite (Sunyé et al., 2001) somewhere}
+To raise the level of abstraction of model differences, we can aggregate the atomic operations into domain-specific operation applications, making the intent of the change explicit.
+Existing solutions \mw{(Hartung et al., 2010, Küster et al., 2008, Xing and Stroulia, 2006, Langer, Kehrer)} provide language-specific operation detection algorithms.
+Often, executable domain-specific operations are specified as model transformations.
+Transformation rules define the preconditions, postconditions, and actions of the operation.
+Especially, the approaches  proposed by \mw{Langer et al. and Kehrer et al.} build on model transformations to detect the operations performed to obtain the revised model from the base model.
+The output of these approaches is a sequence of transformation rule applications corresponding to the domain-specific operation.
 
-\subsection{Synopsis}
+In these approaches, the difference model can be compressed into showing fewer differences than with atomic differences \mw{REF}.
+However, finding the set of domain-specific operations which best describes a model evolution is a challenging problem, since there are many different evolution paths between two versions and there are dependencies between the execution of the operations which may mask some of them in the revised version of a model.
+Therefore, search-based approaches have been developed to evaluate different evolution paths to find the revised model \mw{REF}.
+Nevertheless, they rely on atomic differences to compare the computed model versions with the given revised model. 
 
-While atomic operations allow to reason about the differences between two models on a fine-grained level, they fail to reason on distances. 
-Assume just the simple Pac-Man example presented in Figure X. The Pac-Man is moving from one area to a very different one in the game field. The same difference is reported for all the intermediate version, namely a change in the assignment of the Pac-Man to the fields. This means, if the Pac-Man just moves to the neighbour field or to the completely other end of the game field, the difference is the same as atomic diffing techniques are fully agnostic about the spatial aspects of elements. Domain-specific operation detection approaches would be more suitable to represent distances as they are able to represent differences as a set of operations. However, for their computation, atomic diffing is required which is not providing an appropriate guidance to decide if the search goes into the right direction or not. For instance, the Pac-Man could move to any other field and we always get the same fitness value of operations sequences. Therefore, we propose the usage of additional distance metrics to provide additional information on top of difference models in the following section and show their benefits for the search of domain-specific operation-based differences in Section 4.   
+%\subsection{Synopsis}
+%
+%While atomic operations allow to reason about the differences between two models on a fine-grained level, they fail to reason on distances. 
+%Assume just the simple Pac-Man example presented in Figure X. The Pac-Man is moving from one area to a very different one in the game field. The same difference is reported for all the intermediate version, namely a change in the assignment of the Pac-Man to the fields. This means, if the Pac-Man just moves to the neighbour field or to the completely other end of the game field, the difference is the same as atomic diffing techniques are fully agnostic about the spatial aspects of elements. Domain-specific operation detection approaches would be more suitable to represent distances as they are able to represent differences as a set of operations. However, for their computation, atomic diffing is required which is not providing an appropriate guidance to decide if the search goes into the right direction or not. For instance, the Pac-Man could move to any other field and we always get the same fitness value of operations sequences. Therefore, we propose the usage of additional distance metrics to provide additional information on top of difference models in the following section and show their benefits for the search of domain-specific operation-based differences in Section 4.   
+
+\subsection{Running example}\label{sec:example}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{images/pacman_example}
+    \caption{The initial model M1 and two possible models resulting from applying different rules of the Pacman game}
+    \label{fig:example}
+\end{figure}
+%
+We rely on the running example of a simplified Pacman game, a well-known game where Pacman navigates through grid nodes searching for food to eat, while ghosts try to kill him.
+We implemented a DSL to define game configurations, based on~\cite{Syriani2013a}.
+\Fig{fig:example} illustrates three Pacman game models in the concrete syntax of the DSL.
+Pacman, food, and ghosts are placed on grid nodes with an \texttt{on} reference.
+Grid nodes are connected by \texttt{left}, \texttt{right}, \texttt{up}, and \texttt{down} references to define the permissible navigation of Pacman and ghosts.
+The concrete syntax represents references by topological alignment rather than arrows.
+In M1, Pacman is on grid node 21 which has an \texttt{up} reference to grid node 11 and a \texttt{right} reference to grid node 22.
+A score object keeps track of the points of every food Pacman eats.
+Red and food score for 1 and points respectively.
+We define the operational semantics of the DSL in terms of an inplace model transformation, implemented with graph transformation rules as in~\cite{Syriani2013a}.
+One rule represents Pacman eating food on a grid node and updating the score.
+Another represents the ghost killing Pacman when they are on the same grid node.
+Four rules for Pacman and four others for the ghost represent moving in each direction to an adjacent grid node.\es{should we show one rule in Henshin?}
+Although the rules should obey certain scheduling, \eg killing has priority over moving to end the game, in this work, we assume that the transformation is a graph grammar \ie any rule can be applied at any time during the execution of the transformation\es{do we need this assumption?}.
+
+In this running example, we are interested in finding the minimal sequence of rule applications starting from the initial model leading to the target model.
+Search-based techniques are very useful to solve this problem.
+They explore all possibilities of the search-space by generating intermediate models as a result of applying the rules while optimizing the objective to get closer to the target model.
+For example, a minimal rule sequence to go from M1 to M2 in \Fig{fig:example} is Pacman moves up once, then moves right three times, eating the food each time, while the ghost also moves left twice.
+A minimal rule sequence from M1 to M3 is Pacman moves right, then up, then left, eating the food each time, while the ghost moves up once.
+
+Detecting the rule sequence requires to compare models at every step.
+\es{In current approaches? cite?}To compute the difference between M1 and M2, a generic model comparison tool, like EMF Compare, would report that three food objects are deleted, two \texttt{on} references (Pacman and ghost) are changed, and the attribute value of the score is modified.
+This tool would report the same information when we compare M1 and M3.
+However, a domain expert would immediately detect that the there is a clear difference betweem: 10 rules are needed to obtain M2 and 7 rules to obtain M3.
+Furthermore, the score value hints to which type of food Pacman ate.
+Thus, the information output by common model differencing approaches is not precise enough to identify the minimal sequence of rules (\eg for the M2 case, if Pacman moves right first, he will have to go through grid 12 node at least twice).
+The main reason is that they rely solely on changes in the abstract syntax.
+However, the comparison needs to be tailored to both the DSL and its semantics to find the best rule sequence.
+In this example, relying on creation, deletion, and modification of elements of the metamodel is not sophisticated enough.
+The notion of Pacman and ghost movements as well as a quantification of the score value must be encoded in the comparison.
+Inplace model transformation rules typically encode semantic operations, such as operational semantics or refactoring~\cite{Lucio2016}.
+Therefore, we propose a set of domain-specific distance metrics that take into consideration abstract syntax changes as well as the semantics of the transformation to provide more precise information when comparing models.
+This would optimize the search space of identifying the minimal sequence of rule applications.
