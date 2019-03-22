@@ -1,6 +1,8 @@
 # Description
 
-This project uses [MOMot](http://martin-fleck.github.io/momot/) to search for the sequence of application of model transformation rules that lead an input model M1 to a target model M2.
+This project implements distance metrics for any Ecore model so it can be used to compare two versions of a model. The distance metrics are meant to be customized for the domain-specific language, based on its metamodel and semantical changes.
+
+As an application of the distance metrics, the project uses [MOMot](http://martin-fleck.github.io/momot/) to search for the sequence of application of model transformation rules that lead an input model M1 to a target model M2.
 Here, we use the PacmanGame domain, with the rules specified in [Henshin](https://www.eclipse.org/henshin/).
 
 The search code is under `org.pacman/src/PacmanGame.search`.
