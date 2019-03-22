@@ -1,9 +1,8 @@
-Summary
+In this paper we have introduced a novel notion of metrics for model comparison, so-called domain-specific distance metrics.
+We have defined a method to derive tool support to compute these measurements from the metamodel and the operational semantics of the DSL.
+We have shown the usage the distance metrics in the recovery of operation-based change logs between model versions for different modeling languages.
 
-
-Conclusions
-
-
-Future work 
-
-Our approach may be used for model synchronization. 
+One main result of our study is that heavily changing model structures seems to be a particular challenge when it comes to the computation of distance metrics.
+The cases used in our experiment have shown different performances of calculating and using model distances.
+As future work, we plan to perform more experiments, with cases such as the refactoring case, where elements are deleted, created, and potentially re-created.
+Finally, we plan to use model distances for other model management tasks, such as model synchronization and model-metamodel co-evolution, where model differencing approaches are currently used.

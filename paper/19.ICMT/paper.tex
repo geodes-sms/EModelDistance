@@ -1,69 +1,15 @@
-\documentclass{jot}
+\documentclass{llncs}
 
-\usepackage[utf8]{inputenc}
-%\usepackage[T1]{fontenc}
+\usepackage[bookmarks,bookmarksopen,bookmarksdepth=2]{hyperref} %sections as bookmarks in adobe pdf
+\hypersetup{pdfpagemode=UseNone}
+\usepackage{times}
+
 \usepackage[english]{babel}
+\usepackage[utf8]{inputenc}  %% les accents dans le fichier.tex
+\usepackage[T1]{fontenc}       %% Pour la c{\'e}sure des mots accentu{\'e}s
 \usepackage{microtype} % optional, for aesthetics
 \usepackage{tabularx} % nice to have
 \usepackage{booktabs} % necessary for style
-
-%\usepackage[bookmarks,bookmarksopen,bookmarksdepth=2]{hyperref} %sections as bookmarks in adobe pdf
-%\hypersetup{pdfpagemode=UseNone}
-
-
-%%% Article metadata
-\title{Domain-Specific Model Distance Measures}
-\runningtitle{Domain-specific distance measures}
-
-\author[affiliation=UL, nowrap] % , photo=FILE]
-    {Manuel Wimmer}
-    {is a ... in ... at ....
-    Contact him at \email{EMAIL}, or visit \url{URL}.}
-
-\author[affiliation=UdeM, nowrap] % , photo=FILE]
-{Eugene Syriani}
-{is an associate professor in the department of computer science and operations research at Universit{\'e} de Montr{\'e}al.
-	Contact him at \email{syriani@iro.umontreal.ca}, or visit \url{www.iro.umontreal.ca/~syriani}.}
-
-\author[affiliation=UV, nowrap] % , photo=FILE]
-{Robert Bill}
-{is a ... in ... at ....
-	Contact him at \email{EMAIL}, or visit \url{URL}.}
-
-\affiliation{UdeM}{Universit{\'e} de Montr{\'e}al}
-\affiliation{UV}{University of Vienna}
-\affiliation{UL}{University of Linz}
-
-\runningauthor{Wimmer et al.}
-
-\jotdetails{
-    volume=V,
-    number=N,
-    articleno=M,
-    year=2011,
-    doisuffix=jot.201Y.VV.N.aN,
-    license=ccbynd % choose from ccby, ccbynd, ccbyncnd
-}
-
-% Put edit comments in a really ugly standout display
-\usepackage{ifthen}
-\usepackage{amssymb}
-\newboolean{showcomments}
-\setboolean{showcomments}{true} % toggle to show or hide comments
-\ifthenelse{\boolean{showcomments}}
-{\newcommand{\nb}[2]{
-		\fcolorbox{gray}{yellow}{\bfseries\sffamily\scriptsize#1}
-		{$\blacktriangleright$#2$\blacktriangleleft$}
-	}
-	\newcommand{\version}{\emph{\scriptsize$-$working$-$}}
-}
-{\newcommand{\nb}[2]{}
-	\newcommand{\version}{}
-}
-
-\newcommand\es[1]{\nb{ES}{\textcolor{red}{\textsl{#1}}}}
-\newcommand\mw[1]{\nb{MW}{\textcolor{red}{\textsl{#1}}}}
-\newcommand\rb[1]{\nb{RB}{\textcolor{red}{\textsl{#1}}}}
 
 % For URLs in the references
 \usepackage{url}
@@ -72,7 +18,7 @@
 
 % Advanced Math
 %\usepackage{amsmath}
-%\usepackage{amssymb}	% double line font letters (for number sets N,Z,D,Q,R)
+\usepackage{amssymb}	% double line font letters (for number sets N,Z,D,Q,R)
 
 % Images and Floats
 \usepackage{epsfig}
@@ -102,13 +48,37 @@
 
 %\usepackage{listings}
 
+% Put edit comments in a really ugly standout display
+
+\usepackage{ifthen}
+\usepackage{amssymb}
+\usepackage[dvipsnames]{xcolor}
+\newboolean{showcomments}
+\setboolean{showcomments}{true} % toggle to show or hide comments
+\ifthenelse{\boolean{showcomments}}
+{\newcommand{\nb}[2]{
+        \fcolorbox{gray}{yellow}{\bfseries\sffamily\scriptsize#1}
+        {$\blacktriangleright$#2$\blacktriangleleft$}
+    }
+    \newcommand{\version}{\emph{\scriptsize$-$working$-$}}
+}
+{\newcommand{\nb}[2]{}
+    \newcommand{\version}{}
+}
+\newcommand{\textunderscript}[1]{$_{\text{#1}}$}
+
+\definecolor{ao}{rgb}{0.0, 0.5, 0.0}
+\newcommand\es[1]{\nb{ES}{\textcolor{red}{\textsl{#1}}}}
+\newcommand\mw[1]{\nb{MW}{\textcolor{blue}{\textsl{#1}}}}
+\newcommand\rb[1]{\nb{RB}{\textcolor{ao}{\textsl{#1}}}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Standard shortcuts
 \newcommand{\eg}{e.g.,~}										% exempli gratia (for the sake of example)
 \newcommand{\ie}{i.e.,~}										% id est (that is)
 \newcommand{\etal}{~et al.}									% et alia (and others)
-\newcommand{\Fig}[1]{Figure~\ref{#1}}  			% choose Fig. or Figure, depending on the style
+\newcommand{\Fig}[1]{Fig.~\ref{#1}}  			% choose Fig. or Figure, depending on the style
 \newcommand{\Table}[1]{Table~\ref{#1}}	    % Table reference
 \newcommand{\Sect}[1]{Section~\ref{#1}}	  	% section name always with a capital S
 \newcommand{\Model}[1]{\textsf{\small{#1}}} % name of any modeling artifact (e.g., formalism, model element, rule, ...)
@@ -120,39 +90,49 @@
 
 \begin{document}
 
+\title{Domain-Specific Model Distance Measures}
+
+\author{Eugene Syriani\inst{1} \and Robert Bill\inst{2}  \and Manuel Wimmer\inst{3}}
+\institute{
+    Universit{\'e} de Montr{\'e}al, Canada
+    \and
+    TU Wien, Austria
+    \and
+    Johannes Kelper University Linz, Austria
+    }
+
+\maketitle
+
 \begin{abstract}
 A lot of research was invested in the last decade to develop differencing methods for models to identify the changes performed between two model versions.
 A difference model captures these changes. However, less attention was paid to distance computations of model versions. While different versions of a model may have a similar amount of differences,
-the distance to a base model may be drastically different. Therefore, we present in this paper distance metrics for models, a method to automatically generate tool support for computing domain-specific distance measures and show the benefits of distance measures over differences in searching for model evolution explanations. The results of running different experiments show...
+the distance to a base model may be drastically different. Therefore, we present in this paper distance metrics for models, a method to automatically generate tool support for computing domain-specific distance measures and show the benefits of distance measures over differences in searching for model evolution explanations. The results of running different experiments show...\es{todo}
 \end{abstract}
 
 \keywords{Model comparison, Model diffing, Model distances, Model evolution}
 
-\section{INTRODUCTION}
+\section{Introduction}\label{sec:intro}
 \input{01_intro.tex}
 
-\section{BACKGROUND}
+\section{Background and Motivation}\label{sec:background}
 \input{02_background.tex}
 
-\section{DOMAIN-SPECIFIC DISTANCES}
+\section{Domain-specific Model Distances}\label{sec:metrics}
 \input{03_approach.tex}
 
-\section{EVALUATION AND DISCUSSION}
+\section{Use Case: Finding a Sequence of Rule Applications}\label{sec:momot}
+\input{07_momot.tex}
+
+\section{Evaluation and Discussion}\label{sec:eval}
 \input{04_eval_discussion.tex}
 
-\section{RELATED WORK}
+\section{Related Work}\label{sec:rw}
 \input{05_related.tex}
 
-\section{CONCLUSION}
+\section{Conclusion}\label{sec:conclusion}
 \input{06_conclusions.tex}
 
-\bibliographystyle{alphaurl}
+\bibliographystyle{splncs}
 \bibliography{biblio}
-
-\abouttheauthors
-
-\begin{acknowledgments}
-This work has been sponsored by
-\end{acknowledgments}
 
 \end{document}

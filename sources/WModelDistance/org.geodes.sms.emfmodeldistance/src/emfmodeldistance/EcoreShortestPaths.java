@@ -66,7 +66,7 @@ public class EcoreShortestPaths {
             for (int j = 0; j < numNodes; j++) {
             	next[i][j] = -1;								// null
                 if (i == j) {
-                	distances[i][j] = 0;						// self-loop
+                	distances[i][j] = 0.0;						// self-loop
                 } else {
                 	distances[i][j] = Double.POSITIVE_INFINITY;	// infinity
                 }
@@ -162,7 +162,7 @@ public class EcoreShortestPaths {
 	private void setWeight(int source, EObject target) {
 		if (target != null) {
 			int j = nodes.indexOf(target);
-			distances[source][j] = WEIGHT;
+			distances[source][j] = Math.min(distances[source][j], WEIGHT);
 			next[source][j] = j;
 		}
 	}

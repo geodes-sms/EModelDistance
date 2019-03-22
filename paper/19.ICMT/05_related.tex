@@ -1,12 +1,60 @@
-In this section, we discuss first approaches for model differencing and second approaches which cluster models based on distance metrics. 
+With respect to the contribution of this paper, we discuss two threads of related work. First, we discuss approaches for model differencing. Second, we discuss approaches which cluster models based on distance metrics in the context of analysing model repositories.
 
 
-1) Comparing models. I am only aware of model difference approaches which produce differences and not distances. But I can enumerate here atomic diff approaches and domain-specific operation based diff approaches.
+\es{The next 3 paragraphs are here in case we want to reuse them}
 
+This section reviews related works on model differencing (see also~\cite{StephanC13} for a survey on
+model comparison approaches and applications)
 
-2) Clustering models. Mostly concerned with model repositories. Typical clustering distance metrics based on model features.
+Kolovos et al.~\cite{Kolovos2009} survey current approaches for model matching. These can be: {\em static identity-based}, 
+which assume a unique identifier for objects; {\em signature-based}, which compare objects based on a dynamic signature 
+calculated from the objects' properties; {\em similarity-based}, which match objects based on the aggregated 
+weighted similarity of their properties, but obviates the model semantics; and {\em language-specific}, developed 
+ad-hoc for a modeling language and its semantics. For example, using {\em signifiers}~\cite{LangerWGKV12} 
+(\ie combinations of features of a metamodel class) as comparison criteria falls in the signature-based category, 
+EMFCompare is similarity-based but permits defining custom matching algorithms, and UMLDiff is language-specific. 
+In general, each solution is better fit for certain kinds of problems: a language-specific matching algorithm may 
+be faster and more accurate than a generic algorithm, but its implementation requires more effort.
 
-\url{http://ceur-ws.org/Vol-2245/ammore_paper\_2.pdf}
+Maoz et al.~\cite{MaozRR10} argue that existing model differencing approaches are purely syntactic and 
+challenge the community to develop semantic diff operators. These calculate a set of diff witnesses that give 
+a proof of the real change between two models and the effect on their semantics. Two models may be syntactically 
+different but have no diff witnesses, meaning that they are semantically equivalent. For example, a diff witness 
+of two class diagrams would be an object diagram that is an instance of one of the class diagrams but not of 
+the other, while for activity diagrams, it would be an execution trace admitted by only one of the diagrams. 
+Diff witnesses also allow deciding whether the semantics of two versions of a model are equivalent, incomparable, 
+or one refines the other. This approach was later realized in the Diffuse framework~\cite{MaozR18}.
+Extending our approach to deal with model diffs concerned with the instantiability or 
+executability of models as comparison criteria is left for future work.
 
-\url{http://www.scitepress.org/DigitalLibrary/Link.aspx?doi=10.5220\%2f0005799103610367}
+\subsection{Model Differencing} 
 
+In the last decade, there have been many approaches presented for deriving model differences which are formulated as atomic operations, e.g., see~\cite{} for concrete approaches and~\cite{} for surveys. In~\cite{}, an approach is presented to derive a domain-specific difference language based on atomic changes from metamodels. To the best of our knowledge, these approaches for computing atomic changes as difference models are not supporting the computation of distances as we propose in this paper.
+
+In addition to atomic change detection approaches, there is a dedicated line of research concerned with the detection of domain-specific operations. For instance, Xing and Stroulia~\cite{} present an approach for detecting refactorings in evolving software models which is integrated in UMLDiff. Refactorings
+are expressed by change pattern queries used to search a
+difference model obtained by a state-based model comparison.
+The approach by Vermolen et al.~\cite{} copes with the detection
+of complex evolution steps between different versions of a
+metamodel to allow for a higher automation in model
+migration. They use a diff model comprising primitive changes
+as input and calculate, on this basis, complex changes. A specific feature is the detection of so-called
+masked changes, i.e., changes, which are hidden by other
+changes in a way that their effect is partially or also totally
+missing in the revised model, by defining additional detection
+rules. Furthermore, there is the work of Küster et al.~\cite{} for
+calculating hierarchical change logs including compound
+changes in the absence of recorded change logs. The authors
+apply the concept of Single-Entry-Single-Exit fragments to
+calculate the hierarchical change logs after computing the
+correspondences between two process models. Thereby,
+several atomic changes are hidden behind one compound
+change. The use of graph transformations to collect atomic
+changes on models into more meaningful changes called user-level
+changes has been reported in~\cite{}. In~\cite{}, we have presented an domain-specific operation detection approach which transforms model transformation rules into diff patterns which can be matched on diff models. In follow-up work, we presented the first search-based approach for detection operation sequences between two model versions without requiring a diff model as basis to detect operations. However, we resorted on atomic diff models in the fitness function to compute how close a computed model is with respect to the given revised model.
+
+To sum up, many approaches have been proposed to compute diff models. However, to the best of our knowledge, none focussed on domain-specific distance metrics as we present in this paper. Also the comparison of using differences or distances for searching for operation sequences between two model versions is a novel contribution of this paper.
+
+\subsection{Model Clustering}
+
+Recent work discusses dedicated support to cluster models in model repositories for different purposes such as understanding or clone detection~\cite{BaburCB18,BaburCVB16,BaburC17}. This setting is different to the classical two-way or three-way comparison of models which is mostly studied in the model comparison and model versioning fields, respectively. In model repository analytics, it is assumed that many models have to be compared at once. Thus, a generic clustering technique for models is proposed in~\cite{BaburCVB16} which is based on the translation of models to a vector space models. Based on this vector space representation, already existing generic clustering distance measures can be reused such as Manhattan distance. In a follow up work, the authors have proposed n-grams for clustering of models, again based on the usage of generic distance metrics~\cite{BaburC17,BaburCB18}. In contrast to these works in model repository analytics, we propose the usage of domain-specific distance metrics for model comparison. 
