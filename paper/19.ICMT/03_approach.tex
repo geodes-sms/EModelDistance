@@ -4,9 +4,9 @@
 Typical model difference tools report metrics on elements added and deleted in terms of instances of metamodel classes, on references changed in terms of instances of metamodel associations, and on attribute value modifications.
 As motivated in \Sect{sec:example}, we need metrics that are tailored to the DSL both in terms of the metamodel and the semantics of the transformation.
 Therefore, we propose the following three model distance metrics.
-These metrics are measured between two models M1 and M2, where M2 is the result of applying a sequence of rules on M1\es{do we need to state that?}.
+These metrics are measured between two models M1 and M2, where M2 is the result of applying a sequence of rules on M1\es{do we need to state that?}. \mw{not necessarily - I would remove it}
 
-The semantics of many formalisms relies on movements of model elements.
+The semantics of many modeling formalisms relies on movements of model elements.
 Some of their elements are \emph{movable} while others represent \emph{positions} where an element can move to.
 Pacman moving on the grid in our example, attributes moving to superclasses in class diagrams, or tokens moving between places in a Petri net are some of many examples where it happens.
 Furthermore, some elements are \emph{modifiable} meaning that the transformation changes some of their attribute values, like the score in the rule where Pacman eats food.
