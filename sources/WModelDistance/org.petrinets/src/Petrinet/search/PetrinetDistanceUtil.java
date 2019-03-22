@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import Petrinet.Place;
 import Petrinet.Transition;
 import Petrinet.impl.PetriNetImpl;
-import emfmodeldistance.DistanceUtil;
+import emodeldistance.DistanceUtil;
 
 /**
  * Class automatically generated from analyzing Petrinet metamodel and the transformation rules.

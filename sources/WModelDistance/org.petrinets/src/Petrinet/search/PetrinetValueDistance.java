@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import Petrinet.PetrinetPackage;
-import emfmodeldistance.ValueDistance;
+import emodeldistance.ValueDistance;
 
 /**
  * This class is automatically generated for the Petrinet metamodel.

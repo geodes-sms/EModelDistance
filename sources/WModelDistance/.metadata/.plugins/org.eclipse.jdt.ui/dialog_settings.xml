@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<item value="filter_imports;" key="filters_last_used"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
+		<item value="false" key="renameSubpackages"/>
 		<item value="false" key="updateQualifiedNames"/>
 		<item value="*" key="patterns"/>
 		<item value="false" key="updateSimilarElements"/>
@@ -25,7 +26,7 @@
 	<section name="javadoc">
 		<item value="private" key="access"/>
 		<item value="false" key="noindex"/>
-		<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emfmodeldistance\javadoc.xml" key="antpath"/>
+		<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emodeldistance\javadoc.xml" key="antpath"/>
 		<item value="false" key="nodeprecatedlist"/>
 		<item value="true" key="use"/>
 		<item value="true" key="author"/>
@@ -35,17 +36,17 @@
 		<item value="C:\Program Files (x86)\Java\jdk1.8.0_112\bin\javadoc.exe" key="javadoc_command_history"/>
 		<item value="1.8" key="source"/>
 		<item value="true" key="version"/>
-		<item value="EMF Model Distance" key="doctitle"/>
+		<item value="EModelDistance" key="doctitle"/>
 		<item value="" key="docletname"/>
 		<item value="true" key="splitindex"/>
 		<item value="true" key="fromStandard"/>
 		<item value="false" key="notree"/>
-		<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emfmodeldistance\doc" key="destdir"/>
+		<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emodeldistance\doc" key="destdir"/>
 		<item value="true" key="openinbrowser"/>
 		<section name="projects">
-			<section name="org.geodes.sms.emfmodeldistance">
-				<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emfmodeldistance\javadoc.xml" key="antpath"/>
-				<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emfmodeldistance\doc" key="destdir"/>
+			<section name="org.geodes.sms.emodeldistance">
+				<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emodeldistance\javadoc.xml" key="antpath"/>
+				<item value="D:\Documents\Documents\UdM\sms\pub\19.DistanceBasedChangeDetection\dbcd\sources\WModelDistance\org.geodes.sms.emodeldistance\doc" key="destdir"/>
 				<item value="" key="href"/>
 			</section>
 			<section name="org.petrinets">

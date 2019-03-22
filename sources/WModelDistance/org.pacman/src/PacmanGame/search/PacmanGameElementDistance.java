@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import PacmanGame.PacmanGamePackage;
-import emfmodeldistance.ElementDistance;
+import emodeldistance.ElementDistance;
 
 /**
  * This class is automatically generated for the PacmanGame metamodel.

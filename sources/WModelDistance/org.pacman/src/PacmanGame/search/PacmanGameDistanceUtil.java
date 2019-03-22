@@ -16,7 +16,7 @@ import PacmanGame.GridNode;
 import PacmanGame.Pacman;
 import PacmanGame.Scoreboard;
 import PacmanGame.impl.GameImpl;
-import emfmodeldistance.DistanceUtil;
+import emodeldistance.DistanceUtil;
 
 /**
  * Class automatically generated from analyzing PacmanGame metamodel and the transformation rules.

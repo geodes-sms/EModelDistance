@@ -13,8 +13,7 @@ import PacmanGame.PositionableEntity;
 import PacmanGame.impl.FoodImpl;
 import PacmanGame.impl.GameImpl;
 import PacmanGame.impl.MoveableEntityImpl;
-
-import emfmodeldistance.DistanceCalculator;
+import emodeldistance.DistanceCalculator;
 
 public class PacmanGameCustomDistance extends DistanceCalculator {
 	

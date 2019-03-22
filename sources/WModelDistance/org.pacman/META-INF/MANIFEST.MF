@@ -22,6 +22,6 @@ Require-Bundle: org.eclipse.core.runtime,
  at.ac.tuwien.big.momot.core,
  org.apache.log4j,
  org.eclipse.emf.common,
- org.geodes.sms.emfmodeldistance
+ org.geodes.sms.emodeldistance
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
