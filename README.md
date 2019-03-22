@@ -1,10 +1,3 @@
-# Info
-*Author:* Eugene Syriani
-*Contributors:* Manuel Wimmer, RObert Bill
-
-*Date:* 25 July 2018
-
-
 # Description
 
 This project uses [MOMot](http://martin-fleck.github.io/momot/) to search for the sequence of application of model transformation rules that lead an input model M1 to a target model M2.
