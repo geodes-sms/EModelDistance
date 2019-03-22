@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.group.model="http://org/eclipse/emf/ecp/view/group/model" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/1170" xmi:id="_abLBEOn1EeW9hu2dEFzGzw">
+  <ecorePaths>/org.eclipse.emf.codegen.ecore/model/GenModel.ecore</ecorePaths>
+  <rootEClass href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_hj8akOn1EeW9hu2dEFzGzw" name="All">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_pv69gOn1EeW9hu2dEFzGzw" name="Control basePackage">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_pv69gen1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/basePackage"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_pwAdEOn1EeW9hu2dEFzGzw" name="Control prefix">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_pwAdEen1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/prefix"/>
+      </domainModelReference>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_abLBEen1EeW9hu2dEFzGzw" name="Edit">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoIOn1EeW9hu2dEFzGzw" name="Control childCreationExtenders">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoIen1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/childCreationExtenders"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoIun1EeW9hu2dEFzGzw" name="Control disposableProviderFactory">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoI-n1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/disposableProviderFactory"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoJOn1EeW9hu2dEFzGzw" name="Control extensibleProviderFactory">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoJen1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/extensibleProviderFactory"/>
+      </domainModelReference>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_abLoJun1EeW9hu2dEFzGzw" name="Editor">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoJ-n1EeW9hu2dEFzGzw" name="Control generateModelWizard">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoKOn1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/generateModelWizard"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoKen1EeW9hu2dEFzGzw" name="Control multipleEditorPages">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoKun1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/multipleEditorPages"/>
+      </domainModelReference>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_abLoK-n1EeW9hu2dEFzGzw" name="Model">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoLOn1EeW9hu2dEFzGzw" name="Control adapterFactory">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoLen1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/adapterFactory"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoLun1EeW9hu2dEFzGzw" name="Control contentTypeIdentifier">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoL-n1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/contentTypeIdentifier"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoMOn1EeW9hu2dEFzGzw" name="Control dataTypeConverters">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoMen1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/dataTypeConverters"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoMun1EeW9hu2dEFzGzw" name="Control fileExtensions">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoM-n1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/fileExtensions"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoNOn1EeW9hu2dEFzGzw" name="Control loadInitialization">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoNen1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/loadInitialization"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoNun1EeW9hu2dEFzGzw" name="Control literalsInterface">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoN-n1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/literalsInterface"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abLoOOn1EeW9hu2dEFzGzw" name="Control publicationLocation">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abLoOen1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/publicationLocation"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abMPMOn1EeW9hu2dEFzGzw" name="Control resource">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abMPMen1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/resource"/>
+      </domainModelReference>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_abMPMun1EeW9hu2dEFzGzw" name="Package Suffixes">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abMPM-n1EeW9hu2dEFzGzw" name="Control interfacePackageSuffix">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abMPNOn1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/interfacePackageSuffix"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abMPNen1EeW9hu2dEFzGzw" name="Control metaDataPackageSuffix">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abMPNun1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/metaDataPackageSuffix"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abMPN-n1EeW9hu2dEFzGzw" name="Control providerPackageSuffix">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abMPOOn1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/providerPackageSuffix"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abMPOen1EeW9hu2dEFzGzw" name="Control testsPackageSuffix">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abMPOun1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/testsPackageSuffix"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abMPO-n1EeW9hu2dEFzGzw" name="Control utilityPackageSuffix">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abMPPOn1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/utilityPackageSuffix"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abMPPen1EeW9hu2dEFzGzw" name="Control classPackageSuffix">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abMPPun1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/classPackageSuffix"/>
+      </domainModelReference>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abMPP-n1EeW9hu2dEFzGzw" name="Control presentationPackageSuffix">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abMPQOn1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/presentationPackageSuffix"/>
+      </domainModelReference>
+    </children>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.group.model:Group" xmi:id="_abMPQen1EeW9hu2dEFzGzw" name="Tests">
+    <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_abMPQun1EeW9hu2dEFzGzw" name="Control generateExampleClass">
+      <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_abMPQ-n1EeW9hu2dEFzGzw">
+        <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage/generateExampleClass"/>
+      </domainModelReference>
+    </children>
+  </children>
+</org.eclipse.emf.ecp.view.model:View>

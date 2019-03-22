@@ -1,0 +1,105 @@
+package icmt.tool.momot.demo
+
+import at.ac.tuwien.big.momot.^search.^fitness.dimension.TransformationLengthDimension
+import at.ac.tuwien.big.moea.^experiment.executor.listener.SeedRuntimePrintListener
+import at.ac.tuwien.big.moea.util.MathUtil
+import org.moeaframework.core.operator.TournamentSelection
+import org.moeaframework.core.operator.OnePointCrossover
+import at.ac.tuwien.big.momot.^search.algorithm.operator.mutation.TransformationPlaceholderMutation
+import Petrinet.PetrinetPackage
+import java.io.File
+import org.eclipse.emf.henshin.trace.TraceFactory
+import Petrinet.^search.PetrinetValueDistance
+import Petrinet.^search.PetrinetMoveDistance
+import Petrinet.^search.PetrinetElementDistance
+
+initialization = {
+   PetrinetPackage.eINSTANCE.eClass // register package
+   TraceFactory.eINSTANCE.eClass
+   PetrinetValueDistance.initWith(new File("models/target1.6.3.xmi"));
+   PetrinetMoveDistance.initWith(new File("models/target1.6.3.xmi"));
+   PetrinetElementDistance.initWith(new File("models/target1.6.3.xmi"));
+   System.out.println("Search started.");
+}
+
+search = {
+   model          = {
+      file       = "models/input10.0.0.xmi"
+   }
+   
+   solutionLength  = 30
+
+   transformations = {
+      modules = [ "transformation/fireWFnet.henshin" ]
+      ignoreUnits = [ "fire" ]
+   }
+
+   fitness         = {
+      objectives = {
+         SolutionLength : minimize new TransformationLengthDimension
+         ValueDistance: minimize {PetrinetValueDistance.calculateFitness(root)}
+         MoveDistance: minimize {PetrinetMoveDistance.calculateFitness(root)}
+         ElementDistance: minimize {PetrinetElementDistance.calculateFitness(root)}
+      }
+   }
+
+   algorithms      = {
+      //Random  : moea.createRandomSearch()
+      NSGAIII : moea.createNSGAII() 
+      //eMOEA   : moea.createEpsilonMOEA()
+   }
+}
+
+experiment = {
+   populationSize    = 100
+   maxEvaluations    = 10000
+   nrRuns            = 1
+   progressListeners = [ new SeedRuntimePrintListener ]
+}
+
+analysis = {
+   indicators       = [ hypervolume invertedGenerationalDistance ]
+   significance     = 0.01
+   show             = [ aggregateValues statisticalSignificance individualValues ]
+   outputFile       = "output/analysis/analysis.txt"
+   boxplotDirectory = "output/analysis/"
+   printOutput
+}
+
+results = {
+   adaptModels = {
+      
+   }
+   
+   // save objectives
+   objectives = {
+      outputFile      = "output/objectives/objective_values.txt"
+      printOutput
+   }
+   
+   /*objectives = {
+      outputFile      = "output/objectives/random_objective_values.txt"
+      algorithms      = [ Random ]
+   }*/
+
+   // save solutions, i.e., transformation orchestrations
+   solutions  = {
+      outputFile      = "output/solutions/all_solutions.txt"
+      outputDirectory = "output/solutions/"
+   }
+
+   // save models resulting from the orchestrated transformations
+   models     = {
+      outputDirectory = "output/models/"
+   }
+   
+   // select kneepoint models for further inspection
+   models     = {
+      neighborhoodSize = maxNeighborhoodSize
+      outputDirectory  = "output/models/kneepoints/"
+   }
+}
+
+finalization = {
+   System.out.println("Search finished.");
+}
