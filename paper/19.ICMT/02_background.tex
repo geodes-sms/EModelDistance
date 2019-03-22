@@ -20,7 +20,7 @@ For instance, EMF Compare~\cite{Brun2008}---a prominent representative of model 
 
 The advantage of differencing atomic operations is the generic tool support it provides to work for any models of any DSL.
 Its limitation is when there is a large number of atomic differences, which may require a higher level of abstraction.
-Therefore, the following differencing approaches have been developed over the last years. 
+Therefore, the following differencing approaches have been developed over the last years.
 
 
 \subsection{Model differences as domain-specific operations}
@@ -36,14 +36,14 @@ The output of these approaches is a sequence of transformation rule applications
 In these approaches, the difference model can be compressed into showing fewer differences than with atomic differences \mw{REF}.
 However, finding the set of domain-specific operations which best describes a model evolution is a challenging problem, since there are many different evolution paths between two versions and there are dependencies between the execution of the operations which may mask some of them in the revised version of a model.
 Therefore, search-based approaches have been developed to evaluate different evolution paths to find the revised model \mw{REF}.
-Nevertheless, they rely on atomic differences to compare the computed model versions with the given revised model. 
+Nevertheless, they rely on atomic differences to compare the computed model versions with the given revised model.
 
 %\subsection{Synopsis}
 %
-%While atomic operations allow to reason about the differences between two models on a fine-grained level, they fail to reason on distances. 
-%Assume just the simple Pac-Man example presented in Figure X. The Pac-Man is moving from one area to a very different one in the game field. The same difference is reported for all the intermediate version, namely a change in the assignment of the Pac-Man to the fields. This means, if the Pac-Man just moves to the neighbour field or to the completely other end of the game field, the difference is the same as atomic diffing techniques are fully agnostic about the spatial aspects of elements. Domain-specific operation detection approaches would be more suitable to represent distances as they are able to represent differences as a set of operations. However, for their computation, atomic diffing is required which is not providing an appropriate guidance to decide if the search goes into the right direction or not. For instance, the Pac-Man could move to any other field and we always get the same fitness value of operations sequences. Therefore, we propose the usage of additional distance metrics to provide additional information on top of difference models in the following section and show their benefits for the search of domain-specific operation-based differences in Section 4.   
+%While atomic operations allow to reason about the differences between two models on a fine-grained level, they fail to reason on distances.
+%Assume just the simple Pac-Man example presented in Figure X. The Pac-Man is moving from one area to a very different one in the game field. The same difference is reported for all the intermediate version, namely a change in the assignment of the Pac-Man to the fields. This means, if the Pac-Man just moves to the neighbour field or to the completely other end of the game field, the difference is the same as atomic diffing techniques are fully agnostic about the spatial aspects of elements. Domain-specific operation detection approaches would be more suitable to represent distances as they are able to represent differences as a set of operations. However, for their computation, atomic diffing is required which is not providing an appropriate guidance to decide if the search goes into the right direction or not. For instance, the Pac-Man could move to any other field and we always get the same fitness value of operations sequences. Therefore, we propose the usage of additional distance metrics to provide additional information on top of difference models in the following section and show their benefits for the search of domain-specific operation-based differences in Section 4.
 
-\subsection{Running example}\label{sec:example}
+\subsection{Motivating and Running example}\label{sec:example}
 
 \begin{figure}
     \centering
@@ -76,7 +76,7 @@ A minimal rule sequence from M1 to M3 is Pacman moves right, then up, then left,
 Detecting the rule sequence requires to compare models at every step.
 \es{In current approaches? cite?}To compute the difference between M1 and M2, a generic model comparison tool, like EMF Compare, would report that three food objects are deleted, two \texttt{on} references (Pacman and ghost) are changed, and the attribute value of the score is modified.
 This tool would report the same information when we compare M1 and M3.
-However, a domain expert would immediately detect that the there is a clear difference betweem: 10 rules are needed to obtain M2 and 7 rules to obtain M3.
+However, a domain expert would immediately detect that the there is a clear difference between: 10 rules are needed to obtain M2 and 7 rules to obtain M3.
 Furthermore, the score value hints to which type of food Pacman ate.
 Thus, the information output by common model differencing approaches is not precise enough to identify the minimal sequence of rules (\eg for the M2 case, if Pacman moves right first, he will have to go through grid 12 node at least twice).
 The main reason is that they rely solely on changes in the abstract syntax.
@@ -84,5 +84,4 @@ However, the comparison needs to be tailored to both the DSL and its semantics t
 In this example, relying on creation, deletion, and modification of elements of the metamodel is not sophisticated enough.
 The notion of Pacman and ghost movements as well as a quantification of the score value must be encoded in the comparison.
 Inplace model transformation rules typically encode semantic operations, such as operational semantics or refactoring~\cite{Lucio2016}.
-Therefore, we propose a set of domain-specific distance metrics that take into consideration abstract syntax changes as well as the semantics of the transformation to provide more precise information when comparing models.
-This would optimize the search space of identifying the minimal sequence of rule applications.
+Therefore, we propose a set of domain-specific distance metrics that take into consideration abstract syntax changes as well as the semantics of the transformation to provide more precise information when comparing models. This would allow to optimize the search space exploration of identifying the minimal sequence of rule applications. 
